@@ -1,5 +1,6 @@
 import { useForm, useInput, useSelect } from "lx-react-form";
 import { useEffect, useState } from "react";
+import "./style.css";
 /* import { Link } from "react-router-dom"; */
 
 function Cadastro() {
@@ -40,11 +41,13 @@ function Cadastro() {
 
   return (
     <>
-      <div>
+      <div className="background">
         <img src={imagem} alt="imagem de fundo" />
+        <h1 className="logo">Logo</h1>
+        <h1 className="logo2">relativi</h1>
         {/* <img src="logo" alt="relativi logo"/> */}
       </div>
-      <div>
+      <div className="container">
         <section>
           <h3>Sobre {/* <Link to={""}>nós</Link> */}</h3>
           <h3>
