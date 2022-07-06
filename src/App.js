@@ -1,5 +1,11 @@
+import Cadastro from "./pages/cadastro";
+
 function App() {
-  return <div className="App"></div>;
+  return (
+    <div className="App">
+      <Cadastro />
+    </div>
+  );
 }
 
 export default App;
