@@ -3,7 +3,7 @@ import { Cadastro } from "../pages/cadastro";
 import { Dashboard } from "../pages/dashboard";
 import { Landing } from "../pages/landing";
 import { Login } from "../pages/login";
-import { Loja } from "../pages/Loja";
+import { Loja } from "../pages/loja";
 
 function Router() {
   return (
