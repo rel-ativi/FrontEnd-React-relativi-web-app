@@ -1,14 +1,12 @@
-import './App.css';
-import LandingPage from './pages/landingpage';
+import Routes from "./routes"
+import { Tema } from "./styles/tema"
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-      <LandingPage/>
-      </header>
-    </div>
-  );
+    <Tema>
+      <Routes />
+    </Tema>
+  )
 }
 
-export default App;
+export default App
