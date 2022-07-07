@@ -1,12 +1,11 @@
-import Login from "./pages/Login";
+import Routes from "./routes";
+import { Tema } from "./styles/tema";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <Login/>
-      </header>
-    </div>
+    <Tema>
+      <Routes />
+    </Tema>
   );
 }
 
