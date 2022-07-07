@@ -1,6 +1,8 @@
 import { useForm, useInput, useSelect } from "lx-react-form";
 import { useEffect, useState } from "react";
+import { Logo } from "../../styles/global";
 import "./style.css";
+
 /* import { Link } from "react-router-dom"; */
 
 function Cadastro() {
@@ -42,12 +44,13 @@ function Cadastro() {
   return (
     <>
       <div className="background">
-        <img src={imagem} alt="imagem de fundo" />
-        <h1 className="logo">Logo</h1>
-        <h1 className="logo2">relativi</h1>
-        {/* <img src="logo" alt="relativi logo"/> */}
+        <img className="backgroundImage" src={imagem} alt="imagem de fundo" />
+        <img src="/logo192.png" className="logo" alt="Logo" />
+        <Logo className="logo2">
+          rel<span>ativi</span>
+        </Logo>
       </div>
-      <div className="container">
+      <div className="containerCadastro">
         <section>
           <h3>Sobre {/* <Link to={""}>nós</Link> */}</h3>
           <h3>

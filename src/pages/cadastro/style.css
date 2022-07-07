@@ -1,4 +1,4 @@
-.background img {
+.backgroundImage {
   position: fixed;
   left: 0;
   top: 0;
@@ -9,21 +9,25 @@
 
 .background .logo {
   position: fixed;
-  right: 40%;
-  top: 20%;
-  color: brown;
+  right: 35%;
+  top: 17%;
+  width: 100px;
   text-shadow: 0 0 5px white;
 }
 
 .background .logo2 {
   position: fixed;
   right: 35%;
-  top: 27%;
+  top: 32%;
   color: aliceblue;
   text-shadow: 0 0 5px black;
 }
 
-.container {
+.background span {
+  color: red;
+}
+
+.containerCadastro {
   box-sizing: border-box;
   padding: 20px;
   position: fixed;
@@ -39,11 +43,11 @@
   background-color: rgba(3, 15, 38, 0.7);
   color: white;
 }
-.container section {
+.containerCadastro section {
   display: none;
 }
 
-.container form {
+.containerCadastro form {
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -53,14 +57,14 @@
   justify-content: center;
 }
 
-.container input {
+.containerCadastro input {
   box-sizing: border-box;
   padding: 5px;
   width: 100%;
   padding-right: 25px;
 }
 
-.container select,
+.containerCadastro select,
 option {
   box-sizing: border-box;
   width: 100%;
@@ -68,29 +72,29 @@ option {
 }
 
 @media only screen and (min-width: 667px) {
-  .container {
+  .containerCadastro {
     height: 100vh;
     width: 25vw;
     min-width: 300px;
   }
 
-  .container section {
+  .containerCadastro section {
     display: block;
     align-self: flex-end;
     text-align: end;
   }
 
-  .container form {
+  .containerCadastro form {
     width: 90%;
   }
 
   .background .logo {
     left: 10%;
-    top: 80%;
+    top: 74%;
   }
 
   .background .logo2 {
-    left: 20%;
+    left: 24%;
     top: 80%;
   }
 }

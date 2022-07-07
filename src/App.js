@@ -1,10 +1,11 @@
-import Cadastro from "./pages/cadastro";
+import Routes from "./routes";
+import { Tema } from "./styles/tema";
 
 function App() {
   return (
-    <div className="App">
-      <Cadastro />
-    </div>
+    <Tema>
+      <Routes />
+    </Tema>
   );
 }
 
