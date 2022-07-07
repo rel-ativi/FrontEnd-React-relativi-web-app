@@ -49,20 +49,9 @@ button{
     align-items: flex-start;
     flex-direction: column;
     gap:0.5rem;
+
+    border: 1px solid red;
 }
-`;
-
-export const Logo = styled.h1`
-  width: 100%;
-  padding: 0.5rem 0;
-
-  color: ${({ theme: { cores } }) => cores.secundaria};
-  font-family: "Source Code Pro", monospace;
-
-  span {
-    color: ${({ theme: { cores } }) => cores.marca};
-    font-family: "Source Code Pro", monospace;
-  }
 `;
 
 export const ContainerFlex = styled.div`
