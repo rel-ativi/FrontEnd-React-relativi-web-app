@@ -8,6 +8,8 @@ import ModalLenbreSe from "./modalHeaderLenbreSe";
 
 import { HeaderConteiner } from "./style";
 
+import {LogoTexto} from "../logo/index"
+
 // import "./style.css";
 
 function Header() {
@@ -44,20 +46,22 @@ function Header() {
   const nomeDoUsuario = initialState.nome.split(" ")[0];
 
   return (
+    
     <HeaderConteiner>
       <div className="divHeader">
+      <div className="container">
         <span>
-          Relative
+          <LogoTexto cor={"inversa"} largura={"90px"} ></LogoTexto>
         </span>
         <span>
           {" "}
-          <BiLogOut />
+          <BiLogOut className="textRed" />
         </span>
       </div>
       <div className="divHeader">
-        <span>Ola,</span>
+        <span className="tamanhoAjustar">Ola,</span>
         <span>
-          <GoCalendar
+          <GoCalendar className="textRed"
             onClick={() => {
               if (modalCalendario === true) {
                 setCalendario(false);
@@ -69,8 +73,8 @@ function Header() {
         </span>
       </div>
       <div className="divHeader">
-        <span>{nomeDoUsuario}</span>
-        <span>
+        <span className="textRed">{nomeDoUsuario}</span>
+        <span className="textRed">
           <GoKebabHorizontal />
         </span>
       </div>
@@ -86,6 +90,7 @@ function Header() {
             setCalendario={setCalendario}
           ></ModalCalendario>
         )}
+      </div>
       </div>
     </HeaderConteiner>
   );

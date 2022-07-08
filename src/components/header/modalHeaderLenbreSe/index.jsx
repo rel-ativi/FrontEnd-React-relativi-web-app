@@ -1,4 +1,5 @@
 import { AiFillCalendar } from "react-icons/ai";
+import { IoArrowDownCircleSharp } from "react-icons/io5";
 
 function ModalLenbreSe({ setModalLenbreSe, modalLenbreSe, dadosUserAtividadesTest }) {
   console.log(dadosUserAtividadesTest)
@@ -14,12 +15,12 @@ function ModalLenbreSe({ setModalLenbreSe, modalLenbreSe, dadosUserAtividadesTes
           
            <span onClick={() => {
             setModalLenbreSe(true);
-          }}>{"fechado"}</span>
+          }}><IoArrowDownCircleSharp/></span>
         </div>
       </div>
     );
   }
-
+  
   const ProximaAtividade = {
       nome: "atividades",
       data: "10/05",
@@ -39,7 +40,7 @@ function ModalLenbreSe({ setModalLenbreSe, modalLenbreSe, dadosUserAtividadesTes
           setModalLenbreSe(false);
         }}
       >
-        {"aberto"}
+        <IoArrowDownCircleSharp/>
       </span>
     </div>
     <p className="textInformacoes">você tem: <span className="alinharTextoAtivado">{ProximaAtividade.nome}</span></p>
