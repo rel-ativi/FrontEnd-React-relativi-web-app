@@ -1,3 +1,6 @@
-export const changeTheme = () => ({
-  type: "@imagem/CHANGE",
+import { change } from "./actionTypes";
+
+export const changeImage = (data) => ({
+  type: change,
+  data,
 });

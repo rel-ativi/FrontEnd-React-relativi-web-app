@@ -13,7 +13,7 @@ export default function Input({
       {label && <label htmlFor={nome}>{label}</label>}
       <div>
         <input id={nome} name={nome} placeholder={placeholder} {...rest} />
-        <Icone />
+        {/* <Icone /> */}
       </div>
       {textoAuxiliar && <small>{textoAuxiliar}</small>}
     </ContainerInput>
