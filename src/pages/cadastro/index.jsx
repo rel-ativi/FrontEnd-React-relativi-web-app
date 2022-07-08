@@ -1,9 +1,7 @@
 import { useForm, useInput, useSelect } from "lx-react-form";
-import { useEffect } from "react";
+import { MdOutlineAccountCircle, MdEmail, MdPassword } from "react-icons/md";
 
 import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import changeImageThunk from "../../store/modules/ImagesReel/thunks";
 
 import Select from "../../components/select";
 import Botao from "../../components/botao";
@@ -12,13 +10,6 @@ import { LogoHorizontal, LogoQuadrado } from "../../components/logo";
 import { EstiloCadastro } from "./styles";
 
 function Cadastro() {
-  const imagem = useSelector((store) => store.imagem);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    setTimeout(() => dispatch(changeImageThunk()), 5000);
-  }, [imagem]);
-
   const name = useInput({ name: "name" });
   const email = useInput({ name: "email", validation: "email" });
   const password = useInput({ name: "password", validation: "senha" });
@@ -40,39 +31,52 @@ function Cadastro() {
   return (
     <EstiloCadastro>
       <div className="background">
-        <img className="backgroundImage" src={imagem} alt="imagem de fundo" />
         <div className="logoMobile">
-          <LogoQuadrado largura={"5rem"} />
+          <LogoQuadrado largura={"7rem"} />
+        </div>
+        <div className="logoTablet">
+          <LogoHorizontal largura="20rem" />
         </div>
         <div className="logoDesktop">
-          <LogoHorizontal largura={"15rem"} />
+          <LogoHorizontal largura="30rem" />
         </div>
       </div>
       <div className="containerCadastro">
         <section>
-          <h3>Sobre {<Link to={"/"}>nós</Link>}</h3>
-          <h3>Sobre o {<Link to={"/"}>projeto</Link>}</h3>
+          {
+            <Link to={"/"}>
+              Sobre <span>nós</span>
+            </Link>
+          }
+          {
+            <Link to={"/"}>
+              Sobre o <span>projeto</span>
+            </Link>
+          }
         </section>
         <form onSubmit={form.handleSubmit}>
           <Input
             type="text"
             nome="nome"
-            placeholder="Digite seu nome"
+            placeholder="digite seu nome"
             textoAuxiliar={name.error}
+            icone={MdOutlineAccountCircle}
             {...name.inputProps}
           />
           <Input
             type="email"
             nome="email"
-            placeholder="Digite seu email"
+            placeholder="digite seu email"
             textoAuxiliar={email.error}
+            icone={MdEmail}
             {...email.inputProps}
           />
           <Input
             type="password"
             nome="password"
-            placeholder="Digite sua senha"
+            placeholder="digite sua senha"
             textoAuxiliar={password.error}
+            icone={MdPassword}
             {...password.inputProps}
           />
           <Input
@@ -80,16 +84,19 @@ function Cadastro() {
             nome="confPassword"
             placeholder="confirme sua senha"
             textoAuxiliar={confirmarPass.error}
+            icone={MdPassword}
             {...confirmarPass.inputProps}
           />
           <Select
             nome="select tipo"
-            opcoes={["Selecione tipo de conta", `Usuario`, `Profissional`]}
+            opcoes={["selecione tipo de conta", `Usuario`, `Profissional`]}
             textoAuxiliar={type.error}
             {...type.inputProps}
           />
           <div className="containerBotao">
-            <Botao type="submit">Cadastrar</Botao>
+            <Botao larguraFixa="65%" type="submit">
+              cadastrar
+            </Botao>
             <p>Já tem uma conta?</p>
             <Link to={"/login"}>Fazer Login</Link>
           </div>

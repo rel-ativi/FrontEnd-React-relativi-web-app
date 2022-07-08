@@ -1,26 +1,34 @@
 import styled from "styled-components";
+import { mq } from "../../styles/global";
 
 export const EstiloCadastro = styled.div`
+  position: relative;
+
   .backgroundImage {
-    box-sizing: border-box;
     height: 100vh;
   }
 
   .logoMobile {
-    box-sizing: border-box;
-    position: fixed;
-    bottom: 80%;
+    top: 10%;
     left: 50%;
-    margin-left: -2.5rem;
+    padding: 1.2rem 1.6rem;
+
+    transform: translateX(-50%);
+
+    border-radius: 10px;
+    background-color: ${({ theme: { cores } }) => cores.primaria};
+    position: fixed;
   }
 
   .logoDesktop {
     display: none;
   }
 
+  .logoTablet {
+    display: none;
+  }
+
   .containerCadastro {
-    box-sizing: border-box;
-    padding: 10px;
     position: fixed;
     height: 60vh;
     min-height: 500px;
@@ -33,15 +41,32 @@ export const EstiloCadastro = styled.div`
     bottom: 0;
     background-color: ${({ theme: { cores } }) => cores.secundariaAlpha};
     color: white;
-  }
-  .containerCadastro section {
-    display: none;
-  }
 
-  .containerCadastro form {
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
+    section {
+      width: 90%;
+      display: none;
+      padding: 0 1.5rem;
+
+      a {
+        text-decoration: none;
+        font-size: 1.3rem;
+        color: ${({ theme: { cores } }) => cores.primaria};
+        span {
+          color: ${({ theme: { cores } }) => cores.suporteDois};
+        }
+      }
+    }
+
+    a {
+      color: ${({ theme: { cores } }) => cores.suporteDois};
+    }
+
+    form {
+      width: 100%;
+      padding: 0.8rem;
+      display: flex;
+      flex-direction: column;
+    }
   }
 
   .containerBotao {
@@ -53,35 +78,33 @@ export const EstiloCadastro = styled.div`
     margin-top: 10px;
   }
 
-  a {
-    text-decoration: none;
-    color: ${({ theme: { cores } }) => cores.suporteDois};
-  }
-
-  @media only screen and (min-width: 576px) {
+  /* @media only screen and (min-width: 576px) */
+  ${mq[0]} {
     .containerCadastro {
       height: 100vh;
       width: 25vw;
       min-width: 300px;
-    }
 
-    .containerCadastro section {
-      display: flex;
-      flex-direction: column;
-      text-align: end;
-      margin-left: 40%;
-      gap: 20px;
-    }
+      section {
+        display: flex;
+        flex-direction: column;
+        text-align: end;
 
-    .containerCadastro form {
-      width: 90%;
-    }
+        gap: 20px;
+      }
 
+      form {
+        width: 90%;
+      }
+    }
+  }
+
+  ${mq[1]} {
     .logoMobile {
       display: none;
     }
 
-    .logoDesktop {
+    .logoTablet {
       display: block;
       position: fixed;
       bottom: 10%;
@@ -89,12 +112,12 @@ export const EstiloCadastro = styled.div`
     }
   }
 
-  @media only screen and (min-width: 1200px) {
+  /* @media only screen and (min-width: 1200px)  */
+  ${mq[3]} {
     .background {
       display: flex;
       align-items: center;
       justify-content: center;
-      background-color: black;
     }
     .backgroundImage {
       width: 1200px;
@@ -104,7 +127,15 @@ export const EstiloCadastro = styled.div`
       right: calc((100vw - 1200px) / 2);
       max-width: 340px;
     }
+
+    .logoTablet {
+      display: none;
+    }
+
     .logoDesktop {
+      display: block;
+      position: fixed;
+      bottom: 10%;
       left: calc(((100vw - 1200px) / 2) + 100px);
     }
   }
