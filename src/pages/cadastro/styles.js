@@ -1,11 +1,6 @@
 import styled from "styled-components";
 
 export const EstiloCadastro = styled.div`
-  .backgroundImage {
-    box-sizing: border-box;
-    height: 100vh;
-  }
-
   .logoMobile {
     box-sizing: border-box;
     position: fixed;
@@ -32,6 +27,7 @@ export const EstiloCadastro = styled.div`
     right: 0;
     bottom: 0;
     color: white;
+    background-color: ${({ theme: { cores } }) => cores.secundariaAlpha};
   }
   .containerCadastro section {
     display: none;
@@ -109,7 +105,8 @@ export const EstiloCadastro = styled.div`
   }
 `;
 
-/* export const Background = styled.div`
+export const Background = styled.div`
   background-size: cover;
-  background-image: ${(src) => `url(${src})`};
-`; */
+  background-image: ${({ url }) => `url(${url})`};
+  min-height: 100vh;
+`;
