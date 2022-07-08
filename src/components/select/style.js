@@ -17,16 +17,20 @@ export const ContainerSelect = styled.div`
     color: ${({ theme: { cores } }) => cores.marca};
   }
 
-  select {
+  div {
     width: 100%;
     height: 40px;
     padding: 0 1rem;
 
-    font-size: 1rem;
-    color: ${({ theme: { cores } }) => cores.suporteTres};
-
-    border: none;
     border-radius: 10px;
     background-color: ${({ theme: { cores } }) => cores.primaria};
+
+    select {
+      width: 100%;
+      font-size: 1rem;
+      color: ${({ theme: { cores } }) => cores.suporteTres};
+
+      border: none;
+    }
   }
 `;
