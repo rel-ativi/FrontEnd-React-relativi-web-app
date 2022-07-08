@@ -4,10 +4,6 @@ import { mq } from "../../styles/global";
 export const EstiloCadastro = styled.div`
   position: relative;
 
-  .backgroundImage {
-    height: 100vh;
-  }
-
   .logoMobile {
     top: 10%;
     left: 50%;
@@ -39,9 +35,11 @@ export const EstiloCadastro = styled.div`
     align-items: center;
     right: 0;
     bottom: 0;
-    background-color: ${({ theme: { cores } }) => cores.secundariaAlpha};
     color: white;
 
+    background-color: ${({ theme: { cores } }) => cores.secundariaAlpha};
+  }
+  .containerCadastro {
     section {
       width: 90%;
       display: none;
