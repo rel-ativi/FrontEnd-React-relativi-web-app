@@ -1,20 +1,14 @@
-import { Card } from "./styles";
-
 import { useState, useEffect } from 'react';
+import { ContainerFlex } from '../../styles/global';
+import Botao from "./../botao";
+import { Card } from './styles';
+
 
 const Filtro = ({atividades, setAtividadesMostradas}) => {
 
-    const AtividadesDefault = [
-        { name: "Yoga", category: "Wellness" },
-        { name: "Crossfit", category: "Funcional" },
-        { name: "Artes Marciais", category: "Luta" },
-        { name: "Massagem", category: "Wellness" },
-        { name: "Capoeira", category: "Luta" }
-    ];
-
     const [ filtroLista, setFiltroLista ] = useState([]);
 
-    const categoriaAtividade = AtividadesDefault.map((obj) => obj.category);
+    const categoriaAtividade = atividades.map((obj) => obj.type);
 
     const categoriaUnica = new Set(categoriaAtividade);
 
@@ -31,19 +25,21 @@ const Filtro = ({atividades, setAtividadesMostradas}) => {
             setAtividadesMostradas([...atividades])
         }
         else{
-            const result = atividades.filter((obj) => obj.category === str)
+            const result = atividades.filter((obj) => obj.type === str)
             setAtividadesMostradas([...result]);
         }
     };
 
 
 
-    return (
-        <nav>
-            {categoriaUnicaArray?.map((str) => (
-                <button key={str} onClick={() => filtrar(str)}>{str}</button>
-            ))}
-        </nav>
+    return (    
+        <Card>
+            <ContainerFlex alignItems = "center" gap="4px">
+                {categoriaUnicaArray?.map((str) => (
+                    <Botao larguraFixa="100px" tamanho ="p" key={str} onClick={() => filtrar(str)}>{str}</Botao>
+                ))} 
+            </ContainerFlex>
+        </Card>
     )
 }
 

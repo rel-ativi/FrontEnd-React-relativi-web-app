@@ -16,7 +16,7 @@ export const EstiloBotao = styled.button`
           font-size: 12px;
         `;
       case "g":
-        return css`
+        return css` 
           height: 50px;
           font-size: 24px;
         `;
