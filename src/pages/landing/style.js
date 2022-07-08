@@ -19,3 +19,9 @@ export const EstiloLanding = styled.div`
     }
   }
 `
+
+export const Background = styled.div`
+  background-size: cover;
+  background-image: ${({ url }) => `url(${url})`};
+  min-height: 100vh;
+`;
