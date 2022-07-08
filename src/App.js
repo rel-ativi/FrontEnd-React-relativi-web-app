@@ -1,12 +1,11 @@
-
-import Filtro from './components/filtro';
-
-import './App.css';
+import Routes from "./routes";
 
 function App() {
-  return(
-    <Filtro/>
-  )
+  return (
+    <>
+      <Routes />
+    </>
+  );
 }
 
 export default App;
