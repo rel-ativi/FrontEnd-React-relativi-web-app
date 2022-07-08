@@ -31,7 +31,6 @@ export const EstiloCadastro = styled.div`
     align-items: center;
     right: 0;
     bottom: 0;
-    background-color: ${({ theme: { cores } }) => cores.secundariaAlpha};
     color: white;
   }
   .containerCadastro section {
@@ -109,3 +108,8 @@ export const EstiloCadastro = styled.div`
     }
   }
 `;
+
+/* export const Background = styled.div`
+  background-size: cover;
+  background-image: ${(src) => `url(${src})`};
+`; */

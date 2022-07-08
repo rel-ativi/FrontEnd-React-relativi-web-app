@@ -9,7 +9,7 @@ import Select from "../../components/select";
 import Botao from "../../components/botao";
 import Input from "../../components/input";
 import { LogoHorizontal, LogoQuadrado } from "../../components/logo";
-import { EstiloCadastro } from "./styles";
+import { Background, EstiloCadastro } from "./styles";
 
 function Cadastro() {
   const imagem = useSelector((store) => store.imagem);
