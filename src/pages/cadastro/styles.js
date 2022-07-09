@@ -5,14 +5,12 @@ export const EstiloCadastro = styled.div`
   position: relative;
 
   .logoMobile {
-    top: 10%;
+    top: 1%;
     left: 50%;
     padding: 1.2rem 1.6rem;
-
     transform: translateX(-50%);
-
     border-radius: 10px;
-    background-color: ${({ theme: { cores } }) => cores.primaria};
+    /* background-color: ${({ theme: { cores } }) => cores.primaria}; */
     position: fixed;
   }
 
