@@ -1,12 +1,11 @@
-import Routes from "./routes"
-import { Tema } from "./styles/tema"
+import Routes from "./routes";
 
 function App() {
   return (
-    <Tema>
+    <>
       <Routes />
-    </Tema>
-  )
+    </>
+  );
 }
 
-export default App
+export default App;
