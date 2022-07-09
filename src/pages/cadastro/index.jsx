@@ -26,6 +26,7 @@ export default function Cadastro() {
     clearFields: true,
     formFields: [name, email, password, type],
     submitCallback: (formData) => {
+      console.log(formData);
       Cadastrar(formData);
     },
   });
@@ -92,7 +93,7 @@ export default function Cadastro() {
             />
             <Select
               nome="select tipo"
-              opcoes={["selecione tipo de conta", `Usuario`, `Profissional`]}
+              opcoes={["selecione tipo de conta", `Usuário`, `Profissional`]}
               textoAuxiliar={type.error}
               {...type.inputProps}
             />

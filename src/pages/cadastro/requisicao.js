@@ -1,6 +1,13 @@
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 export function Cadastrar(data) {
+  const msgSucesso = (mensagem) => toast.success(mensagem);
+  const msgErro = (mensagem) => toast.error(mensagem);
+
+  /*   const navigate = useNavigate(); */
+
   const dataSemType = Object.fromEntries(
     Object.entries(data).filter(([key]) => key !== "type")
   );
@@ -31,12 +38,11 @@ export function Cadastrar(data) {
           })
           .then((response) => {
             console.log(response);
-            /* toastify sucesso aqui */
-            /* redireciona pra login */
+            msgSucesso("Conta Profissional criada com sucesso!");
+            /* navigate("/login"); */
           })
           .catch((erro) => {
-            console.log(erro);
-            /* toastify erro aqui */
+            msgErro(erro);
           });
       } else if (data.type === `usuário`) {
         const id = response.data.user.id;
@@ -58,17 +64,17 @@ export function Cadastrar(data) {
           })
           .then((response) => {
             console.log(response);
-            /* toastify sucesso aqui */
-            /* redireciona pra login */
+            msgSucesso("Perfil criado com sucesso");
+            /* navigate("/login"); */
           })
           .catch((erro) => {
             console.log(erro);
-            /* toastify erro aqui */
+            msgErro(erro);
           });
       }
     })
     .catch((erro) => {
       console.log(erro);
-      /* Toastify erro */
+      msgErro(erro);
     });
 }
