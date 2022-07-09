@@ -6,14 +6,7 @@ function App() {
   return (
     <>
       <Routes />
-      <ToastContainer
-        autoClose={2000}
-        toastStyle={{
-          backgroundColor: "white",
-          color: "black",
-          height: "100px",
-        }}
-      />
+      <ToastContainer />
     </>
   );
 }

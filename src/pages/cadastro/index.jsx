@@ -1,17 +1,16 @@
 import { useForm, useInput, useSelect } from "lx-react-form";
-import { MdOutlineAccountCircle, MdEmail, MdPassword } from "react-icons/md";
+import { MdEmail, MdOutlineAccountCircle, MdPassword } from "react-icons/md";
 import { Link, useNavigate } from "react-router-dom";
 
-import Select from "../../components/select";
+import Background from "../../components/background";
 import Botao from "../../components/botao";
 import Input from "../../components/input";
-import Background from "../../components/background";
+import Select from "../../components/select";
+import API from "../../services/API";
 
 import { LogoHorizontal } from "../../components/logo";
+import { notificarErro, notificarSucesso } from "../../components/toasts";
 import { EstiloCadastro } from "./styles";
-
-import { toast } from "react-toastify";
-import API from "../../services/API";
 
 export default function Cadastro() {
   const navigate = useNavigate();
@@ -25,78 +24,81 @@ export default function Cadastro() {
   });
   const type = useSelect({ name: "type" });
 
+  const criarPerfil = (rota, dados, token, mensagem) => {
+    API.post(rota, dados, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((_) => {
+        notificarSucesso(mensagem);
+        navigate("/login");
+      })
+      .catch((erro) => {
+        console.log(erro);
+        notificarErro(erro);
+      });
+  };
+
+  const perfilProfissional = (dadosUsuario, token) => {
+    const { id, email, name } = dadosUsuario;
+
+    const perfilPro = {
+      userId: id,
+      email,
+      name,
+      phone: "",
+      bio: "",
+      docs: [],
+      bank_info: {},
+    };
+
+    criarPerfil(
+      "/prousers",
+      perfilPro,
+      token,
+      "Conta Profissional criada com sucesso!"
+    );
+  };
+
+  const perfilUsuario = (dadosUsuario, token) => {
+    const { id, email, name } = dadosUsuario;
+
+    const perfil = {
+      userId: id,
+      email,
+      name,
+      phone: "",
+      bio: "",
+      payment_info: {},
+      activities: [],
+      activities_history: [],
+      activities_favorites: [],
+    };
+
+    criarPerfil("/profiles", perfil, token, "Perfil criado com sucesso");
+  };
+
   const form = useForm({
     clearFields: true,
     formFields: [name, email, password, type],
 
     submitCallback: (formData) => {
-      console.log(formData);
-      const msgSucesso = (mensagem) => toast.success(mensagem);
-      const msgErro = (mensagem) => toast.error(mensagem);
+      const { type } = formData;
 
-      const dataSemType = Object.fromEntries(
-        Object.entries(formData).filter(([key]) => key !== "type")
-      );
-
-      API.post(`users`, dataSemType)
+      API.post(`users`, formData)
         .then((response) => {
-          console.log(response);
           const token = response.data.accessToken;
 
-          if (formData.type === "profissional") {
-            const id = response.data.user.id;
-            const novaDataCrua = { ...response.data.user };
-            const novaData = Object.fromEntries(
-              Object.entries(novaDataCrua).filter(([key]) => key !== "id")
-            );
-            novaData.userId = id;
-            novaData.phone = "";
-            novaData.bio = "";
-            novaData.docs = [];
-            novaData.bank_info = {};
+          localStorage.setItem("@relativi:token", JSON.stringify(token));
 
-            API.post(`prousers`, novaData, {
-              headers: { Authorization: `Bearer ${token}` },
-            })
-              .then((response) => {
-                console.log(response);
-                msgSucesso("Conta Profissional criada com sucesso!");
-                navigate("/login");
-              })
-              .catch((erro) => {
-                msgErro(erro);
-              });
-          } else if (formData.type === `usuário`) {
-            const id = response.data.user.id;
-            const novaDataCrua = { ...response.data.user };
-            const novaData = Object.fromEntries(
-              Object.entries(novaDataCrua).filter(([key]) => key !== "id")
-            );
-            novaData.userId = id;
-            novaData.phone = "";
-            novaData.bio = "";
-            novaData.payment_info = {};
-            novaData.activities = [];
-            novaData.activities_history = [];
-            novaData.activities_favorites = [];
-
-            API.post(`/profiles`, novaData, {
-              headers: { Authorization: `Bearer ${token}` },
-            })
-              .then((response) => {
-                console.log(response);
-                msgSucesso("Perfil criado com sucesso");
-                navigate("/login");
-              })
-              .catch((erro) => {
-                console.log(erro);
-                msgErro(erro);
-              });
-          }
+          type === "profissional"
+            ? perfilProfissional(response.data.user, token)
+            : perfilUsuario(response.data.user, token);
         })
         .catch((erro) => {
           console.log(erro);
-          msgErro(erro);
+          notificarErro(erro);
         });
     },
   });
