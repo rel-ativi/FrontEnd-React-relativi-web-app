@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Background from "../../components/background";
 import Botao from "../../components/botao";
 import Input from "../../components/input";
-import api from "../../services/api";
+import API from "../../services/API";
 
 import { LogoHorizontal, LogoQuadrado } from "../../components/logo";
 import { Main } from "./style";
@@ -24,8 +24,7 @@ export default function Login() {
     clearFields: true,
     formFields: [email, password],
     submitCallback: (formData) => {
-      api
-        .post("/login", formData)
+      API.post("/login", formData)
         .then((response) => {
           localStorage.setItem(
             "@relativi:token",
