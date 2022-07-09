@@ -1,9 +1,17 @@
-import "./style.css";
-import api from "../../services/api";
 import { useForm, useInput } from "lx-react-form";
-//import { Link } from "react-router-dom";
+import { MdOutlineAccountCircle, MdOutlinePassword } from "react-icons/md";
+import { Link, useNavigate } from "react-router-dom";
 
-function Login() {
+import Background from "../../components/background";
+import Botao from "../../components/botao";
+import Input from "../../components/input";
+import api from "../../services/api";
+
+import { LogoHorizontal, LogoQuadrado } from "../../components/logo";
+import { Main } from "./style";
+
+export default function Login() {
+  const navigate = useNavigate();
   const email = useInput({
     name: "email",
     validation: "email",
@@ -19,53 +27,72 @@ function Login() {
       api
         .post("/login", formData)
         .then((response) => {
-          console.log(response.data);
           localStorage.setItem(
-            "@relativi/Token",
+            "@relativi:token",
             JSON.stringify(response.data.accessToken)
           );
+          return response.data;
         })
-        // .then(()=> <Link to="/home" />)
-
-        .catch((err) => console.log(err));
+        .then((res) => {
+          res.user.type === "prouser"
+            ? navigate("/dashboard")
+            : navigate("/loja");
+        })
+        .catch((err) => {
+          console.log(err);
+          // adicionar toast com o erro
+        });
     },
   });
 
   return (
-    <div>
-      <p>Login</p>
-      <aside>
-        <div>
-          <p>
-            Sobre <caption> nós</caption>
-          </p>
-          <p>
-            Sobre <caption>o projeto</caption>
-          </p>
-        </div>
-        <div className="containerForm">
-          <form onSubmit={form.handleSubmit}>
-            <input
-              type="email"
-              placeholder="digite seu email"
-              {...email.inputProps}
-            />
-            {email.error && <p>{email.error}</p>}
-            <input
-              type="password"
-              placeholder="digite sua senha"
-              {...password.inputProps}
-            />
-            {password.error && <p>{password.error}</p>}
+    <Background>
+      <Main>
+        <div className="container">
+          <div className="logoMobile">
+            <LogoQuadrado largura={"7rem"} />
+          </div>
+          <div className="logoTablet">
+            <LogoHorizontal largura={"20rem"} />
+          </div>
+          <div className="logoDesktop">
+            <LogoHorizontal largura={"30rem"} />
+          </div>
+          <aside>
+            <nav>
+              <Link to="/sobrenos">
+                Sobre <span>nós</span>
+              </Link>
+              <Link to="/sobreprojeto">
+                Sobre o <span>projeto</span>
+              </Link>
+            </nav>
+            <div className="containerForm">
+              <form onSubmit={form.handleSubmit}>
+                <Input
+                  type="email"
+                  placeholder="digite seu email"
+                  textoAuxiliar={email.error}
+                  icone={MdOutlineAccountCircle}
+                  {...email.inputProps}
+                />
 
-            <button>login</button>
-          </form>
-          <p>ainda não tem uma conta?</p>
-          <p className="btnCadastro">cadastre-se</p>
+                <Input
+                  type="password"
+                  placeholder="digite sua senha"
+                  textoAuxiliar={password.error}
+                  icone={MdOutlinePassword}
+                  {...password.inputProps}
+                />
+
+                <Botao larguraFixa="80%">login</Botao>
+              </form>
+              <p>ainda não tem uma conta?</p>
+              <Link to="/cadastro">Cadastre-se</Link>
+            </div>
+          </aside>
         </div>
-      </aside>
-    </div>
+      </Main>
+    </Background>
   );
 }
-
-export default Login;
