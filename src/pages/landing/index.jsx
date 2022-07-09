@@ -5,13 +5,13 @@ export function Landing() {
   return (
     <>
       Isto e' a landing
-      <br></br>
+      <br />
       <Link to="/cadastro">Cadastro</Link>
-      <br></br>
+      <br />
       <Link to="/login">Login</Link>
-      <br></br>
+      <br />
       <Link to="/loja">Loja</Link>
-      <br></br>
+      <br />
       <Link to="/dashboard">Dashboard</Link>
     </>
   );
