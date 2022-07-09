@@ -25,82 +25,79 @@ export default function Cadastro() {
   });
   const type = useSelect({ name: "type" });
 
-  function Cadastrar(data) {
-    const msgSucesso = (mensagem) => toast.success(mensagem);
-    const msgErro = (mensagem) => toast.error(mensagem);
-
-    const dataSemType = Object.fromEntries(
-      Object.entries(data).filter(([key]) => key !== "type")
-    );
-
-    API.post(`users`, dataSemType)
-      .then((response) => {
-        console.log(response);
-        const token = response.data.accessToken;
-
-        if (data.type === "profissional") {
-          const id = response.data.user.id;
-          const novaDataCrua = { ...response.data.user };
-          const novaData = Object.fromEntries(
-            Object.entries(novaDataCrua).filter(([key]) => key !== "id")
-          );
-          novaData.userId = id;
-          novaData.phone = "";
-          novaData.bio = "";
-          novaData.docs = [];
-          novaData.bank_info = {};
-
-          API.post(`prousers`, novaData, {
-            headers: { Authorization: `Bearer ${token}` },
-          })
-            .then((response) => {
-              console.log(response);
-              msgSucesso("Conta Profissional criada com sucesso!");
-              navigate("/login");
-            })
-            .catch((erro) => {
-              msgErro(erro);
-            });
-        } else if (data.type === `usuário`) {
-          const id = response.data.user.id;
-          const novaDataCrua = { ...response.data.user };
-          const novaData = Object.fromEntries(
-            Object.entries(novaDataCrua).filter(([key]) => key !== "id")
-          );
-          novaData.userId = id;
-          novaData.phone = "";
-          novaData.bio = "";
-          novaData.payment_info = {};
-          novaData.activities = [];
-          novaData.activities_history = [];
-          novaData.activities_favorites = [];
-
-          API.post(`/profiles`, novaData, {
-            headers: { Authorization: `Bearer ${token}` },
-          })
-            .then((response) => {
-              console.log(response);
-              msgSucesso("Perfil criado com sucesso");
-              navigate("/login");
-            })
-            .catch((erro) => {
-              console.log(erro);
-              msgErro(erro);
-            });
-        }
-      })
-      .catch((erro) => {
-        console.log(erro);
-        msgErro(erro);
-      });
-  }
-
   const form = useForm({
     clearFields: true,
     formFields: [name, email, password, type],
+
     submitCallback: (formData) => {
       console.log(formData);
-      Cadastrar(formData);
+      const msgSucesso = (mensagem) => toast.success(mensagem);
+      const msgErro = (mensagem) => toast.error(mensagem);
+
+      const dataSemType = Object.fromEntries(
+        Object.entries(formData).filter(([key]) => key !== "type")
+      );
+
+      API.post(`users`, dataSemType)
+        .then((response) => {
+          console.log(response);
+          const token = response.data.accessToken;
+
+          if (formData.type === "profissional") {
+            const id = response.data.user.id;
+            const novaDataCrua = { ...response.data.user };
+            const novaData = Object.fromEntries(
+              Object.entries(novaDataCrua).filter(([key]) => key !== "id")
+            );
+            novaData.userId = id;
+            novaData.phone = "";
+            novaData.bio = "";
+            novaData.docs = [];
+            novaData.bank_info = {};
+
+            API.post(`prousers`, novaData, {
+              headers: { Authorization: `Bearer ${token}` },
+            })
+              .then((response) => {
+                console.log(response);
+                msgSucesso("Conta Profissional criada com sucesso!");
+                navigate("/login");
+              })
+              .catch((erro) => {
+                msgErro(erro);
+              });
+          } else if (formData.type === `usuário`) {
+            const id = response.data.user.id;
+            const novaDataCrua = { ...response.data.user };
+            const novaData = Object.fromEntries(
+              Object.entries(novaDataCrua).filter(([key]) => key !== "id")
+            );
+            novaData.userId = id;
+            novaData.phone = "";
+            novaData.bio = "";
+            novaData.payment_info = {};
+            novaData.activities = [];
+            novaData.activities_history = [];
+            novaData.activities_favorites = [];
+
+            API.post(`/profiles`, novaData, {
+              headers: { Authorization: `Bearer ${token}` },
+            })
+              .then((response) => {
+                console.log(response);
+                msgSucesso("Perfil criado com sucesso");
+                navigate("/login");
+              })
+              .catch((erro) => {
+                console.log(erro);
+                msgErro(erro);
+              });
+          }
+        })
+        .catch((erro) => {
+          console.log(erro);
+          msgErro(erro);
+        });
     },
   });
 
