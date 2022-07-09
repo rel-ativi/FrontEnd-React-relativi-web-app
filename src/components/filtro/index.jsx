@@ -1,50 +1,46 @@
-import { useState, useEffect } from 'react';
-import { ContainerFlex } from '../../styles/global';
+import { useEffect, useState } from "react";
+
 import Botao from "./../botao";
-import { Card } from './styles';
 
+import { ContainerFlex } from "../../styles/global";
+import { Card } from "./styles";
 
-const Filtro = ({atividades, setAtividadesMostradas}) => {
+export default function Filtro({ atividades, setListaAtividades }) {
+  const [filtros, setFiltros] = useState([]);
 
-    const [ filtroLista, setFiltroLista ] = useState([]);
+  const tiposAtividades = Array.from(
+    new Set(atividades.map((obj) => obj.type))
+  );
 
-    const categoriaAtividade = atividades.map((obj) => obj.type);
+  tiposAtividades.unshift("todos");
 
-    const categoriaUnica = new Set(categoriaAtividade);
+  useEffect(() => {
+    filtros.length === 0 && setFiltros(tiposAtividades);
+  }, [filtros.length, tiposAtividades]);
 
-    const categoriaUnicaArray = Array.from(categoriaUnica);
+  const filtrar = (str) => {
+    if (str === "Todos") {
+      setListaAtividades([...atividades]);
+    } else {
+      const result = atividades.filter((obj) => obj.type === str);
+      setListaAtividades([...result]);
+    }
+  };
 
-    categoriaUnicaArray.unshift("Todos");
-
-    useEffect(() => {
-        setFiltroLista(categoriaUnicaArray)
-    }, [categoriaUnicaArray]);
-
-    const filtrar = (str) => {
-        if(str === "Todos"){
-            setAtividadesMostradas([...atividades])
-        }
-        else{
-            const result = atividades.filter((obj) => obj.type === str)
-            setAtividadesMostradas([...result]);
-        }
-    };
-
-
-
-    return (    
-        <Card>
-            <ContainerFlex alignItems = "center" gap="4px">
-                {categoriaUnicaArray?.map((str) => (
-                    <Botao larguraFixa="100px" tamanho ="p" key={str} onClick={() => filtrar(str)}>{str}</Botao>
-                ))} 
-            </ContainerFlex>
-        </Card>
-    )
+  return (
+    <Card>
+      <ContainerFlex alignItems="center" gap="4px">
+        {filtros?.map((str) => (
+          <Botao
+            larguraFixa="130px"
+            tamanho="p"
+            key={str}
+            onClick={() => filtrar(str)}
+          >
+            {str}
+          </Botao>
+        ))}
+      </ContainerFlex>
+    </Card>
+  );
 }
-
-export default Filtro;
-
-
-
-

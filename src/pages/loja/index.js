@@ -1,5 +1,6 @@
 //ignorar isto, so' testando
 import { Link } from "react-router-dom";
+
 export function Loja() {
   return (
     <>
