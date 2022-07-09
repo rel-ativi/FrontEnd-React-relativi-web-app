@@ -7,7 +7,7 @@ const appear = keyframes`
 30%{
     opacity: 0.7;
 }
-90%{
+80%{
     opacity: 0.8;
 }
 100%{

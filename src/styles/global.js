@@ -45,12 +45,6 @@ button{
     max-width: 1200px;
     margin: auto;
     padding: 0.8rem;
-    display:flex;
-    align-items: flex-start;
-    flex-direction: column;
-    gap:0.5rem;
-
-    border: 1px solid red;
 }
 `;
 

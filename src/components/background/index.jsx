@@ -1,3 +1,5 @@
+import { useInterval } from "use-interval";
+
 import { useState } from "react";
 import { BackgroundContainer } from "./style";
 
@@ -14,16 +16,17 @@ export default function Background({ children }) {
     "https://img.freepik.com/free-photo/young-couple-dances-caribbean-salsa-shot_155003-11173.jpg?t=st=1657313422~exp=1657314022~hmac=aee4e527909bb9ac65d79976a54ca4ce64ad792d04c00857a77d1ae9db355f1c&w=740",
   ];
 
+  // const [trocouImagem, setTrocouImagem] = useState(false);
   const [urlAtual, setUrlAtual] = useState(opcoes[0]);
 
   const trocarImagem = () => {
-    const novaImagem = opcoes.indexOf(urlAtual) + 1;
-    return novaImagem >= opcoes.length ? 0 : novaImagem;
+    const proxima = opcoes.indexOf(urlAtual) + 1;
+    const novaImagem = proxima === opcoes.length ? 0 : proxima;
+
+    setUrlAtual(opcoes[novaImagem]);
   };
 
-  setInterval(() => {
-    setUrlAtual(opcoes[trocarImagem()]);
-  }, 10000);
+  useInterval(trocarImagem, 10000);
 
   return (
     <>
