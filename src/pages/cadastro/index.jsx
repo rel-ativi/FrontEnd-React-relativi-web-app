@@ -10,6 +10,8 @@ import Background from "../../components/background";
 import { LogoHorizontal } from "../../components/logo";
 import { EstiloCadastro } from "./styles";
 
+import { Cadastrar } from "./requisicao";
+
 export default function Cadastro() {
   const name = useInput({ name: "name" });
   const email = useInput({ name: "email", validation: "email" });
@@ -24,8 +26,7 @@ export default function Cadastro() {
     clearFields: true,
     formFields: [name, email, password, type],
     submitCallback: (formData) => {
-      //mandar pra api
-      console.log(formData);
+      Cadastrar(formData);
     },
   });
 
