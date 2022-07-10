@@ -1,12 +1,13 @@
 import { ContainerFlex } from "../../styles/global";
 import CardAtividadeLoja from "../cardAtividadeLoja";
+import { ContainerLoja } from "./style";
 
 export default function ListaDeCardsLoja({ array }) {
   return (
-    <ContainerFlex flexWrap="wrap" gap="40px">
+    <ContainerLoja>
       {array.map((atividade, index) => (
         <CardAtividadeLoja obj={atividade} key={index} />
       ))}
-    </ContainerFlex>
+    </ContainerLoja>
   );
 }

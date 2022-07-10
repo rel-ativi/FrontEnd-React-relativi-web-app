@@ -30,7 +30,6 @@ Importante para cards: name, schedule, address, duration_text, users_limit
 
 import { CardLoja } from "./style";
 
-import { FaBeer } from "react-icons/fa";
 import { MdCalendarToday } from "react-icons/md";
 import { MdDateRange } from "react-icons/md";
 import { MdGrade } from "react-icons/md";
@@ -93,16 +92,8 @@ export default function CardAtividadeLoja({ obj }) {
   const resolveDia = () => {
     if (obj.schedule.recurrent === true) {
       const diaCru = obj.schedule.days;
-      if (diaCru.length > 7) {
-        const index = diaCru.indexOf("-");
-        const dia1 = diaCru.slice(0, index);
-        const dia2 = diaCru.slice(index + 1);
-        const dia = `ás ${dia1}s - ${dia2}s - ${obj.schedule.time_text}`;
-        return dia;
-      } else {
-        const dia = `aos ${diaCru}s - ${obj.schedule.time_text}`;
-        return dia;
-      }
+      const dia = `${diaCru}s - ${obj.schedule.time_text}`;
+      return dia;
     } else {
       const diaCru = String(new Date(obj.schedule.start_date));
       const diaNum = diaCru.slice(8, 10);
@@ -112,6 +103,8 @@ export default function CardAtividadeLoja({ obj }) {
           ? "Fev"
           : mesEng === "Apr"
           ? "Abr"
+          : mesEng === "May"
+          ? "Mai"
           : mesEng === "Aug"
           ? "Ago"
           : mesEng === "Sep"
@@ -136,11 +129,10 @@ export default function CardAtividadeLoja({ obj }) {
         <img src={obj.img_url} alt={obj.name} />
         <MdLaunch size={"40px"} onClick={() => ativaModal()} />
       </div>
-      {/* icon modal */}
       <div className="info-container">
         <div className="title">
           <h3 className="nome">{obj.name}</h3>
-          <MdDateRange />
+          <MdDateRange size={"40px"} />
         </div>
         <div className="info">
           <div className="info-line rating">
