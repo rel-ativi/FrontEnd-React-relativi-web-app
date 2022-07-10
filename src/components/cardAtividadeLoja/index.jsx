@@ -40,8 +40,10 @@ import { MdPermIdentity } from "react-icons/md";
 import { MdFavorite } from "react-icons/md";
 import { MdLaunch } from "react-icons/md";
 
-export default function CardAtividadeLoja() {
-  /*   const obj1 = {
+export default function CardAtividadeLoja({ obj }) {
+  /* Aula recorrente */
+  /*  const obj = {
+    img_url: "https://c.tenor.com/dlJSiLUJNmsAAAAC/math-calculate.gif",
     name: "Capoeira do Marcelo",
     duration_text: "1 hora",
     users_limit: 10,
@@ -60,7 +62,8 @@ export default function CardAtividadeLoja() {
     },
   }; */
 
-  const obj = {
+  /* Aula com data fixa */
+  /*   const obj = {
     img_url: "https://c.tenor.com/dlJSiLUJNmsAAAAC/math-calculate.gif",
     name: "Yoga com Henrique",
     duration_text: "1 hora",
@@ -78,14 +81,14 @@ export default function CardAtividadeLoja() {
       state: "SP",
       zip_code: "cep",
     },
-  };
+  }; */
 
   const trim = (string, max) => {
     return string.substring(0, max);
   };
 
   const enderecoCru = `${obj.address.line_1} - ${obj.address.city}`;
-  const endereco = trim(enderecoCru, 25) + `...`;
+  const endereco = trim(enderecoCru, 29) + `...`;
 
   const resolveDia = () => {
     if (obj.schedule.recurrent === true) {
