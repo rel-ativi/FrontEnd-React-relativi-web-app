@@ -122,11 +122,16 @@ export default function CardAtividadeLoja() {
     }
   };
 
+  const ativaModal = () => {
+    console.log("modal");
+    /* ativar modal aqui */
+  };
+
   return (
     <CardLoja>
       <div className="imagem">
         <img src={obj.img_url} alt={obj.name} />
-        <MdLaunch size={"40px"} />
+        <MdLaunch size={"40px"} onClick={() => ativaModal()} />
       </div>
       {/* icon modal */}
       <div className="info-container">
