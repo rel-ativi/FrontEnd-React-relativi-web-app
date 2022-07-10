@@ -9,12 +9,17 @@ import { Loja } from "../pages/loja";
 import Teste from "../pages/teste-erase-me";
 
 function Router() {
+  const verificaToken = (pagina) => {
+    const token = localStorage.getItem("@relativi:token");
+    return token === null ? pagina : <Loja />;
+  };
+
   return (
     <Routes>
-      <Route path={"/"} index element={<Landing />} />
-      <Route path={"/cadastro"} element={<Cadastro />} />
-      <Route path={"/login"} element={<Login />} />
-      <Route path={"/loja"} element={<Loja />} />
+      <Route path={"/"} index element={verificaToken(<Landing />)} />
+      <Route path={"/cadastro"} element={verificaToken(<Cadastro />)} />
+      <Route path={"/login"} element={verificaToken(<Login />)} />
+      <Route path={"/loja"} element={verificaToken(<Loja />)} />
       <Route path={"/dashboard"} element={<Dashboard />} />
       <Route path={"/teste"} element={<Teste />} />{" "}
       {/* so' para visualizar testes, route/teste sera apagada */}
