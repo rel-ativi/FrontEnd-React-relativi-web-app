@@ -29,7 +29,16 @@ Importante para cards: name, schedule, address, duration_text, users_limit
 */
 
 import { CardLoja } from "./style";
+
 import { FaBeer } from "react-icons/fa";
+import { MdCalendarToday } from "react-icons/md";
+import { MdDateRange } from "react-icons/md";
+import { MdGrade } from "react-icons/md";
+import { MdRoom } from "react-icons/md";
+import { MdQueryBuilder } from "react-icons/md";
+import { MdPermIdentity } from "react-icons/md";
+import { MdFavorite } from "react-icons/md";
+import { MdLaunch } from "react-icons/md";
 
 export default function CardAtividadeLoja() {
   /*   const obj1 = {
@@ -115,42 +124,39 @@ export default function CardAtividadeLoja() {
 
   return (
     <CardLoja>
-      <img src={obj.img_url} alt={obj.name} />
-      <FaBeer />
+      <div className="imagem">
+        <img src={obj.img_url} alt={obj.name} />
+        <MdLaunch size={"40px"} />
+      </div>
       {/* icon modal */}
       <div className="info-container">
         <div className="title">
           <h3 className="nome">{obj.name}</h3>
-          <FaBeer />
-          {/* icon calendario */}
+          <MdDateRange />
         </div>
         <div className="info">
-          <div className="info-line">
-            <FaBeer />
-            {/* icon rating */}
-            <h4>Rating</h4>
+          <div className="info-line rating">
+            <MdGrade />
+            <h4>4.9</h4>
           </div>
           <div className="info-line">
-            <FaBeer />
-            {/* icon calendar */}
+            <MdCalendarToday />
             <p>{resolveDia()}</p>
           </div>
           <div className="info-line">
-            <FaBeer />
-            {/* icon mapa */}
+            <MdRoom />
             <p>{endereco}</p>
           </div>
           <div className="info-line">
             <section className="time-limit">
-              <FaBeer />
-              {/* icon clock */}
+              <MdQueryBuilder />
               <p>{obj.schedule.time_text}</p>
-              <FaBeer />
-              {/* icon profile */}
+              <MdPermIdentity />
               <p>{obj.users_limit}</p>
             </section>
-            <FaBeer />
-            {/* icon heart */}
+            <div className="favourite">
+              <MdFavorite />
+            </div>
           </div>
         </div>
       </div>

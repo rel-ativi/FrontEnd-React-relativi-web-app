@@ -6,11 +6,24 @@ export const CardLoja = styled.div`
   align-items: center;
   box-sizing: border-box;
   width: 300px;
+  height: 300px;
+  margin: 0;
 
-  img {
-    border-radius: 10px;
-    height: 300px;
-    border: 1px solid ${({ theme: { cores } }) => cores.suporteTres};
+  .imagem {
+    display: flex;
+
+    img {
+      border-radius: 10px;
+      height: 230px;
+      border: 1px solid ${({ theme: { cores } }) => cores.suporteTres};
+    }
+
+    svg {
+      color: ${({ theme: { cores } }) => cores.marca};
+      position: absolute;
+      transform: translate3d(250px, 10px, 0);
+      cursor: pointer;
+    }
   }
 
   .info-container {
@@ -23,7 +36,10 @@ export const CardLoja = styled.div`
     border: 2px solid ${({ theme: { cores } }) => cores.suporteTres};
     border-radius: 10px;
     background-color: ${({ theme: { cores } }) => cores.primaria};
-    transform: translateY(-70%);
+    transform: translateY(-60%);
+    p {
+      font-size: smaller;
+    }
   }
 
   .title {
@@ -31,6 +47,11 @@ export const CardLoja = styled.div`
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    color: ${({ theme: { cores } }) => cores.suporteUm};
+
+    svg {
+      color: ${({ theme: { cores } }) => cores.marca};
+    }
   }
 
   .info-line {
@@ -38,6 +59,7 @@ export const CardLoja = styled.div`
     flex-direction: row;
     gap: 0.5rem;
     align-items: center;
+    color: ${({ theme: { cores } }) => cores.suporteTres};
   }
 
   .info {
@@ -51,5 +73,23 @@ export const CardLoja = styled.div`
     flex-direction: row;
     gap: 0.5rem;
     width: 90%;
+
+    p {
+      margin-right: 30px;
+    }
+  }
+
+  h4 {
+    color: ${({ theme: { cores } }) => cores.suporteUm};
+  }
+
+  .rating {
+    svg {
+      color: ${({ theme: { cores } }) => cores.suporteUm};
+    }
+  }
+
+  .favourite {
+    color: ${({ theme: { cores } }) => cores.suporteUm};
   }
 `;
