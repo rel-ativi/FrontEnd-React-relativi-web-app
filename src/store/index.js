@@ -6,12 +6,12 @@ import {
 
 import thunk from "redux-thunk";
 
-import reducerImagem from "./modules/ImagesReel/reducer";
+
 import reducerTema from "./modules/theme/reducer";
 
 const reducers = combineReducers({
   tema: reducerTema,
-  imagem: reducerImagem,
+
 });
 
 const store = createStore(reducers, applyMiddleware(thunk));

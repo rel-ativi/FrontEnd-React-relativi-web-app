@@ -1,6 +1,8 @@
 import { useForm, useInput } from "lx-react-form";
 import { MdOutlineAccountCircle, MdOutlinePassword } from "react-icons/md";
 import { Link, useNavigate } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import Background from "../../components/background";
 import Botao from "../../components/botao";
@@ -9,6 +11,7 @@ import API from "../../services/API";
 
 import { LogoHorizontal, LogoQuadrado } from "../../components/logo";
 import { Main } from "./style";
+import { notificarErro } from "../../components/toast";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -30,6 +33,7 @@ export default function Login() {
             "@relativi:token",
             JSON.stringify(response.data.accessToken)
           );
+
           return response.data;
         })
         .then((res) => {
@@ -38,14 +42,23 @@ export default function Login() {
             : navigate("/loja");
         })
         .catch((err) => {
+          let str = "";
           console.log(err);
-          // adicionar toast com o erro
+          if (err.response.data === "Cannot find user") {
+            str = "Usuário não encontrado.";
+          } else if (err.response.data === "Incorrect password") {
+            str = "Senha incorreta.";
+          } else {
+            str = "Algo deu errado! Tente novamente."
+          }
+          notificarErro(str);
         });
     },
   });
 
   return (
     <Background>
+      <ToastContainer />
       <Main>
         <div className="container">
           <div className="logoMobile">
