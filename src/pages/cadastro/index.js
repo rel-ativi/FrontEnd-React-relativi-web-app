@@ -7,7 +7,7 @@ export function Cadastro() {
       <br></br>
       <Link to="/">Landing</Link>
       <br></br>
-      <Link to="/Login">Login</Link>
+      <Link to="/login">Login</Link>
       <br></br>
       <Link to="/loja">Loja</Link>
       <br></br>
