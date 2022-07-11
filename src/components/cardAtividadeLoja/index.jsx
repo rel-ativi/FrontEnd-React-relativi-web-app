@@ -82,9 +82,9 @@ export default function CardAtividadeLoja({ obj }) {
           <div className="info-line">
             <section className="time-limit">
               <MdQueryBuilder />
-              <p>{obj.schedule.time_text}</p>
+              <p>{obj.duration_text}</p>
               <MdPermIdentity />
-              <p>{obj.users_limit}</p>
+              <p>{obj.users_limit} pessoas</p>
             </section>
             <div className="favourite">
               <MdFavorite />

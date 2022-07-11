@@ -76,7 +76,7 @@ export const CardLoja = styled.div`
     width: 90%;
 
     p {
-      margin-right: 30px;
+      margin-right: 10px;
     }
   }
 
