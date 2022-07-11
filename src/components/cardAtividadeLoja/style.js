@@ -51,6 +51,7 @@ export const CardLoja = styled.div`
 
     svg {
       color: ${({ theme: { cores } }) => cores.marca};
+      cursor: pointer;
     }
   }
 

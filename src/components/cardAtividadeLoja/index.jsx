@@ -47,8 +47,12 @@ export default function CardAtividadeLoja({ obj }) {
   };
 
   const ativaModal = () => {
-    console.log("modal");
+    console.log("modalDescricao");
     /* ativar modal aqui */
+  };
+
+  const ativaCompra = () => {
+    console.log("modalCompra");
   };
 
   return (
@@ -60,7 +64,7 @@ export default function CardAtividadeLoja({ obj }) {
       <div className="info-container">
         <div className="title">
           <h3 className="nome">{obj.name}</h3>
-          <MdDateRange size={"40px"} />
+          <MdDateRange size={"40px"} onClick={() => ativaCompra()} />
         </div>
         <div className="info">
           <div className="info-line rating">
