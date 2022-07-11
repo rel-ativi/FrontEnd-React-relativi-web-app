@@ -9,6 +9,7 @@ import { MdGrade } from "react-icons/md";
 import { MdRoom } from "react-icons/md";
 import { MdQueryBuilder } from "react-icons/md";
 import { MdPermIdentity } from "react-icons/md";
+import { MdPeopleAlt } from "react-icons/md";
 
 export default function ModalAtividadeLoja({ obj }) {
   const trim = (string, max) => {
@@ -89,11 +90,10 @@ export default function ModalAtividadeLoja({ obj }) {
             <p>{obj.description}</p>
             <div className="info-preco">
               <div>
-                <MdCalendarToday />
+                <MdPermIdentity />
                 <p>com: Instrutor</p>
               </div>
               <div>
-                <MdPermIdentity />
                 <h3>
                   R$ 50,00/<span>aula</span>
                 </h3>
@@ -114,7 +114,7 @@ export default function ModalAtividadeLoja({ obj }) {
                 <p>{obj.duration_text}</p>
               </div>
               <div className="info-line section">
-                <MdPermIdentity />
+                <MdPeopleAlt />
                 <p>{obj.users_limit} pessoas / valor!!! restantes</p>
               </div>
             </div>

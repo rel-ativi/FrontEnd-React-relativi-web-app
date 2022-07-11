@@ -23,7 +23,7 @@ export default function Loja() {
   return (
     <>
       <ListaDeCardsLoja array={lista} />
-      {/* <ModalAtividadeLoja obj={lista[1]} /> */}
+      <ModalAtividadeLoja obj={lista[1]} />
     </>
   );
 }

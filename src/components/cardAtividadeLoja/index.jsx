@@ -5,9 +5,9 @@ import { MdDateRange } from "react-icons/md";
 import { MdGrade } from "react-icons/md";
 import { MdRoom } from "react-icons/md";
 import { MdQueryBuilder } from "react-icons/md";
-import { MdPermIdentity } from "react-icons/md";
 import { MdFavorite } from "react-icons/md";
 import { MdLaunch } from "react-icons/md";
+import { MdPeopleAlt } from "react-icons/md";
 
 export default function CardAtividadeLoja({ obj }) {
   const trim = (string, max) => {
@@ -83,7 +83,7 @@ export default function CardAtividadeLoja({ obj }) {
             <section className="time-limit">
               <MdQueryBuilder />
               <p>{obj.duration_text}</p>
-              <MdPermIdentity />
+              <MdPeopleAlt />
               <p>{obj.users_limit} pessoas</p>
             </section>
             <div className="favourite">
