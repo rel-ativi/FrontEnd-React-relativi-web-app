@@ -17,7 +17,7 @@ export const ModalBackgroundDescricao = styled.div`
 export const ModalDescricaoContainer = styled.div`
   box-sizing: border-box;
   height: fit-content;
-  width: 90vw;
+  width: 100vw;
   background-color: ${({ theme: { cores } }) => cores.primaria};
   display: flex;
   flex-direction: column;
@@ -115,6 +115,7 @@ export const ModalDescricaoContainer = styled.div`
         position: fixed;
         transform: translate(200%, 20%);
         color: ${({ theme: { cores } }) => cores.primaria};
+        cursor: pointer;
       }
     }
   }
