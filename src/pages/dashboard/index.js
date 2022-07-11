@@ -1,5 +1,6 @@
 //ignorar isto, so' testando
 import { Link } from "react-router-dom";
+
 export function Dashboard() {
   return (
     <>
@@ -12,6 +13,7 @@ export function Dashboard() {
       <Link to="/cadastro">Cadastro</Link>
       <br></br>
       <Link to="/loja">Loja</Link>
+      
     </>
   );
 }
