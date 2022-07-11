@@ -1,17 +1,29 @@
-//ignorar isto, so' testando
-import { Link } from "react-router-dom";
-export function Loja() {
+import { useEffect } from "react";
+import { useState } from "react";
+import ListaDeCardsLoja from "../../components/listaDeCardsLoja";
+import ModalAtividadeLoja from "../../components/modalAtividadeLoja";
+import API from "../../services/API";
+
+export default function Loja() {
+  const [lista, setLista] = useState([]);
+
+  const token = localStorage.getItem("@relativi:token");
+
+  useEffect(() => {
+    API.get("/activities", {
+      headers: { Authorization: `Bearer ${token}` },
+    })
+      .then((response) => {
+        setLista(response.data);
+        console.log(response);
+      })
+      .catch((error) => console.log(error));
+  }, []);
+
   return (
     <>
-      Isto e' a loja
-      <br></br>
-      <Link to="/">Landing</Link>
-      <br></br>
-      <Link to="/cadastro">Cadastro</Link>
-      <br></br>
-      <Link to="/login">Login</Link>
-      <br></br>
-      <Link to="/dashboard">Dashboard</Link>
+      <ListaDeCardsLoja array={lista} />
+      {/* <ModalAtividadeLoja obj={lista[1]} /> */}
     </>
   );
 }

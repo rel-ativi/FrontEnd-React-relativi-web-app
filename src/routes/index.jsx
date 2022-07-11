@@ -5,9 +5,9 @@ import Login from "../pages/login";
 
 import { Dashboard } from "../pages/dashboard";
 import { Landing } from "../pages/landing";
-import { Loja } from "../pages/loja";
 
 import Teste from "../pages/teste-erase-me";
+import Loja from "../pages/loja";
 
 function Router() {
   const verificaToken = (pagina) => {
@@ -16,7 +16,6 @@ function Router() {
   };
 
   return (
-
     <Routes>
       <Route path={"/"} index element={verificaToken(<Landing />)} />
       <Route path={"/cadastro"} element={verificaToken(<Cadastro />)} />
@@ -26,7 +25,6 @@ function Router() {
       <Route path={"/teste"} element={<Teste />} />{" "}
       {/* so' para visualizar testes, route/teste sera apagada */}
     </Routes>
-
   );
 }
 
