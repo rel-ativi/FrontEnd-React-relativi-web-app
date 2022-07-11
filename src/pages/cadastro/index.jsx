@@ -36,7 +36,7 @@ export default function Cadastro() {
       })
       .catch((erro) => {
         console.log(erro);
-        notificarErro(erro);
+        notificarErro("Credenciais inválidas");
       });
   };
 
@@ -98,7 +98,7 @@ export default function Cadastro() {
         })
         .catch((erro) => {
           console.log(erro);
-          notificarErro(erro);
+          notificarErro("Credenciais inválidas");
         });
     },
   });
