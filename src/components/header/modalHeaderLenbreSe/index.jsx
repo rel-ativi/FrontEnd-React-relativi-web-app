@@ -1,5 +1,5 @@
-import { AiFillCalendar } from "react-icons/ai";
-import { IoArrowDownCircleSharp } from "react-icons/io5";
+// import { AiFillCalendar } from "react-icons/ai";
+// import { IoArrowDownCircleSharp } from "react-icons/io5";
 
 function ModalLenbreSe({ setModalLenbreSe, modalLenbreSe, dadosUserAtividadesTest }) {
   console.log(dadosUserAtividadesTest)
@@ -7,16 +7,7 @@ function ModalLenbreSe({ setModalLenbreSe, modalLenbreSe, dadosUserAtividadesTes
   if (modalLenbreSe === false) {
     return (
       <div>
-        <div className="divLenbreSe">
-          <div>
-          <AiFillCalendar />
-          Lenbre-se
-          </div>
-          
-           <span onClick={() => {
-            setModalLenbreSe(true);
-          }}><IoArrowDownCircleSharp/></span>
-        </div>
+
       </div>
     );
   }
@@ -30,19 +21,7 @@ function ModalLenbreSe({ setModalLenbreSe, modalLenbreSe, dadosUserAtividadesTes
 
   return (
     <div className="divLenbreSeAtivado">
-    <div className="divLenbreSe">
-          <div>
-          <AiFillCalendar />
-          Lenbre-se
-          </div>
-      <span
-        onClick={() => {
-          setModalLenbreSe(false);
-        }}
-      >
-        <IoArrowDownCircleSharp/>
-      </span>
-    </div>
+      
     <p className="textInformacoes">você tem: <span className="alinharTextoAtivado">{ProximaAtividade.nome}</span></p>
     <p className="textInformacoes">você tem: <span className="alinharTextoAtivado">{ProximaAtividade.data}</span></p>
     <p className="textInformacoes">você tem: <span className="alinharTextoAtivado">{ProximaAtividade.horario}</span></p>
