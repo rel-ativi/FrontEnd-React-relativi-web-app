@@ -1,8 +1,6 @@
 import { useForm, useInput } from "lx-react-form";
 import { MdOutlineAccountCircle, MdOutlinePassword } from "react-icons/md";
 import { Link, useNavigate } from "react-router-dom";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 
 import Background from "../../components/background";
 import Botao from "../../components/botao";
@@ -49,7 +47,7 @@ export default function Login() {
           } else if (err.response.data === "Incorrect password") {
             str = "Senha incorreta.";
           } else {
-            str = "Algo deu errado! Tente novamente."
+            str = "Algo deu errado! Tente novamente.";
           }
           notificarErro(str);
         });
@@ -58,7 +56,6 @@ export default function Login() {
 
   return (
     <Background>
-      <ToastContainer />
       <Main>
         <div className="container">
           <div className="logoMobile">
