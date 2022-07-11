@@ -68,14 +68,16 @@ export default function Teste() {
 
   const token = localStorage.getItem("@relativi:token");
 
-  API.get("/activities", {
-    headers: { Authorization: `Bearer ${token}` },
-  })
-    .then((response) => {
-      setLista(response.data);
-      /* console.log(response); */
+  useEffect(() => {
+    API.get("/activities", {
+      headers: { Authorization: `Bearer ${token}` },
     })
-    .catch((error) => console.log(error));
+      .then((response) => {
+        setLista(response.data);
+        /* console.log(response); */
+      })
+      .catch((error) => console.log(error));
+  });
 
   return <ListaDeCardsLoja array={lista} />;
 }
