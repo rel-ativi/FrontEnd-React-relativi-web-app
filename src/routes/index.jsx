@@ -1,9 +1,10 @@
-import { Routes, Route } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
+
 import Cadastro from "../pages/cadastro";
+import Login from "../pages/login";
 
 import { Dashboard } from "../pages/dashboard";
 import { Landing } from "../pages/landing";
-import Login from "../pages/login";
 import { Loja } from "../pages/loja";
 
 import Teste from "../pages/teste-erase-me";
@@ -15,6 +16,7 @@ function Router() {
   };
 
   return (
+
     <Routes>
       <Route path={"/"} index element={verificaToken(<Landing />)} />
       <Route path={"/cadastro"} element={verificaToken(<Cadastro />)} />
@@ -24,6 +26,7 @@ function Router() {
       <Route path={"/teste"} element={<Teste />} />{" "}
       {/* so' para visualizar testes, route/teste sera apagada */}
     </Routes>
+
   );
 }
 

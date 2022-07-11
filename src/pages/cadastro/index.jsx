@@ -1,16 +1,20 @@
 import { useForm, useInput, useSelect } from "lx-react-form";
-import { MdOutlineAccountCircle, MdEmail, MdPassword } from "react-icons/md";
-import { Link } from "react-router-dom";
+import { MdEmail, MdOutlineAccountCircle, MdPassword } from "react-icons/md";
+import { Link, useNavigate } from "react-router-dom";
 
-import Select from "../../components/select";
+import Background from "../../components/background";
 import Botao from "../../components/botao";
 import Input from "../../components/input";
-import Background from "../../components/background";
+import Select from "../../components/select";
+import API from "../../services/API";
 
 import { LogoHorizontal } from "../../components/logo";
+import { notificarErro, notificarSucesso } from "../../components/toasts";
 import { EstiloCadastro } from "./styles";
 
 export default function Cadastro() {
+  const navigate = useNavigate();
+
   const name = useInput({ name: "name" });
   const email = useInput({ name: "email", validation: "email" });
   const password = useInput({ name: "password", validation: "senha" });
@@ -20,12 +24,82 @@ export default function Cadastro() {
   });
   const type = useSelect({ name: "type" });
 
+  const criarPerfil = (rota, dados, token, mensagem) => {
+    API.post(rota, dados, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((_) => {
+        notificarSucesso(mensagem);
+        navigate("/login");
+      })
+      .catch((erro) => {
+        console.log(erro);
+        notificarErro(erro);
+      });
+  };
+
+  const perfilProfissional = (dadosUsuario, token) => {
+    const { id, email, name } = dadosUsuario;
+
+    const perfilPro = {
+      userId: id,
+      email,
+      name,
+      phone: "",
+      bio: "",
+      docs: [],
+      bank_info: {},
+    };
+
+    criarPerfil(
+      "/prousers",
+      perfilPro,
+      token,
+      "Conta Profissional criada com sucesso!"
+    );
+  };
+
+  const perfilUsuario = (dadosUsuario, token) => {
+    const { id, email, name } = dadosUsuario;
+
+    const perfil = {
+      userId: id,
+      email,
+      name,
+      phone: "",
+      bio: "",
+      payment_info: {},
+      activities: [],
+      activities_history: [],
+      activities_favorites: [],
+    };
+
+    criarPerfil("/profiles", perfil, token, "Perfil criado com sucesso");
+  };
+
   const form = useForm({
     clearFields: true,
     formFields: [name, email, password, type],
+
     submitCallback: (formData) => {
-      //mandar pra api
-      console.log(formData);
+      const { type } = formData;
+
+      API.post(`users`, formData)
+        .then((response) => {
+          const token = response.data.accessToken;
+
+          localStorage.setItem("@relativi:token", JSON.stringify(token));
+
+          type === "profissional"
+            ? perfilProfissional(response.data.user, token)
+            : perfilUsuario(response.data.user, token);
+        })
+        .catch((erro) => {
+          console.log(erro);
+          notificarErro(erro);
+        });
     },
   });
 
@@ -91,7 +165,7 @@ export default function Cadastro() {
             />
             <Select
               nome="select tipo"
-              opcoes={["selecione tipo de conta", `Usuario`, `Profissional`]}
+              opcoes={["selecione tipo de conta", `Usuário`, `Profissional`]}
               textoAuxiliar={type.error}
               {...type.inputProps}
             />

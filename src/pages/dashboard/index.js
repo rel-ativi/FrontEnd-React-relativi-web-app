@@ -7,7 +7,7 @@ export function Dashboard() {
       <br></br>
       <Link to="/">Landing</Link>
       <br></br>
-      <Link to="/dashboard">Login</Link>
+      <Link to="/login">Login</Link>
       <br></br>
       <Link to="/cadastro">Cadastro</Link>
       <br></br>
