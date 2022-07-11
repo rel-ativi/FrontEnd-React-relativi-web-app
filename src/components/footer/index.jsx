@@ -2,6 +2,9 @@ import { FaGithub } from "react-icons/fa"
 import { TiSocialLinkedinCircular } from "react-icons/ti"
 
 import { Link } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
+
+import { EstiloFooter } from "./style"
 
 const integrantesProjeto = [
   {
@@ -42,28 +45,51 @@ const integrantesProjeto = [
   },
 ]
 
+const gitHubProjeto = "https://github.com/rel-ativi"
+
 export default function Footer() {
+  const navigate = useNavigate()
+
+  const redirecionaSobreNos = () => {
+    navigate("/sobrenos", { replace: true })
+  }
+
+  const redirecionaSobreProjeto = () => {
+    navigate("/sobreprojeto", { replace: true })
+  }
+
   return (
-    <>
-      <div>
+    <EstiloFooter>
+      <div className='container'>
         <p>
-          Sobre <span>Nós</span>
+          Sobre <span onClick={redirecionaSobreNos}>Nós</span>
         </p>
         <ul>
           {integrantesProjeto.map((integrante, index) => (
             <li key={index}>
               <p>
-                {integrante.nome} <Link to={integrante.gitHub}>{FaGithub}</Link>
-                <Link to={integrante.linkedin}>{TiSocialLinkedinCircular}</Link>
+                {integrante.nome}{" "}
+                <Link to={integrante.gitHub}>
+                  <FaGithub color='white' />
+                </Link>
+                <Link to={integrante.linkedin}>
+                  <TiSocialLinkedinCircular color='white' size={20} />
+                </Link>
               </p>
               <span>{integrante.cargo}</span>
             </li>
           ))}
         </ul>
         <p>
-          Sobre o <span>Projeto</span>
+          Sobre o{" "}
+          <span onClick={redirecionaSobreProjeto}>
+            Projeto{" "}
+            <Link to={gitHubProjeto}>
+              <FaGithub color='white' />
+            </Link>
+          </span>
         </p>
       </div>
-    </>
+    </EstiloFooter>
   )
 }
