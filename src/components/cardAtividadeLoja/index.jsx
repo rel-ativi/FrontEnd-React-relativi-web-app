@@ -20,7 +20,7 @@ export default function CardAtividadeLoja({ obj }) {
   const resolveDia = () => {
     if (obj.schedule.recurrent === true) {
       const diaCru = obj.schedule.days;
-      const dia = `${diaCru}s - ${obj.schedule.time_text}`;
+      const dia = `${diaCru} - ${obj.schedule.time_text}`;
       return dia;
     } else {
       const diaCru = String(new Date(obj.schedule.start_date));
@@ -41,7 +41,7 @@ export default function CardAtividadeLoja({ obj }) {
           ? "Out"
           : "Dez";
       };
-      const dia = `dia ${diaNum} de ${mesPt()}`;
+      const dia = `${diaNum} de ${mesPt()} - ${obj.schedule.time_text}`;
       return dia;
     }
   };
