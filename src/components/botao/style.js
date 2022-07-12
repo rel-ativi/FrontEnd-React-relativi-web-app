@@ -35,6 +35,15 @@ export const EstiloBotao = styled.button`
 
   ${({ cor }) => {
     switch (cor) {
+      case "azul":
+        return css`
+          background-color: ${({ theme: { cores } }) => cores.suporteTres};
+
+          :hover {
+            background-color: ${({ theme: { cores } }) => cores.suporteTresAlpha};
+          }
+        `;
+        
       default:
         return css`
           background-color: ${({ theme: { cores } }) => cores.marca};

@@ -8,7 +8,7 @@ export const EstiloHeaderCardsDash = styled.div`
   height: 100px;
 
   border-radius: 10px 10px 0 0;
-  font-size: 24px;
+  font-size: 18px;
   font-family: "Source Code Pro", sans-serif;
 
   display: flex;
@@ -16,4 +16,10 @@ export const EstiloHeaderCardsDash = styled.div`
   justify-content: center;
 
   gap: 10px;
+
+  svg{
+    font-size: 28px;
+  }
 `;
+
+
