@@ -1,6 +1,8 @@
 //ignorar isto, so' testando
 import { Link } from "react-router-dom";
-import ModalConfirmarAgendamento from "../../components/modalConfirmarAgendamento";
+
+import Footer from "../../components/footer";
+
 export function Loja() {
   return (
     <>
@@ -13,8 +15,7 @@ export function Loja() {
       <Link to="/login">Login</Link>
       <br></br>
       <Link to="/dashboard">Dashboard</Link>
-      {/* teste provisorio do modal */}
-      <ModalConfirmarAgendamento />
+      <Footer />
     </>
   );
 }
