@@ -98,7 +98,9 @@ export default function Cadastro() {
         })
         .catch((erro) => {
           console.log(erro);
-          notificarErro("Credenciais inválidas");
+          erro.data.includes("already")
+            ? notificarErro("Email já cadastrado")
+            : notificarErro("Ocorreu um erro!");
         });
     },
   });
