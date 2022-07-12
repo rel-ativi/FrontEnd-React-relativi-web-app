@@ -10,6 +10,7 @@ import { Loja } from "../pages/loja";
 
 function Router() {
   return (
+
     <Routes>
       <Route path={"/"} index element={<Landing />} />
       <Route path={"/cadastro"} element={<Cadastro />} />
@@ -18,6 +19,7 @@ function Router() {
       <Route path={"/dashboard"} element={<Dashboard />} />
       <Route path={"/sobrenos"} element={<SobreNos/>} />
     </Routes>
+
   );
 }
 

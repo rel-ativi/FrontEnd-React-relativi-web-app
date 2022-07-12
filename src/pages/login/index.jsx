@@ -9,6 +9,7 @@ import API from "../../services/API";
 
 import { LogoHorizontal, LogoQuadrado } from "../../components/logo";
 import { Main } from "./style";
+import { notificarErro } from "../../components/toast";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -30,6 +31,7 @@ export default function Login() {
             "@relativi:token",
             JSON.stringify(response.data.accessToken)
           );
+
           return response.data;
         })
         .then((res) => {
@@ -39,7 +41,7 @@ export default function Login() {
         })
         .catch((err) => {
           console.log(err);
-          // adicionar toast com o erro
+          notificarErro("Credenciais inválidas..");
         });
     },
   });
