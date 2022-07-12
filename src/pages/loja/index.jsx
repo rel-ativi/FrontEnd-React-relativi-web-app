@@ -1,7 +1,9 @@
 //ignorar isto, so' testando
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import ModalConfirmarAgendamento from "../../components/modalConfirmarAgendamento";
 export function Loja() {
+  const [calendario, mostrarCalendario] = useState(true);
   return (
     <>
       Isto e' a loja
@@ -14,7 +16,9 @@ export function Loja() {
       <br></br>
       <Link to="/dashboard">Dashboard</Link>
       {/* teste provisorio do modal */}
-      <ModalConfirmarAgendamento />
+      {calendario && (
+        <ModalConfirmarAgendamento mostrarCalendario={mostrarCalendario} />
+      )}
     </>
   );
 }

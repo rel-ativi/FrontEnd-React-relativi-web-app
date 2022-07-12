@@ -2,7 +2,8 @@ import styled from "styled-components";
 
 export const EstiloModalAgendar = styled.div`
   background-color: ${({ theme: { cores } }) => cores.primaria};
-  width: 390px;
+  width: 90%;
+  max-width: 390px;
   height: 500px;
 
   display: flex;
@@ -32,27 +33,57 @@ export const EstiloModalAgendar = styled.div`
   .react-calendar {
     border: none;
     background-color: ${({ theme: { cores } }) => cores.primaria};
-    color: ${({ theme: { cores } }) => cores.secundaria};
 
     font-family: "Source Code Pro", sans-serif;
 
     .react-calendar__tile--active:enabled {
       background-color: ${({ theme: { cores } }) => cores.marca};
+
+      &.react-calendar__month-view__days__day {
+        color: ${({ theme: { cores } }) => cores.primaria};
+      }
     }
-    .react-calendar__month-view__days__day--weekend {
-      color: ${({ theme: { cores } }) => cores.suporteUm};
+
+    .react-calendar__month-view__weekdays {
+      font-weight: 500;
+      text-transform: capitalize;
+      color: ${({ theme: { cores } }) => cores.suporteTres};
     }
-    .react-calendar__month-view__weekdays{
-        text-transform: lowercase;
+
+    .react-calendar__tile {
+      &.react-calendar__month-view__days__day {
+        color: ${({ theme: { cores } }) => cores.suporteTres};
+        &.react-calendar__month-view__days__day--neighboringMonth {
+          color: ${({ theme: { cores } }) => cores.suporteTresAlpha};
+        }
+        &.react-calendar__month-view__days__day--weekend {
+          color: ${({ theme: { cores } }) => cores.suporteUm};
+          &.react-calendar__tile--active:enabled {
+            color: ${({ theme: { cores } }) => cores.primaria};
+          }
+        }
+      }
+
+      &.react-calendar__tile--now {
+        background-color: ${({ theme: { cores } }) => cores.suporteDois};
+
+        &.react-calendar__tile--active:enabled {
+          background-color: ${({ theme: { cores } }) => cores.marca};
+
+          &.react-calendar__month-view__days__day {
+            color: ${({ theme: { cores } }) => cores.primaria};
+          }
+        }
+      }
     }
   }
 
-  @media (max-width: 576px) {
+  /* @media (max-width: 576px) {
     width: 75%;
     p {
       font-size: 16px;
     }
-  }
+  } */
 `;
 
 export const FundoPreto = styled.div`
