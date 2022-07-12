@@ -1,11 +1,12 @@
 //ignorar isto, so' testando
 import { Link } from "react-router-dom";
 import Footer from "../../components/footer";
+import Header from "../../components/header";
 
 export function Loja() {
   return (
     <>
-      Isto e' a loja
+    <Header></Header>
       <br></br>
       <Link to="/">Landing</Link>
       <br></br>
