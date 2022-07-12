@@ -1,5 +1,6 @@
 //ignorar isto, so' testando
 import { Link } from "react-router-dom";
+import FormEdicaoUser from "../../components/formEdicaoUser";
 
 export function Dashboard() {
   return (
@@ -14,6 +15,7 @@ export function Dashboard() {
       <br></br>
       <Link to="/loja">Loja</Link>
       
+      <FormEdicaoUser/>
     </>
   );
 }
