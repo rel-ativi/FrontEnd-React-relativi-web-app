@@ -32,6 +32,7 @@ export const HeaderConteiner = styled.header`
 
   .sectionCalendario {
     background-color: ${({ theme: { cores } }) => cores.secundaria};
+    opacity:80% ;
     color: white;
     position: absolute;
     width: 100%;
@@ -81,7 +82,7 @@ export const HeaderConteiner = styled.header`
 
   @media screen and (min-width: 768px) {
 
-  height:220px ;
+  height:100px;
 
     .mobile {
       display: none;
@@ -92,16 +93,23 @@ export const HeaderConteiner = styled.header`
       justify-content:center ;
     }
 
+    
+  .divLenbreSeAtivado {
+    display:none ;
+
+  }
+
     .headerDesktop {
       display: flex;
     }
 
     .LogoDesktop {
-      margin: 55px;
+      margin: 30px;
+      margin-top:20px ;
     }
 
     .textRed {
-    font-size: 20px;
+    font-size: 16px;
     color: ${({ theme: { cores } }) => cores.marca};
   }
 
@@ -112,8 +120,8 @@ export const HeaderConteiner = styled.header`
 
     .ajustarCorDesktop{
       color: ${({ theme: { cores } }) => cores.primaria};
-      font-size:22.5px;
-      margin:15px ;
+      font-size:16px;
+      margin:7.5px ;
     }
 
     .nomeUsuario{
@@ -124,10 +132,9 @@ export const HeaderConteiner = styled.header`
     .parteSuperiorHeaderDesktop{
       width:100% ;
       display:flex ;
-      justify-content:space-between ;
+      justify-content:space-around ;
       margin-top:-50px ;
       align-items:center ;
-      margin-right: 5px;
     }
 
     .informacoesProximaAulaDesktop{
@@ -135,14 +142,14 @@ export const HeaderConteiner = styled.header`
       border-radius:20px ;
       margin-left: 150px;
       margin-top:-60px ;
-      margin-bottom:25px ;
+      margin-bottom:45px ;
       display:flex ;
       align-items: center;
 
     }
 
     .textInformacoesDesktop{
-      padding:5px ;
+      padding:3px ;
       font-size:12px ;
     }
 
@@ -163,30 +170,30 @@ export const HeaderConteiner = styled.header`
 
   @media screen and (min-width: 1024px){
     .textRed {
-    font-size: 35px;
+    font-size: 20px;
     color: ${({ theme: { cores } }) => cores.marca};
   }
 
     .olaDesktop {
-      font-size: 35px;
+      font-size: 20px;
       color: ${({ theme: { cores } }) => cores.primaria};
     }
 
     .ajustarCorDesktop{
       color: ${({ theme: { cores } }) => cores.primaria};
-      font-size:30px;
+      font-size:20px;
       margin:20px ;
     }
 
     .nomeUsuario{
-      font-size: 45px;
+      font-size: 25px;
       color: ${({ theme: { cores } }) => cores.marca};
     }
 
     .parteSuperiorHeaderDesktop{
       width:100% ;
       display:flex ;
-      justify-content:space-between ;
+      justify-content:space-around ;
       margin-top:-70px ;
       align-items:center ;
       margin-right: 80px;
@@ -196,10 +203,10 @@ export const HeaderConteiner = styled.header`
     .informacoesProximaAulaDesktop{
       background-color: ${({ theme: { cores } }) => cores.primariaAlpha};
       border-radius:25px ;
-      padding:10px ;
+      padding:3px ;
       margin-left: 150px;
-      margin-top:-70px ;
-      margin-bottom:25px ;
+      margin-top:-60px ;
+      margin-bottom:30px ;
       display: block;
 
     }
@@ -207,53 +214,67 @@ export const HeaderConteiner = styled.header`
     
     .textInformacoesDesktop{
       padding:5px ;
-      font-size:16px ;
+      font-size:14px ;
     }
   }
 
 
   @media screen and (min-width: 1440px){
+
+    .LogoDesktop {
+      margin: 30px;
+      margin-top:20px ;
+      padding-left:300px ;
+    }
+
     .parteSuperiorHeaderDesktop{
       margin-right: 80px;
     }
 
     .nomeUsuario{
-      font-size: 55px;
+      font-size: 35px;
     }
 
 
     .parteSuperiorHeaderDesktop{
       width:100% ;
       display:flex ;
-      justify-content:space-between ;
+      justify-content:space-around ;
       margin-top:-70px ;
       align-items:center ;
       margin-right: 200px;
     }
 
     .textInformacoesDesktop{
-      padding:12px ;
-      font-size:22px ;
+      padding:5px ;
+      font-size:16px ;
     }
 
     .textRed {
-    font-size: 45px;
+    font-size: 25px;
     color: ${({ theme: { cores } }) => cores.marca};
   }
 
     .olaDesktop {
-      font-size: 35px;
+      font-size: 25px;
       color: ${({ theme: { cores } }) => cores.primaria};
     }
 
     .ajustarCorDesktop{
       color: ${({ theme: { cores } }) => cores.primaria};
-      font-size:40px;
+      font-size:25px;
       margin:20px ;
     }
 
 
 
+  }
+
+  @media screen and (min-width: 2560px){
+
+
+
+    
   }
 
   

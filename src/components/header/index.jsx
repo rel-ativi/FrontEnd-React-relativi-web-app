@@ -111,9 +111,9 @@ function Header() {
         <section className="desktop">
           <div className="headerDesktop">
             <div className="LogoDesktop">
-              <LogoIcone cor={"inversa"} largura={"90px"}></LogoIcone>
+              <LogoIcone cor={"inversa"} largura={"50px"}></LogoIcone>
               <br />
-              <LogoTexto cor={"inversa"} largura={"90px"}></LogoTexto>
+              <LogoTexto cor={"inversa"} largura={"50px"}></LogoTexto>
             </div>
 
             <div className="parteSuperiorHeaderDesktop">
