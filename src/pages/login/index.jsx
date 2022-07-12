@@ -40,16 +40,8 @@ export default function Login() {
             : navigate("/loja");
         })
         .catch((err) => {
-          let str = "";
           console.log(err);
-          if (err.response.data === "Cannot find user") {
-            str = "Usuário não encontrado.";
-          } else if (err.response.data === "Incorrect password") {
-            str = "Senha incorreta.";
-          } else {
-            str = "Algo deu errado! Tente novamente.";
-          }
-          notificarErro(str);
+          notificarErro("Credenciais inválidas..");
         });
     },
   });
