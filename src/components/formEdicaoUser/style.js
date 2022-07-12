@@ -8,14 +8,12 @@ export const EstiloFormEdicaoUser = styled.form`
 
   border-radius: 0 0 10px 10px;
 
-  padding:0  0 1rem   0;
-  gap:5px;
+  padding: 0 0 1rem 0;
+  gap: 5px;
 
   .pagamento {
     display: flex;
-
   }
-
   display: flex;
   flex-direction: column;
   align-items: center;
