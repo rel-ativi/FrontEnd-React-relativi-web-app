@@ -15,6 +15,7 @@ export const CardLoja = styled.div`
     img {
       border-radius: 10px;
       height: 230px;
+      width: 300px;
       border: 1px solid ${({ theme: { cores } }) => cores.suporteTres};
     }
 

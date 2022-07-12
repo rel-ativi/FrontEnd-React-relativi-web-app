@@ -15,7 +15,7 @@ export const ContainerLoja = styled.div`
     flex-wrap: wrap;
     max-width: 1200px;
     margin: auto;
-    gap: 80px;
+    gap: 50px;
     justify-content: center;
   }
 `;

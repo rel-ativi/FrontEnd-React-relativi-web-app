@@ -87,6 +87,7 @@ export default function CardAtividadeLoja({
     );
   };
 
+  /*   a funcao abaixo esta' quebrada, nao entendo o pk, e' identica a do componente modalDescricao */
   const favoritar = () => {
     const checker = favoritos.includes(obj.id);
     const novoPerfil = { activities_favorites: favoritos };
