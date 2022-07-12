@@ -1,16 +1,21 @@
 import { useEffect } from "react";
 import { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import CardAtividadeLoja from "../../components/cardAtividadeLoja";
 import ModalAtividadeLoja from "../../components/modalAtividadeLoja";
-import API from "../../services/API";
+import buscaAtividadesThunk from "../../store/modules/atividades/thunks";
 import { ContainerLoja } from "./style";
 
 export default function Loja() {
-  const [lista, setLista] = useState([]);
-  const [atividadeEmFoco, setAtividadeEmFoco] = useState(lista[1]);
+  const dispatch = useDispatch();
+  const { atividades } = useSelector((state) => state);
+  const [atividadeEmFoco, setAtividadeEmFoco] = useState();
   const [mostrarModalDescricao, setMostrarModalDescricao] = useState(false);
 
-  const token = localStorage.getItem("@relativi:token");
+  useEffect(() => {
+    dispatch(buscaAtividadesThunk());
+  }, []);
+  /*   const token = localStorage.getItem("@relativi:token");
 
   useEffect(() => {
     API.get("/activities", {
@@ -21,12 +26,12 @@ export default function Loja() {
         console.log(response);
       })
       .catch((error) => console.log(error));
-  }, []);
+  }, []); */
 
   return (
     <>
       <ContainerLoja>
-        {lista.map((atividade, index) => (
+        {atividades.map((atividade, index) => (
           <CardAtividadeLoja
             obj={atividade}
             key={index}
