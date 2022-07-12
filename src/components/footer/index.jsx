@@ -1,14 +1,13 @@
-import { FaGithub } from "react-icons/fa"
-import { TiSocialLinkedinCircular } from "react-icons/ti"
+import { FaGithub, FaLinkedin } from "react-icons/fa";
 
-import { Link } from "react-router-dom"
-import { useNavigate } from "react-router-dom"
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-import { EstiloFooter } from "./style"
+import { EstiloFooter } from "./style";
 
 const integrantesProjeto = [
   {
-    nome: "André Perregil",
+    nome: "Andre Perregil",
     cargo: "Tech Leader",
     gitHub: "https://github.com/AndrePerregil",
     linkedin: "https://www.linkedin.com/in/andre-perregil-60aa51198/",
@@ -43,53 +42,54 @@ const integrantesProjeto = [
     gitHub: "https://github.com/raqueldesa",
     linkedin: "https://www.linkedin.com/in/raquel-de-s%C3%A1-silva/",
   },
-]
+];
 
-const gitHubProjeto = "https://github.com/rel-ativi"
+const gitHubProjeto = "https://github.com/rel-ativi";
 
 export default function Footer() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const redirecionaSobreNos = () => {
-    navigate("/sobrenos", { replace: true })
-  }
+    navigate("/sobrenos", { replace: true });
+  };
 
   const redirecionaSobreProjeto = () => {
-    navigate("/sobreprojeto", { replace: true })
-  }
+    navigate("/sobreprojeto", { replace: true });
+  };
 
   return (
     <EstiloFooter>
-      <div className='container'>
-        <p>
-          Sobre <span onClick={redirecionaSobreNos}>Nós</span>
-        </p>
-        <ul>
-          {integrantesProjeto.map((integrante, index) => (
-            <li key={index}>
-              <p>
-                {integrante.nome}{" "}
-                <Link to={integrante.gitHub}>
-                  <FaGithub color='white' />
-                </Link>
-                <Link to={integrante.linkedin}>
-                  <TiSocialLinkedinCircular color='white' size={20} />
-                </Link>
-              </p>
-              <span>{integrante.cargo}</span>
-            </li>
-          ))}
-        </ul>
-        <p>
-          Sobre o{" "}
-          <span onClick={redirecionaSobreProjeto}>
-            Projeto{" "}
+      <div className="container">
+        <section>
+          <h4>
+            Sobre <span onClick={redirecionaSobreNos}>Nós</span>
+          </h4>
+          <ul>
+            {integrantesProjeto.map((integrante, index) => (
+              <li key={index}>
+                <p>{integrante.nome} </p>
+                <span>{integrante.cargo}</span>
+                <div>
+                  <Link to={integrante.linkedin}>
+                    <FaLinkedin />
+                  </Link>
+                  <Link to={integrante.gitHub}>
+                    <FaGithub />
+                  </Link>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </section>
+        <section>
+          <h4>
+            Sobre o <span onClick={redirecionaSobreProjeto}>Projeto</span>
             <Link to={gitHubProjeto}>
-              <FaGithub color='white' />
+              <FaGithub />
             </Link>
-          </span>
-        </p>
+          </h4>
+        </section>
       </div>
     </EstiloFooter>
-  )
+  );
 }
