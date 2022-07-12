@@ -27,11 +27,8 @@ export default function Login() {
     submitCallback: (formData) => {
       API.post("/login", formData)
         .then((response) => {
-          localStorage.setItem(
-            "@relativi:token",
-            JSON.stringify(response.data.accessToken)
-          );
-
+          localStorage.setItem("@relativi:token", response.data.accessToken);
+          localStorage.setItem("@relativi:userId", response.data.user.id);
           return response.data;
         })
         .then((res) => {
