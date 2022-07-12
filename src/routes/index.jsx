@@ -2,6 +2,7 @@ import { Route, Routes } from "react-router-dom";
 
 import Cadastro from "../pages/cadastro";
 import Login from "../pages/login";
+import SobreNos from "../pages/sobreNos";
 
 import { Dashboard } from "../pages/dashboard";
 import { Landing } from "../pages/landing";
@@ -15,6 +16,7 @@ function Router() {
       <Route path={"/login"} element={<Login />} />
       <Route path={"/loja"} element={<Loja />} />
       <Route path={"/dashboard"} element={<Dashboard />} />
+      <Route path={"/sobrenos"} element={<SobreNos/>} />
     </Routes>
   );
 }
