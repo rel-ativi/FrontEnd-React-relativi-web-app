@@ -5,7 +5,7 @@ import CardAtividadeLoja from "../../components/cardAtividadeLoja";
 import ModalAtividadeLoja from "../../components/modalAtividadeLoja";
 import buscaAtividadesThunk from "../../store/modules/atividades/thunks";
 import buscaPerfilProfissionalThunk from "../../store/modules/perfilProUsers/thunks";
-import buscaPerfilUsuarioThunk from "../../store/modules/perfilUsuario/thunks";
+import { buscaPerfilUsuarioThunk } from "../../store/modules/perfilUsuario/thunks";
 
 import { ContainerLoja } from "./style";
 
@@ -17,24 +17,13 @@ export default function Loja() {
 
   const [atividadeEmFoco, setAtividadeEmFoco] = useState();
   const [mostrarModalDescricao, setMostrarModalDescricao] = useState(false);
+  const [favoritos, setFavoritos] = useState([]);
 
   useEffect(() => {
     dispatch(buscaAtividadesThunk());
     dispatch(buscaPerfilUsuarioThunk());
     dispatch(buscaPerfilProfissionalThunk());
   }, []);
-  /*   const token = localStorage.getItem("@relativi:token");
-
-  useEffect(() => {
-    API.get("/activities", {
-      headers: { Authorization: `Bearer ${token}` },
-    })
-      .then((response) => {
-        setLista(response.data);
-        console.log(response);
-      })
-      .catch((error) => console.log(error));
-  }, []); */
 
   return (
     <>
@@ -45,6 +34,8 @@ export default function Loja() {
             key={index}
             setAtividadeEmFoco={setAtividadeEmFoco}
             setMostrarModalDescricao={setMostrarModalDescricao}
+            favoritos={favoritos}
+            setFavoritos={setFavoritos}
           />
         ))}
       </ContainerLoja>
@@ -53,6 +44,8 @@ export default function Loja() {
         obj={atividadeEmFoco}
         mostrarModalDescricao={mostrarModalDescricao}
         setMostrarModalDescricao={setMostrarModalDescricao}
+        favoritos={favoritos}
+        setFavoritos={setFavoritos}
       />
     </>
   );

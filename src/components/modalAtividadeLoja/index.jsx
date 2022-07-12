@@ -10,12 +10,20 @@ import { MdRoom } from "react-icons/md";
 import { MdOutlineAvTimer } from "react-icons/md";
 import { MdPermIdentity } from "react-icons/md";
 import { MdPeopleAlt } from "react-icons/md";
+import { MdFavoriteBorder } from "react-icons/md";
+
+import { useSelector, useDispatch } from "react-redux";
+import { alteraPerfilUsuarioThunk } from "../../store/modules/perfilUsuario/thunks";
 
 export default function ModalAtividadeLoja({
   obj,
   mostrarModalDescricao,
   setMostrarModalDescricao,
+  favoritos,
+  setFavoritos,
 }) {
+  const dispatch = useDispatch();
+
   if (obj === undefined) {
     return null;
   }
@@ -59,6 +67,38 @@ export default function ModalAtividadeLoja({
     setMostrarModalDescricao(false);
   };
 
+  const gerarIconeFavorito = () => {
+    const checker = favoritos.includes(obj.id);
+    return checker ? (
+      <MdFavorite
+        size={"30px"}
+        onClick={() => {
+          favoritar();
+        }}
+      />
+    ) : (
+      <MdFavoriteBorder
+        size={"30px"}
+        onClick={() => {
+          favoritar();
+        }}
+      />
+    );
+  };
+
+  const favoritar = () => {
+    const checker = favoritos.includes(obj.id);
+    const novoPerfil = { activities_favorites: favoritos };
+    if (!checker) {
+      setFavoritos([...favoritos, obj.id]);
+      dispatch(alteraPerfilUsuarioThunk(novoPerfil));
+    } else {
+      const novosFavoritos = favoritos.filter((el) => el !== obj.id);
+      setFavoritos([...novosFavoritos]);
+      dispatch(alteraPerfilUsuarioThunk(novoPerfil));
+    }
+  };
+
   return mostrarModalDescricao ? (
     <ModalBackgroundDescricao>
       <ModalDescricaoContainer>
@@ -74,7 +114,7 @@ export default function ModalAtividadeLoja({
         <div className="info-container">
           <div className="title">
             <h3>{obj.name}</h3>
-            <MdFavorite size={"30px"} />
+            {gerarIconeFavorito()}
           </div>
           <div className="info">
             <div className="info-line rating">

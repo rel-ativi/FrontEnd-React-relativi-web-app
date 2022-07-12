@@ -8,12 +8,23 @@ import { MdOutlineAvTimer } from "react-icons/md";
 import { MdFavorite } from "react-icons/md";
 import { MdLaunch } from "react-icons/md";
 import { MdPeopleAlt } from "react-icons/md";
+import { MdFavoriteBorder } from "react-icons/md";
+
+import { useSelector, useDispatch } from "react-redux";
+
+import { alteraPerfilUsuarioThunk } from "../../store/modules/perfilUsuario/thunks";
 
 export default function CardAtividadeLoja({
   obj,
   setAtividadeEmFoco,
   setMostrarModalDescricao,
+  favoritos,
+  setFavoritos,
 }) {
+  const dispatch = useDispatch;
+  /*   const { perfilUsuario } = useSelector((state) => state);
+  const { perfilProfissional } = useSelector((state) => state); */
+
   const trim = (string, max) => {
     return string.substring(0, max);
   };
@@ -51,7 +62,6 @@ export default function CardAtividadeLoja({
   };
 
   const ativaModalDescricao = () => {
-    console.log("modalDescricao");
     setAtividadeEmFoco(obj);
     setMostrarModalDescricao(true);
   };
@@ -59,6 +69,43 @@ export default function CardAtividadeLoja({
   const ativaCompra = () => {
     console.log("modalCompra");
   };
+
+  const gerarIconeFavorito = () => {
+    const checker = favoritos.includes(obj.id);
+    return checker ? (
+      <MdFavorite
+        onClick={() => {
+          favoritar();
+        }}
+      />
+    ) : (
+      <MdFavoriteBorder
+        onClick={() => {
+          favoritar();
+        }}
+      />
+    );
+  };
+
+  const favoritar = () => {
+    const checker = favoritos.includes(obj.id);
+    const novoPerfil = { activities_favorites: favoritos };
+    if (!checker) {
+      setFavoritos([...favoritos, obj.id]);
+      dispatch(alteraPerfilUsuarioThunk(novoPerfil));
+    } else {
+      const novosFavoritos = favoritos.filter((el) => el !== obj.id);
+      setFavoritos([...novosFavoritos]);
+      dispatch(alteraPerfilUsuarioThunk(novoPerfil));
+    }
+  };
+
+  /*   const nomeDoPro = () => {
+    const encontraPro = perfilProfissional.filter(
+      (el) => el.userId === obj.userId
+    );
+    return encontraPro.nome;
+  }; */
 
   return (
     <CardLoja>
@@ -91,9 +138,7 @@ export default function CardAtividadeLoja({
               <MdPeopleAlt />
               <p>{obj.users_limit} pessoas</p>
             </section>
-            <div className="favourite">
-              <MdFavorite />
-            </div>
+            <div className="favourite">{gerarIconeFavorito()}</div>
           </div>
         </div>
       </div>

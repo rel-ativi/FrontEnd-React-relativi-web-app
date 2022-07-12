@@ -92,5 +92,6 @@ export const CardLoja = styled.div`
 
   .favourite {
     color: ${({ theme: { cores } }) => cores.suporteUm};
+    cursor: pointer;
   }
 `;
