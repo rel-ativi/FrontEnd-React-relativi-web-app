@@ -141,16 +141,15 @@ export const ModalDescricaoContainer = styled.div`
       align-items: center;
       justify-content: center;
       width: 450px;
-      padding: 25px;
 
       img {
         width: 440px;
-        height: 100%;
+        height: 340px;
       }
 
       svg {
         position: fixed;
-        transform: translate3d(190px, -120px, 0);
+        transform: translate3d(190px, -145px, 0);
       }
     }
   }
