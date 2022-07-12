@@ -9,6 +9,7 @@ import API from "../../services/API";
 
 import { LogoHorizontal, LogoQuadrado } from "../../components/logo";
 import { Main } from "./style";
+import { notificarErro } from "../../components/toast";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -30,6 +31,7 @@ export default function Login() {
             "@relativi:token",
             JSON.stringify(response.data.accessToken)
           );
+
           return response.data;
         })
         .then((res) => {
@@ -38,8 +40,16 @@ export default function Login() {
             : navigate("/loja");
         })
         .catch((err) => {
+          let str = "";
           console.log(err);
-          // adicionar toast com o erro
+          if (err.response.data === "Cannot find user") {
+            str = "Usuário não encontrado.";
+          } else if (err.response.data === "Incorrect password") {
+            str = "Senha incorreta.";
+          } else {
+            str = "Algo deu errado! Tente novamente.";
+          }
+          notificarErro(str);
         });
     },
   });
