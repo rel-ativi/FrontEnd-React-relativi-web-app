@@ -1,15 +1,19 @@
 import { CardLoja } from "./style";
 
 import { MdCalendarToday } from "react-icons/md";
-import { MdDateRange } from "react-icons/md";
+import { MdLibraryAdd } from "react-icons/md";
 import { MdGrade } from "react-icons/md";
 import { MdRoom } from "react-icons/md";
-import { MdQueryBuilder } from "react-icons/md";
+import { MdOutlineAvTimer } from "react-icons/md";
 import { MdFavorite } from "react-icons/md";
 import { MdLaunch } from "react-icons/md";
 import { MdPeopleAlt } from "react-icons/md";
 
-export default function CardAtividadeLoja({ obj }) {
+export default function CardAtividadeLoja({
+  obj,
+  setAtividadeEmFoco,
+  setMostrarModalDescricao,
+}) {
   const trim = (string, max) => {
     return string.substring(0, max);
   };
@@ -46,9 +50,10 @@ export default function CardAtividadeLoja({ obj }) {
     }
   };
 
-  const ativaModal = () => {
+  const ativaModalDescricao = () => {
     console.log("modalDescricao");
-    /* ativar modal aqui */
+    setAtividadeEmFoco(obj);
+    setMostrarModalDescricao(true);
   };
 
   const ativaCompra = () => {
@@ -59,12 +64,12 @@ export default function CardAtividadeLoja({ obj }) {
     <CardLoja>
       <div className="imagem">
         <img src={obj.img_url} alt={obj.name} />
-        <MdLaunch size={"40px"} onClick={() => ativaModal()} />
+        <MdLaunch size={"40px"} onClick={() => ativaModalDescricao()} />
       </div>
       <div className="info-container">
         <div className="title">
           <h3 className="nome">{obj.name}</h3>
-          <MdDateRange size={"40px"} onClick={() => ativaCompra()} />
+          <MdLibraryAdd size={"40px"} onClick={() => ativaCompra()} />
         </div>
         <div className="info">
           <div className="info-line rating">
@@ -81,7 +86,7 @@ export default function CardAtividadeLoja({ obj }) {
           </div>
           <div className="info-line">
             <section className="time-limit">
-              <MdQueryBuilder />
+              <MdOutlineAvTimer />
               <p>{obj.duration_text}</p>
               <MdPeopleAlt />
               <p>{obj.users_limit} pessoas</p>

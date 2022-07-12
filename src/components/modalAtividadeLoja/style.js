@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { mq } from "../../styles/global";
 
 export const ModalBackgroundDescricao = styled.div`
   display: flex;
@@ -77,6 +78,10 @@ export const ModalDescricaoContainer = styled.div`
       display: flex;
       flex-direction: row;
       justify-content: space-between;
+
+      p {
+        margin-right: 10px;
+      }
     }
 
     .info-preco {
@@ -85,6 +90,7 @@ export const ModalDescricaoContainer = styled.div`
       gap: 0.3rem;
       align-items: center;
       justify-content: space-between;
+      font-weight: 800;
 
       p {
         font-size: smaller;
@@ -93,6 +99,7 @@ export const ModalDescricaoContainer = styled.div`
       span {
         font-size: smaller;
         font-weight: 400;
+        margin-right: 10px;
       }
 
       div {
@@ -113,9 +120,37 @@ export const ModalDescricaoContainer = styled.div`
 
       svg {
         position: fixed;
-        transform: translate(200%, 20%);
+        transform: translate(-100%, -20%);
         color: ${({ theme: { cores } }) => cores.primaria};
-        cursor: pointer;
+      }
+    }
+  }
+
+  ${mq[2]} {
+    box-sizing: border-box;
+    height: fit-content;
+    width: 100vw;
+    background-color: ${({ theme: { cores } }) => cores.primaria};
+    display: flex;
+    flex-direction: row;
+    z-index: 1000;
+    max-width: 800px;
+
+    .imagem {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 450px;
+      padding: 25px;
+
+      img {
+        width: 440px;
+        height: 100%;
+      }
+
+      svg {
+        position: fixed;
+        transform: translate3d(190px, -120px, 0);
       }
     }
   }

@@ -1,20 +1,24 @@
 import { ModalBackgroundDescricao, ModalDescricaoContainer } from "./style";
 import Botao from "../botao";
 
-import { MdLogout } from "react-icons/md";
+import { MdClose } from "react-icons/md";
 import { MdFavorite } from "react-icons/md";
 import { MdCalendarToday } from "react-icons/md";
-import { MdDateRange } from "react-icons/md";
+import { MdLibraryAdd } from "react-icons/md";
 import { MdGrade } from "react-icons/md";
 import { MdRoom } from "react-icons/md";
-import { MdQueryBuilder } from "react-icons/md";
+import { MdOutlineAvTimer } from "react-icons/md";
 import { MdPermIdentity } from "react-icons/md";
 import { MdPeopleAlt } from "react-icons/md";
 
-export default function ModalAtividadeLoja({ obj }) {
-  const trim = (string, max) => {
-    return string.substring(0, max);
-  };
+export default function ModalAtividadeLoja({
+  obj,
+  mostrarModalDescricao,
+  setMostrarModalDescricao,
+}) {
+  if (obj === undefined) {
+    return null;
+  }
 
   const endereco = `${obj.address.line_1} - ${obj.address.line_2} - ${obj.address.city} - ${obj.address.state}`;
 
@@ -47,30 +51,20 @@ export default function ModalAtividadeLoja({ obj }) {
     }
   };
 
-  /*   const vagas = obj.users_limit - obj.users.length;
-
-  const resolveVagas = () => {
-    return vagas > 1
-      ? `${vagas} restantes`
-      : vagas === 0
-      ? `Sem vagas restantes`
-      : `Apenas uma vaga restante!`;
-  }; */
-
   const abreConfirmacao = () => {
     console.log("modal conf");
   };
 
   const fechaModal = () => {
-    console.log("fecha modal");
+    setMostrarModalDescricao(false);
   };
 
-  return (
+  return mostrarModalDescricao ? (
     <ModalBackgroundDescricao>
       <ModalDescricaoContainer>
         <div className="imagem">
           <img src={obj.img_url} alt={obj.name} />
-          <MdLogout
+          <MdClose
             size={"40px"}
             onClick={() => {
               fechaModal();
@@ -80,7 +74,7 @@ export default function ModalAtividadeLoja({ obj }) {
         <div className="info-container">
           <div className="title">
             <h3>{obj.name}</h3>
-            <MdFavorite size={"40px"} />
+            <MdFavorite size={"30px"} />
           </div>
           <div className="info">
             <div className="info-line rating">
@@ -95,7 +89,7 @@ export default function ModalAtividadeLoja({ obj }) {
               </div>
               <div>
                 <h3>
-                  R$ 50,00/<span>aula</span>
+                  R$ 50,00 <span>/aula</span>
                 </h3>
               </div>
             </div>
@@ -110,21 +104,21 @@ export default function ModalAtividadeLoja({ obj }) {
             </div>
             <div className="info-summary">
               <div className="info-line section">
-                <MdQueryBuilder />
+                <MdOutlineAvTimer />
                 <p>{obj.duration_text}</p>
               </div>
               <div className="info-line section">
                 <MdPeopleAlt />
-                <p>{obj.users_limit} pessoas / valor!!! restantes</p>
+                <p>{obj.users_limit} pessoas</p>
               </div>
             </div>
             <div className="button-container">
-              <MdDateRange size={"30px"} />
               <Botao
                 onClick={() => {
                   abreConfirmacao();
                 }}
               >
+                <MdLibraryAdd size={"30px"} />
                 Agendar
               </Botao>
             </div>
@@ -132,5 +126,5 @@ export default function ModalAtividadeLoja({ obj }) {
         </div>
       </ModalDescricaoContainer>
     </ModalBackgroundDescricao>
-  );
+  ) : null;
 }

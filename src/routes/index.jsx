@@ -6,7 +6,6 @@ import Login from "../pages/login";
 import { Dashboard } from "../pages/dashboard";
 import { Landing } from "../pages/landing";
 
-import Teste from "../pages/teste-erase-me";
 import Loja from "../pages/loja";
 
 function Router() {
@@ -22,8 +21,6 @@ function Router() {
       <Route path={"/login"} element={verificaToken(<Login />)} />
       <Route path={"/loja"} element={verificaToken(<Loja />)} />
       <Route path={"/dashboard"} element={<Dashboard />} />
-      <Route path={"/teste"} element={<Teste />} />{" "}
-      {/* so' para visualizar testes, route/teste sera apagada */}
     </Routes>
   );
 }
