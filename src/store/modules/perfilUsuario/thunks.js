@@ -9,6 +9,7 @@ const buscaPerfilUsuarioThunk = () => {
       headers: { Authorization: `Bearer ${token}` },
     }).then((resp) => {
       dispatch(buscaPerfilUsuario(resp.data));
+      console.log(resp.data);
     });
   };
 };
