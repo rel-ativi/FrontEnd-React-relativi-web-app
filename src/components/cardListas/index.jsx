@@ -13,7 +13,7 @@ export function CardLista({
 }) {
   const dispatch = useDispatch();
 
-  const { perfilUsuario } = useSelector((state) => state);
+  const { perfilUsuario, listaProfissionais } = useSelector((state) => state);
 
   const removeFavorita = (id) => {
     const favoritas = perfilUsuario?.activities_favorites;
@@ -25,6 +25,9 @@ export function CardLista({
   };
 
   const resumoAtvd = () => {
+    const pro = listaProfissionais?.find(
+      (pro) => pro.id === atividade?.prouserId
+    );
     const data = new Date(atividade?.schedule.start_date);
 
     return {
@@ -32,6 +35,7 @@ export function CardLista({
       nome: atividade?.name,
       data: `${data.getDate()}/${data.getMonth()}`,
       horario: data.getHours(),
+      pro: pro.name,
     };
   };
 
@@ -56,6 +60,7 @@ export function CardLista({
           />
         )}
       </div>
+      <p>{resumoAtvd().pro}</p>
     </EstiloCard>
   );
 }

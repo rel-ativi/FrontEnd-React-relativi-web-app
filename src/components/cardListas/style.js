@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { mq } from "../../styles/global";
 
 export const EstiloCard = styled.div`
   width: 100%;
@@ -45,6 +46,22 @@ export const EstiloCard = styled.div`
       :hover {
         color: ${({ theme: { cores } }) => cores.suporteUm};
       }
+    }
+  }
+
+  p:last-child {
+    display: none;
+  }
+
+  ${mq[1]} {
+    padding: 0.8rem;
+    height: fit-content;
+
+    flex-wrap: wrap;
+
+    p:last-child {
+      width: 100%;
+      display: block;
     }
   }
 `;

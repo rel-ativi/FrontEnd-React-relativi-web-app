@@ -139,6 +139,11 @@ export const EstiloHeader = styled.header`
             color: ${({ theme: { cores } }) => cores.marca};
           }
         }
+
+        p:last-of-type,
+        span:last-of-type {
+          display: none;
+        }
       }
     }
 
@@ -169,9 +174,121 @@ export const EstiloHeader = styled.header`
       }
 
       .lembrete {
-        right: unset;
-        left: 26%;
+        right: 46%;
+        width: fit-content;
+
+        transform: translateX(50%);
+
+        p:last-of-type,
+        span:last-of-type {
+          display: inline;
+        }
       }
     }
+  }
+`;
+
+export const LembreteMobile = styled.div`
+  div:nth-child(1) {
+    padding: 0.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    font-size: 1.2rem;
+    color: ${({ theme: { cores } }) => cores.primaria};
+
+    p {
+      font-family: "Source Code Pro", monospace;
+    }
+
+    svg {
+      transform: translateY(10%);
+    }
+
+    :hover {
+      svg:last-of-type {
+        cursor: pointer;
+        color: ${({ theme: { cores } }) => cores.suporteDois};
+      }
+    }
+  }
+
+  div:nth-child(2) {
+    padding: 0 0.8rem 0.8rem;
+
+    gap: 0.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+
+    position: relative;
+
+    p {
+      width: 25%;
+      color: ${({ theme: { cores } }) => cores.suporteDois};
+    }
+
+    span {
+      width: 60%;
+      color: ${({ theme: { cores } }) => cores.primaria};
+    }
+
+    svg {
+      right: 0.9rem;
+      bottom: 0.8rem;
+      position: absolute;
+      color: ${({ theme: { cores } }) => cores.primaria};
+
+      :hover {
+        cursor: pointer;
+        color: ${({ theme: { cores } }) => cores.suporteDois};
+      }
+    }
+  }
+
+  cursor: default;
+  background-color: ${({ theme: { cores } }) => cores.secundaria};
+  position: absolute;
+  z-index: 1;
+
+  ${mq[1]} {
+    display: none;
+  }
+`;
+
+export const LembreteMobileFechado = styled.div`
+  width: 100%;
+  padding: 0.8rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  font-size: 1.2rem;
+  color: ${({ theme: { cores } }) => cores.primaria};
+
+  background-color: ${({ theme: { cores } }) => cores.secundariaAlpha};
+  position: absolute;
+  cursor: default;
+  z-index: 1;
+
+  p {
+    font-family: "Source Code Pro", monospace;
+  }
+
+  svg {
+    transform: translateY(10%);
+  }
+
+  :hover {
+    svg:last-of-type {
+      cursor: pointer;
+      color: ${({ theme: { cores } }) => cores.secundaria};
+    }
+  }
+
+  ${mq[1]} {
+    display: none;
   }
 `;

@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import {
   MdAspectRatio,
   MdDeveloperBoard,
+  MdExpandLess,
+  MdExpandMore,
   MdLogout,
   MdToday,
   MdViewModule,
@@ -10,17 +12,19 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 import { LogoQuadrado, LogoTexto } from "../logo/index";
-import { EstiloHeader } from "./style";
+import { EstiloHeader, LembreteMobile, LembreteMobileFechado } from "./style";
 
 export default function Header({
   naLoja,
   naDash,
+  mostrarAgenda,
   setAtividadeAtual,
   mostrarModalAtividade,
 }) {
-  const { atividades, perfilUsuario, perfilProfissional } = useSelector(
-    (state) => state
-  );
+  const { atividades, perfilUsuario, perfilProfissional, listaProfissionais } =
+    useSelector((state) => state);
+
+  const [lembreteMobile, mostrarLembreteMobile] = useState(false);
   const [usuario, setUsuario] = useState({ name: "nome" });
   const [tipo, setTipo] = useState("");
 
@@ -32,13 +36,18 @@ export default function Header({
   };
 
   const proximaAtividade = () => {
-    const data = new Date(agendaAtividades()[0]?.schedule.start_date);
+    const atividade = agendaAtividades()[0];
+    const pro = listaProfissionais?.find(
+      (pro) => pro.id === atividade?.prouserId
+    );
+    const data = new Date(atividade?.schedule.start_date);
 
     return {
-      id: agendaAtividades()[0]?.id,
-      nome: agendaAtividades()[0]?.name,
+      id: atividade?.id,
+      nome: atividade?.name,
       data: `${data.getDate()}/${data.getMonth()}/${data.getFullYear()}`,
       horario: data.getHours(),
+      pro: pro.name.split(" ")[0],
     };
   };
 
@@ -85,7 +94,11 @@ export default function Header({
                   <>
                     {naLoja && (
                       <>
-                        <div>
+                        <div
+                          onClick={() => {
+                            mostrarAgenda(true);
+                          }}
+                        >
                           <MdToday />
                           <span>agenda</span>
                         </div>
@@ -111,6 +124,8 @@ export default function Header({
                   <span>{proximaAtividade().data}</span>
                   <p>às:</p>
                   <span>{proximaAtividade().horario}h</span>
+                  <p>com:</p>
+                  <span>{proximaAtividade().pro}</span>
                   <MdAspectRatio
                     onClick={() => {
                       setAtividadeAtual(proximaAtividade().id);
@@ -121,6 +136,48 @@ export default function Header({
               )}
             </div>
           </EstiloHeader>
+          {tipo === "usuario" && (
+            <>
+              {lembreteMobile ? (
+                <LembreteMobile>
+                  <div>
+                    <MdToday /> <p>Lembre-se!</p>{" "}
+                    <MdExpandLess
+                      onClick={() => {
+                        mostrarLembreteMobile(false);
+                      }}
+                    />
+                  </div>
+                  <div>
+                    <p>Você tem:</p>
+                    <span>{proximaAtividade().nome}</span>
+                    <p>em:</p>
+                    <span>{proximaAtividade().data}</span>
+                    <p>às:</p>
+                    <span>{proximaAtividade().horario}h</span>
+                    <p>com:</p>
+                    <span>{proximaAtividade().pro}</span>
+                    <MdAspectRatio
+                      onClick={() => {
+                        setAtividadeAtual(proximaAtividade().id);
+                        mostrarLembreteMobile(false);
+                        mostrarModalAtividade(true);
+                      }}
+                    />
+                  </div>
+                </LembreteMobile>
+              ) : (
+                <LembreteMobileFechado>
+                  <MdToday /> <p>Lembre-se!</p>{" "}
+                  <MdExpandMore
+                    onClick={() => {
+                      mostrarLembreteMobile(true);
+                    }}
+                  />
+                </LembreteMobileFechado>
+              )}
+            </>
+          )}
         </>
       ) : (
         <h1>Carregando...</h1>

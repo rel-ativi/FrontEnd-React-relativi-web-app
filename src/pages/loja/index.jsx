@@ -8,6 +8,7 @@ import { CardLista } from "../../components/cardListas";
 
 export default function Loja() {
   const { atividades, perfilUsuario } = useSelector((state) => state);
+
   return (
     <>
       <Header atividades={atividades} perfilUsuario={perfilUsuario} naLoja />
