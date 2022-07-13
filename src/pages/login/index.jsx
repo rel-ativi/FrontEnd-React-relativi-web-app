@@ -13,7 +13,7 @@ import buscaProfissionaisThunk from "../../store/modules/listaProfissionais/thun
 import buscaPerfilProfissionalThunk from "../../store/modules/perfilProUsers/thunks";
 
 import { LogoHorizontal, LogoQuadrado } from "../../components/logo";
-import { notificarErro } from "../../components/toast";
+import { notificarErro } from "../../components/toasts";
 import {
   buscaAtividadesProThunk,
   buscaAtividadesThunk,

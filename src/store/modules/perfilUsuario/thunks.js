@@ -1,6 +1,6 @@
 import API from "../../../services/API";
 
-import { notificarSucesso } from "../../../components/toast";
+import { notificarSucesso } from "../../../components/toasts";
 import { alteraPerfilUsuario, buscaPerfilUsuario } from "./action";
 
 export const buscaPerfilUsuarioThunk = () => {
