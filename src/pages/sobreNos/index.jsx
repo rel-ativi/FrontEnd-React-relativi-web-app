@@ -1,5 +1,5 @@
 import Botao from "../../components/botao";
-import { LogoQuadrado } from "../../components/logo";
+import { LogoHorizontal, LogoQuadrado } from "../../components/logo";
 import { Div, HeaderConteiner } from "./style";
 
 import { FaGithub, FaLinkedin } from "react-icons/fa";
@@ -12,7 +12,7 @@ const SobreNos = ({ navigation, route }) => {
       img: "https://ca.slack-edge.com/TQZR39SET-U02TWAT4E1G-f59c76dd2a13-512",
       cargo: "Product Owner",
       texto:
-        "Pequena descrição sobre o dev e o principal papel no projeto. txttxtxtxtxtxtx",
+        "Desenvolvedor Full-Stack (em desenvolvimento), atuou como Product Owner no projeto avaliando e colaborando com diversas features.",
       linkedin: "https://www.linkedin.com/in/hbler/",
       github: "https://github.com/Hbler",
     },
@@ -71,18 +71,20 @@ const SobreNos = ({ navigation, route }) => {
     <>
       <HeaderConteiner>
         <div className="container">
-          <Link to="/">
-            <LogoQuadrado cor={"inversa"} largura="5rem" />
-          </Link>
+          <div className="logoMobile">
+            <Link to="/">
+              <LogoHorizontal cor={"inversa"} largura="7rem" />
+            </Link>
+          </div>
+          <div className="logoDesktop">
+            <Link to="/">
+              <LogoQuadrado cor={"inversa"} largura="5rem" />
+            </Link>
+          </div>
           <p>
             Sobre <span>nós</span>
           </p>
-          <Botao
-            tamanho="p"
-            larguraFixa="5rem"
-            key={"voltar"}
-            onClick={() => navigate(-1)}
-          >
+          <Botao tamanho="p" larguraFixa="5rem" onClick={() => navigate(-1)}>
             Voltar
           </Botao>
         </div>
@@ -90,17 +92,11 @@ const SobreNos = ({ navigation, route }) => {
       <Div>
         <div className="container">
           {arrayDevs.map((str) => (
-            <div className="cards">
-              <img key={str.img} src={str.img} alt="imgPerfil"></img>
-              <p className="paragrafoNome" key={str.nome}>
-                {str.nome}
-              </p>
-              <p key={str.cargo} className="paragrafoCargo">
-                {str.cargo}
-              </p>
-              <p key={str.texto} className="paragrafoTexto">
-                {str.texto}
-              </p>
+            <div className="cards" key={str.nome}>
+              <img src={str.img} alt="imgPerfil"></img>
+              <p className="paragrafoNome">{str.nome}</p>
+              <p className="paragrafoCargo">{str.cargo}</p>
+              <p className="paragrafoTexto">{str.texto}</p>
               <div className="links">
                 <a href={str.github} target="_blank" rel="noreferrer">
                   <FaGithub />

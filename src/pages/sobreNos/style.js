@@ -3,33 +3,52 @@ import { mq } from "../../styles/global";
 
 export const HeaderConteiner = styled.header`
   background-color: ${({ theme: { cores } }) => cores.secundaria};
-  height: 100px;
+  height: 30vh;
 
+  .logoDesktop {
+    display: none;
+  }
   .container {
-    padding: 1.5rem;
+    height: 100%;
     display: flex;
+    flex-direction: column;
+    align-items: flex-start;
     justify-content: space-between;
-    align-items: baseline;
+
     position: sticky;
     top: 0;
-  }
 
-  /* img {
-    margin-left: 20px;
-    border: 1px solid red;
-  } */
+    ${mq[1]} {
+      padding: 1.5rem;
+
+      flex-direction: row;
+      align-items: center;
+
+      .logoMobile {
+        display: none;
+      }
+      .logoDesktop {
+        display: block;
+      }
+    }
+  }
 
   p {
     font-size: 45px;
     font-family: "Source Code Pro", monospace;
-    font-weight: 700;
+    font-weight: 600;
     color: ${({ theme: { cores } }) => cores.primaria};
     span {
       color: ${({ theme: { cores } }) => cores.marca};
     }
   }
+
   button {
-    margin-right: 20px;
+    align-self: flex-end;
+
+    ${mq[1]} {
+      align-self: unset;
+    }
   }
 
   ${mq[1]} {
@@ -39,11 +58,13 @@ export const HeaderConteiner = styled.header`
 `;
 export const Div = styled.div`
   .container {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-between;
     margin-bottom: 20px;
+
+    gap: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
   }
 
   svg {
@@ -57,24 +78,22 @@ export const Div = styled.div`
   }
   .paragrafoCargo {
     font-size: 16px;
-    color: ${({ theme: { cores } }) => cores.secundaria};
+    color: ${({ theme: { cores } }) => cores.marca};
   }
 
   .paragrafoTexto {
     font-size: 18px;
   }
+
   .links {
+    gap: 1rem;
     display: flex;
-    flex-direction: row;
-
     a {
-      margin-left: 10px;
-      svg {
-        color: ${({ theme: { cores } }) => cores.suportTres};
+      color: ${({ theme: { cores } }) => cores.suporteTres};
+      cursor: pointer;
 
-        :hover {
-          color: ${({ theme: { cores } }) => cores.marca};
-        }
+      :hover {
+        color: ${({ theme: { cores } }) => cores.secundaria};
       }
     }
   }
@@ -82,23 +101,30 @@ export const Div = styled.div`
   .cards {
     width: 100%;
     height: 400px;
-    border: 5px solid ${({ theme: { cores } }) => cores.secundariaAlpha};
-    border-radius: 10px;
-    margin-right: 3px;
+    /* margin-right: 3px; */
+    /* margin-top: 80px; */
+
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
-    margin-top: 80px;
-  }
 
-  .cards:hover {
-    border: 7px solid ${({ theme: { cores } }) => cores.secundariaAlpha};
-    cursor: pointer;
+    border: 3px solid;
+    border-color: ${({ theme: { cores } }) => cores.secundaria};
+    border-radius: 10px;
+
     p {
-      cursor: text;
+      text-align: center;
+    }
+
+    :hover {
+      p {
+        cursor: default;
+      }
+      box-shadow: 1px 1px 5px 1px #666;
     }
   }
+
   img {
     width: 120px;
     height: 120px;
