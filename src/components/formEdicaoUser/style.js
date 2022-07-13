@@ -6,6 +6,7 @@ export const EstiloFormEdicaoUser = styled.form`
 
   width: 290px;
 
+
   border-radius: 0 0 10px 10px;
 
   padding: 0 0 1rem 0;
@@ -18,3 +19,5 @@ export const EstiloFormEdicaoUser = styled.form`
   flex-direction: column;
   align-items: center;
 `;
+
+export const ContainerCardsDash = styled.div``;

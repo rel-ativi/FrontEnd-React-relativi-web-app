@@ -10,11 +10,11 @@ import {
 
 import Input from "../input";
 import Botao from "../botao";
-import { EstiloFormEdicaoUser } from "./style";
+import { ContainerCardsDash, EstiloFormEdicaoUser } from "./style";
 
 export default function FormEdicaoUser() {
   return (
-    <>
+    <ContainerCardsDash>
       <HeaderCardsDash icone={MdAccountCircle} eFechavel={true}>
         Editar Seu Perfil
       </HeaderCardsDash>
@@ -50,6 +50,6 @@ export default function FormEdicaoUser() {
           salvar
         </Botao>
       </EstiloFormEdicaoUser>
-    </>
+    </ContainerCardsDash>
   );
 }

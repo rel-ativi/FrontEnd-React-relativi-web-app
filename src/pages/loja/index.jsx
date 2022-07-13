@@ -1,21 +1,26 @@
-//ignorar isto, so' testando
-import { Link } from "react-router-dom";
-
+import { MdArticle } from "react-icons/md";
 import Footer from "../../components/footer";
+import FormEdicaoUser from "../../components/formEdicaoUser";
+import HeaderCardsDash from "../../components/headerCardsDash";
+
+import { ContainerDashBoard } from "./style";
 
 export function Loja() {
   return (
-    <>
-      Isto e' a loja
-      <br></br>
-      <Link to="/">Landing</Link>
-      <br></br>
-      <Link to="/cadastro">Cadastro</Link>
-      <br></br>
-      <Link to="/login">Login</Link>
-      <br></br>
-      <Link to="/dashboard">Dashboard</Link>
-      <Footer />
-    </>
+
+      <ContainerDashBoard>
+        <HeaderCardsDash icone={MdArticle}>
+          Atividades Agendadas
+        </HeaderCardsDash>
+        <HeaderCardsDash icone={MdArticle}>
+          Histórico de Atividades
+        </HeaderCardsDash>
+        <HeaderCardsDash icone={MdArticle}>
+          Atividades Favoritas
+        </HeaderCardsDash>
+        <FormEdicaoUser/>
+        <Footer />
+      </ContainerDashBoard>
+
   );
 }
