@@ -1,4 +1,6 @@
 import API from "../../../services/API";
+
+import { notificarSucesso } from "../../../components/toast";
 import { alteraPerfilUsuario, buscaPerfilUsuario } from "./action";
 
 export const buscaPerfilUsuarioThunk = () => {
@@ -26,6 +28,7 @@ export const alteraPerfilUsuarioThunk = (data) => {
       .then((resp) => {
         dispatch(alteraPerfilUsuario(resp.data));
         console.log(resp.data);
+        notificarSucesso("Atividade removida");
       })
       .catch((err) => console.log(err));
   };

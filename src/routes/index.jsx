@@ -7,27 +7,28 @@ import SobreNos from "../pages/sobreNos";
 import { Dashboard } from "../pages/dashboard";
 import { Landing } from "../pages/landing";
 
-import Loja from "../pages/loja";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+
 import { notificarErro } from "../components/toasts";
 
-function Router() {
-  const [token, setToken] = useState("");
+import Loja from "../pages/loja";
+
+export default function Router() {
+  const token = localStorage.getItem("@relativi:token") || "";
   const navigate = useNavigate();
 
   useEffect(() => {
-    const tokenLocal = localStorage.getItem("@relativi:token");
+    const localToken = localStorage.getItem("@relativi:token") || "";
+    if (!!localToken) {
+      const decifrar = JSON.parse(atob(localToken.split(".")[1]));
 
-    if (tokenLocal) {
-      const decifrar = JSON.parse(atob(tokenLocal.split(".")[1]));
-
-      !(decifrar.exp * 1000 < new Date().getTime())
-        ? setToken(tokenLocal)
-        : navigate("/login") &&
-          localStorage.clear() &&
-          notificarErro("Sua sessão expirou");
+      if (decifrar.exp * 1000 < new Date().getTime()) {
+        localStorage.clear();
+        navigate("/");
+        notificarErro("Sua sessão expirou");
+      }
     }
-  }, [navigate, token]);
+  }, [navigate]);
 
   return (
     <Routes>
@@ -56,5 +57,3 @@ function Router() {
     </Routes>
   );
 }
-
-export default Router;

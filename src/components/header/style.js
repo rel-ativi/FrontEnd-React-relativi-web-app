@@ -1,281 +1,177 @@
-// color: ${({ theme: { cores } }) => cores.marca};
-
 import styled from "styled-components";
+import { mq } from "../../styles/global";
 
-export const HeaderConteiner = styled.header`
+export const EstiloHeader = styled.header`
+  color: ${({ theme: { cores } }) => cores.primaria};
 
   background-color: ${({ theme: { cores } }) => cores.secundaria};
-  height:153px ;
 
-  .parteInferiorHeaderDesktop{
-    display:none ;
-  }
+  .container {
+    gap: 3rem;
+    display: flex;
+    flex-direction: column;
 
-  .headerDesktop {
+    position: relative;
+
+    .logoTablet {
+      display: none;
+    }
+    .logoDesktop {
       display: none;
     }
 
-  .divHeaderMobile {
-    display: flex;
-    justify-content: space-between;
-  }
-
-  .textRed {
-    font-size: 32px;
-    color: ${({ theme: { cores } }) => cores.marca};
-  }
-
-  .ola {
-    font-size: 32px;
-    color: aliceblue;
-  }
-
-  .sectionCalendario {
-    background-color: ${({ theme: { cores } }) => cores.secundaria};
-    opacity:80% ;
-    color: white;
-    position: absolute;
-    width: 100%;
-  }
-
-  .conteiner-calendario-atividades {
-    display: flex;
-    justify-content: center;
-  }
-
-  .text-calendario {
-    width: 300px;
-    margin: 5px;
-    padding: 3px;
-    background-color: ${({ theme: { cores } }) => cores.suporteTres};
-    border-radius: 10px;
-    display: flex;
-    justify-content: space-around;
-  }
-
-  .divLenbreSe {
-    height: 37px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background-color: ${({ theme: { cores } }) => cores.suporteDoisAlpha};
-    color: ${({ theme: { cores } }) => cores.suporteDois};
-  }
-
-  .divLenbreSeAtivado {
-    color: ${({ theme: { cores } }) => cores.primaria};
-    background-color: ${({ theme: { cores } }) => cores.secundariaAlpha};
-    margin-top:-1px ;
-
-  }
-
-  .textInformacoes {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-left: 25%;
-  }
-
-  .alinharTextoAtivado {
-    margin-right: 25%;
-  }
-
-  @media screen and (min-width: 768px) {
-
-  height:100px;
-
-    .mobile {
+    .lembrete {
       display: none;
     }
 
-    .parteInferiorHeaderDesktop{
+    span {
+      font-family: "Source Code Pro", monospace;
+    }
+
+    p {
       display: flex;
-      justify-content:center ;
+      flex-direction: column;
+
+      font-family: "Source Code Pro", monospace;
+      font-size: 1.5rem;
+
+      span {
+        font-weight: 500;
+        font-size: 2.5rem;
+        color: ${({ theme: { cores } }) => cores.marca};
+      }
     }
 
-    
-  .divLenbreSeAtivado {
-    display:none ;
+    .interacao {
+      right: 0.8rem;
+      height: 80%;
 
-  }
-
-    .headerDesktop {
       display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: absolute;
+
+      div {
+        cursor: pointer;
+
+        svg {
+          font-size: 24px;
+          color: ${({ theme: { cores } }) => cores.marca};
+          color: ${({ theme: { cores } }) => cores.marca};
+        }
+
+        span {
+          display: none;
+        }
+
+        :hover {
+          svg {
+            color: ${({ theme: { cores } }) => cores.primaria};
+          }
+          span {
+            color: ${({ theme: { cores } }) => cores.marca};
+          }
+        }
+      }
+
+      ${mq[1]} {
+        top: 1.2rem;
+        height: fit-content;
+
+        gap: 3rem;
+        flex-direction: row-reverse;
+
+        div {
+          gap: 1rem;
+          display: flex;
+          align-items: center;
+
+          svg {
+            transform: translateY(5%);
+          }
+
+          span {
+            display: inline;
+            font-size: 1.2rem;
+          }
+        }
+      }
     }
 
-    .LogoDesktop {
-      margin: 30px;
-      margin-top:20px ;
+    ${mq[1]} {
+      padding: 1.2rem;
+
+      .logoMobile {
+        display: none;
+      }
+      .logoTablet {
+        display: block;
+      }
+
+      .lembrete {
+        right: 0.8rem;
+        bottom: 1.5rem;
+        padding: 0.5rem;
+
+        gap: 1rem;
+        display: flex;
+
+        position: absolute;
+
+        border-radius: 10px;
+        background-color: ${({ theme: { cores } }) => cores.primariaAlpha};
+
+        p,
+        span,
+        svg {
+          font-size: 1rem;
+        }
+
+        p {
+          color: ${({ theme: { cores } }) => cores.suporteUm};
+        }
+
+        svg {
+          transform: translateY(15%);
+          cursor: pointer;
+
+          :hover {
+            color: ${({ theme: { cores } }) => cores.marca};
+          }
+        }
+      }
     }
 
-    .textRed {
-    font-size: 16px;
-    color: ${({ theme: { cores } }) => cores.marca};
+    ${mq[2]} {
+      padding: 1.5rem;
+
+      flex-direction: row;
+
+      .logoTablet {
+        display: none;
+      }
+      .logoDesktop {
+        width: 20%;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      p {
+        flex-direction: row;
+        align-items: baseline;
+      }
+
+      .interacao {
+        height: 50px;
+        position: unset;
+      }
+
+      .lembrete {
+        right: unset;
+        left: 26%;
+      }
+    }
   }
-
-    .olaDesktop {
-      font-size: 25px;
-      color: ${({ theme: { cores } }) => cores.primaria};
-    }
-
-    .ajustarCorDesktop{
-      color: ${({ theme: { cores } }) => cores.primaria};
-      font-size:16px;
-      margin:7.5px ;
-    }
-
-    .nomeUsuario{
-      font-size: 30px;
-      color: ${({ theme: { cores } }) => cores.marca};
-    }
-
-    .parteSuperiorHeaderDesktop{
-      width:100% ;
-      display:flex ;
-      justify-content:space-around ;
-      margin-top:-50px ;
-      align-items:center ;
-    }
-
-    .informacoesProximaAulaDesktop{
-      background-color: ${({ theme: { cores } }) => cores.primariaAlpha};
-      border-radius:20px ;
-      margin-left: 150px;
-      margin-top:-60px ;
-      margin-bottom:45px ;
-      display:flex ;
-      align-items: center;
-
-    }
-
-    .textInformacoesDesktop{
-      padding:3px ;
-      font-size:12px ;
-    }
-
-    .selecionarOpicoes{
-      display:flex ;
-      justify-content:space-around ;
-      align-items:center ;
-      height: 100px;
-      width: 400px;
-    }
-
-    .alinarTexto{
-      display:flex ;
-      font-size: 25px;
-      align-items:center ;
-    }
-  }
-
-  @media screen and (min-width: 1024px){
-    .textRed {
-    font-size: 20px;
-    color: ${({ theme: { cores } }) => cores.marca};
-  }
-
-    .olaDesktop {
-      font-size: 20px;
-      color: ${({ theme: { cores } }) => cores.primaria};
-    }
-
-    .ajustarCorDesktop{
-      color: ${({ theme: { cores } }) => cores.primaria};
-      font-size:20px;
-      margin:20px ;
-    }
-
-    .nomeUsuario{
-      font-size: 25px;
-      color: ${({ theme: { cores } }) => cores.marca};
-    }
-
-    .parteSuperiorHeaderDesktop{
-      width:100% ;
-      display:flex ;
-      justify-content:space-around ;
-      margin-top:-70px ;
-      align-items:center ;
-      margin-right: 80px;
-    }
-
-    
-    .informacoesProximaAulaDesktop{
-      background-color: ${({ theme: { cores } }) => cores.primariaAlpha};
-      border-radius:25px ;
-      padding:3px ;
-      margin-left: 150px;
-      margin-top:-60px ;
-      margin-bottom:30px ;
-      display: block;
-
-    }
-
-    
-    .textInformacoesDesktop{
-      padding:5px ;
-      font-size:14px ;
-    }
-  }
-
-
-  @media screen and (min-width: 1440px){
-
-    .LogoDesktop {
-      margin: 30px;
-      margin-top:20px ;
-      padding-left:300px ;
-    }
-
-    .parteSuperiorHeaderDesktop{
-      margin-right: 80px;
-    }
-
-    .nomeUsuario{
-      font-size: 35px;
-    }
-
-
-    .parteSuperiorHeaderDesktop{
-      width:100% ;
-      display:flex ;
-      justify-content:space-around ;
-      margin-top:-70px ;
-      align-items:center ;
-      margin-right: 200px;
-    }
-
-    .textInformacoesDesktop{
-      padding:5px ;
-      font-size:16px ;
-    }
-
-    .textRed {
-    font-size: 25px;
-    color: ${({ theme: { cores } }) => cores.marca};
-  }
-
-    .olaDesktop {
-      font-size: 25px;
-      color: ${({ theme: { cores } }) => cores.primaria};
-    }
-
-    .ajustarCorDesktop{
-      color: ${({ theme: { cores } }) => cores.primaria};
-      font-size:25px;
-      margin:20px ;
-    }
-
-
-
-  }
-
-  @media screen and (min-width: 2560px){
-
-
-
-    
-  }
-
-  
 `;

@@ -1,197 +1,130 @@
-import { useState } from "react";
-import { BiLogOut } from "react-icons/bi";
-import { GoCalendar, GoKebabHorizontal } from "react-icons/go";
-import { AiFillCalendar } from "react-icons/ai";
-import { IoArrowDownCircleSharp } from "react-icons/io5";
-import { HiArrowCircleDown } from "react-icons/hi";
+import { useEffect, useState } from "react";
+import {
+  MdAspectRatio,
+  MdDeveloperBoard,
+  MdLogout,
+  MdToday,
+  MdViewModule,
+} from "react-icons/md";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
+import { LogoQuadrado, LogoTexto } from "../logo/index";
+import { EstiloHeader } from "./style";
 
-import ModalCalendario from "./modalHeaderCalendario";
+export default function Header({
+  naLoja,
+  naDash,
+  setAtividadeAtual,
+  mostrarModalAtividade,
+}) {
+  const { atividades, perfilUsuario, perfilProfissional } = useSelector(
+    (state) => state
+  );
+  const [usuario, setUsuario] = useState({ name: "nome" });
+  const [tipo, setTipo] = useState("");
 
-import ModalLenbreSe from "./modalHeaderLenbreSe";
+  const navigate = useNavigate();
 
-import { HeaderConteiner } from "./style";
-
-import { LogoTexto, LogoIcone } from "../logo/index";
-
-// import "./style.css";
-
-function Header() {
-  const initialState = {
-    email: "tytyereer@kenzie.com.br",
-    nome: "Leticia matos dos Santos",
-    password: "123",
+  const agendaAtividades = () => {
+    const listaIds = perfilUsuario?.activities?.map((atv) => atv.activity);
+    return atividades.filter((atv) => listaIds.includes(atv.id));
   };
 
-  const dadosUserAtividadesTest = [
-    {
-      nome: "atividades",
-      data: "10/05",
-      horario: "20h",
-      professor: "hugo",
-    },
-    {
-      nome: "atividades",
-      data: "10/05",
-      horario: "19h",
-      professor: "hugo",
-    },
-    {
-      nome: "atividades",
-      data: "10/05",
-      horario: "20h",
-      professor: "hugo",
-    },
-  ];
+  const proximaAtividade = () => {
+    const data = new Date(agendaAtividades()[0]?.schedule.start_date);
 
-  const [modalLenbreSe, setModalLenbreSe] = useState(false);
-  const [modalCalendario, setCalendario] = useState(false);
+    return {
+      id: agendaAtividades()[0]?.id,
+      nome: agendaAtividades()[0]?.name,
+      data: `${data.getDate()}/${data.getMonth()}/${data.getFullYear()}`,
+      horario: data.getHours(),
+    };
+  };
 
-  const nomeDoUsuario = initialState.nome.split(" ")[0];
+  const logout = () => {
+    localStorage.clear();
+
+    navigate("/");
+  };
+
+  useEffect(() => {
+    if (!!perfilUsuario.name) {
+      setUsuario({ ...perfilUsuario });
+      setTipo("usuario");
+    } else {
+      setUsuario({ ...perfilProfissional });
+      setTipo("profissional");
+    }
+  }, [perfilUsuario, perfilProfissional]);
 
   return (
-    <HeaderConteiner>
-      <header>
-        <section className="mobile">
-          <div className="divHeaderMobile">
-            {/* <div className="container"> */}
-            <span>
-              <span className="TextAlinharMargin">
-                <LogoTexto cor={"inversa"} largura={"90px"}></LogoTexto>
-              </span>
-            </span>
-            <span>
-              {" "}
-              <BiLogOut className="textRed" />
-            </span>
-          </div>
-          <div className="divHeaderMobile">
-            <span className="ola">Ola,</span>
-            <span>
-              <GoCalendar
-                className="textRed"
-                onClick={() => {
-                  if (modalCalendario === true) {
-                    setCalendario(false);
-                  } else {
-                    setCalendario(true);
-                  }
-                }}
-              />
-            </span>
-          </div>
-          <div className="divHeaderMobile">
-            <span className="textRed">{nomeDoUsuario}</span>
-            <span className="textRed">
-              <GoKebabHorizontal />
-            </span>
-          </div>
-          
-          <div className="divLenbreSe">
-          <div>
-            <AiFillCalendar />
-            Lenbre-se
-          </div>
-
-          <span
-            onClick={() => {
-              if (modalLenbreSe === true) {
-                setModalLenbreSe(false);
-              } else {
-                setModalLenbreSe(true);
-              }
-            }}
-          >
-            <IoArrowDownCircleSharp />
-          </span>
-        </div>
-
-        </section>
-
-        <section className="desktop">
-          <div className="headerDesktop">
-            <div className="LogoDesktop">
-              <LogoIcone cor={"inversa"} largura={"50px"}></LogoIcone>
-              <br />
-              <LogoTexto cor={"inversa"} largura={"50px"}></LogoTexto>
-            </div>
-
-            <div className="parteSuperiorHeaderDesktop">
-              <div>
-                <span className="olaDesktop">ola,</span>
-                <span className="nomeUsuario"> juliana</span>
+    <>
+      {usuario?.name ? (
+        <>
+          <EstiloHeader>
+            <div className="container">
+              <div className="logoMobile">
+                <LogoTexto cor="inversa" largura="7rem" />
               </div>
-
-              <div className="selecionarOpicoes">
-                <div className="alinarTexto">
-                  <span>
-                    <GoCalendar
-                      className="textRed"
-                      onClick={() => {
-                        if (modalCalendario === true) {
-                          setCalendario(false);
-                        } else {
-                          setCalendario(true);
-                        }
-                      }}
-                    />
-                  </span>
-                  <span className="ajustarCorDesktop">agenda</span>
-                </div>
-
-                <div className="alinarTexto">
-                  <span>
-                    <GoKebabHorizontal className="textRed" />
-                  </span>
-                  <span className="ajustarCorDesktop">dashboard</span>
-                </div>
-
-                <div className="alinarTexto">
-                  <span>
-                    <BiLogOut className="textRed" />
-                  </span>
-                  <span className="ajustarCorDesktop">sair</span>
-                </div>
+              <div className="logoTablet">
+                <LogoTexto cor="inversa" largura="10rem" />
               </div>
+              <div className="logoDesktop">
+                <LogoQuadrado cor="inversa" largura="5rem" />
+              </div>
+              <p>
+                Olá, <span>{usuario.name.split(" ")[0]}</span>
+              </p>
+              <div className="interacao">
+                <div onClick={logout}>
+                  <MdLogout />
+                  <span>sair</span>
+                </div>
+                {tipo === "usuario" && (
+                  <>
+                    {naLoja && (
+                      <>
+                        <div>
+                          <MdToday />
+                          <span>agenda</span>
+                        </div>
+                        <div>
+                          <MdDeveloperBoard />
+                          <span>dashboard</span>
+                        </div>
+                      </>
+                    )}
+                    {naDash && (
+                      <div>
+                        <MdViewModule /> <span>voltar para lista</span>
+                      </div>
+                    )}
+                  </>
+                )}
+              </div>
+              {tipo === "usuario" && (
+                <div className="lembrete">
+                  <p>Lembre-se! Você tem:</p>
+                  <span>{proximaAtividade().nome}</span>
+                  <p>em:</p>
+                  <span>{proximaAtividade().data}</span>
+                  <p>às:</p>
+                  <span>{proximaAtividade().horario}h</span>
+                  <MdAspectRatio
+                    onClick={() => {
+                      setAtividadeAtual(proximaAtividade().id);
+                      mostrarModalAtividade(true);
+                    }}
+                  />
+                </div>
+              )}
             </div>
-          </div>
-
-          <div></div>
-          <div className="parteInferiorHeaderDesktop">
-            <div className="informacoesProximaAulaDesktop">
-              <span className="textInformacoesDesktop">Lembre-se! Você tem:</span>
-              <span className="textInformacoesDesktop">Aula de Ballet 1º Ano - Se...</span>
-              <span className="textInformacoesDesktop">em:</span>
-              <span className="textInformacoesDesktop">11/07/2022</span>
-              <span className="textInformacoesDesktop">às:</span>
-              <span className="textInformacoesDesktop">20h</span>
-              <span className="textInformacoesDesktop">com:</span>
-              <span className="textInformacoesDesktop">Hugo</span>
-              <span className="textInformacoesDesktop"><HiArrowCircleDown/></span>
-
-            </div>
-          </div>
-        </section>
-
-
-
-        <ModalLenbreSe
-          modalLenbreSe={modalLenbreSe}
-          setModalLenbreSe={setModalLenbreSe}
-          dadosUserAtividadesTest={dadosUserAtividadesTest}
-        ></ModalLenbreSe>
-        <div className="sectionCalendario">
-          {modalCalendario && (
-            <ModalCalendario
-              dadosUserAtividadesTest={dadosUserAtividadesTest}
-              setCalendario={setCalendario}
-            ></ModalCalendario>
-          )}
-        </div>
-        {/* </div> */}
-      </header>
-    </HeaderConteiner>
+          </EstiloHeader>
+        </>
+      ) : (
+        <h1>Carregando...</h1>
+      )}
+    </>
   );
 }
-
-export default Header;
