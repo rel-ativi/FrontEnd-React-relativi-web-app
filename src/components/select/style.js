@@ -25,6 +25,12 @@ export const ContainerSelect = styled.div`
     border-radius: 10px;
     background-color: ${({ theme: { cores } }) => cores.primaria};
 
+    &:focus-within {
+      border: 2px solid;
+      border-radius: 10px;
+      border-color: ${({ theme: { cores } }) => cores.secundaria};
+    }
+
     select {
       width: 100%;
       font-size: 1rem;
@@ -33,6 +39,7 @@ export const ContainerSelect = styled.div`
       background-color: ${({ theme: { cores } }) => cores.primaria};
 
       border: none;
+      outline: none;
     }
   }
 `;

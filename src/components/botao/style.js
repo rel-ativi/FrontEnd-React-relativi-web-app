@@ -40,10 +40,23 @@ export const EstiloBotao = styled.button`
           background-color: ${({ theme: { cores } }) => cores.suporteTres};
 
           :hover {
-            background-color: ${({ theme: { cores } }) => cores.suporteTresAlpha};
+            background-color: ${({ theme: { cores } }) =>
+              cores.suporteTresAlpha};
           }
         `;
-        
+
+      case "branca":
+        return css`
+          color: ${({ theme: { cores } }) => cores.secundaria};
+          border: 2px solid;
+          border-color: ${({ theme: { cores } }) => cores.secundaria};
+          background-color: ${({ theme: { cores } }) => cores.primaria};
+
+          :hover {
+            background-color: ${({ theme: { cores } }) =>
+              cores.secundariaAlpha};
+          }
+        `;
       default:
         return css`
           background-color: ${({ theme: { cores } }) => cores.marca};

@@ -18,7 +18,7 @@ const temaClaro = {
     suporteTresAlpha: "#465E8C70",
     sucesso: "#83A603",
   },
-  cores: {
+  cores: {  
     marca: "#F20544",
     marcaAlpha: "#F2054470",
     primaria: "#EEF4F4",
