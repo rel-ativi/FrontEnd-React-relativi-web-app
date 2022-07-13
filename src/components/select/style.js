@@ -30,6 +30,8 @@ export const ContainerSelect = styled.div`
       font-size: 1rem;
       color: ${({ theme: { cores } }) => cores.suporteTres};
 
+      background-color: ${({ theme: { cores } }) => cores.primaria};
+
       border: none;
     }
   }

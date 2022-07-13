@@ -120,7 +120,7 @@ export default function Cadastro() {
         <div className="containerCadastro">
           <section>
             {
-              <Link to={"/"}>
+              <Link to={"/sobrenos"}>
                 Sobre <span>nós</span>
               </Link>
             }

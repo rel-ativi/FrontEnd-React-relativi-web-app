@@ -2,6 +2,7 @@ import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
 
 import Cadastro from "../pages/cadastro";
 import Login from "../pages/login";
+import SobreNos from "../pages/sobreNos";
 
 import { Dashboard } from "../pages/dashboard";
 import { Landing } from "../pages/landing";
@@ -51,6 +52,7 @@ function Router() {
         path={"/dashboard"}
         element={!!token ? <Dashboard /> : <Navigate to={"/login"} />}
       />
+      <Route path={"/sobrenos"} element={<SobreNos />} />
     </Routes>
   );
 }
