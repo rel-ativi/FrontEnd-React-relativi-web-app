@@ -1,24 +1,35 @@
 //ignorar isto, so' testando
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+
+import Footer from "../../components/footer";
+import Header from "../../components/header";
+import ModalAgenda from "../../components/modalAgenda";
 import ModalConfirmarAgendamento from "../../components/modalConfirmarAgendamento";
-export function Loja() {
+
+import { ListaAtividades } from "./style";
+
+export default function Loja() {
+  const { atividades, perfilUsuario } = useSelector((state) => state);
+
+  const [agenda, mostrarAgenda] = useState(false);
   const [calendario, mostrarCalendario] = useState(true);
   return (
     <>
-      Isto e' a loja
-      <br></br>
-      <Link to="/">Landing</Link>
-      <br></br>
-      <Link to="/cadastro">Cadastro</Link>
-      <br></br>
-      <Link to="/login">Login</Link>
-      <br></br>
-      <Link to="/dashboard">Dashboard</Link>
-      {/* teste provisorio do modal */}
+      <Header
+        atividades={atividades}
+        perfilUsuario={perfilUsuario}
+        mostrarAgenda={mostrarAgenda}
+        naLoja
+      />
+      {agenda && <ModalAgenda mostrarAgenda={mostrarAgenda} />}
       {calendario && (
         <ModalConfirmarAgendamento mostrarCalendario={mostrarCalendario} />
       )}
+      <ListaAtividades>
+        <div className="container"></div>
+      </ListaAtividades>
+      <Footer />
     </>
   );
 }

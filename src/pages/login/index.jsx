@@ -1,5 +1,6 @@
 import { useForm, useInput } from "lx-react-form";
 import { MdOutlineAccountCircle, MdOutlinePassword } from "react-icons/md";
+import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -8,13 +9,46 @@ import Background from "../../components/background";
 import Botao from "../../components/botao";
 import Input from "../../components/input";
 import API from "../../services/API";
+import buscaProfissionaisThunk from "../../store/modules/listaProfissionais/thunks";
+import buscaPerfilProfissionalThunk from "../../store/modules/perfilProUsers/thunks";
 
 import { LogoHorizontal, LogoQuadrado } from "../../components/logo";
-import { Main } from "./style";
 import { notificarErro } from "../../components/toast";
+import {
+  buscaAtividadesProThunk,
+  buscaAtividadesThunk,
+} from "../../store/modules/atividades/thunks";
+import { buscaPerfilUsuarioThunk } from "../../store/modules/perfilUsuario/thunks";
+import { Main } from "./style";
 
 export default function Login() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const logarUsuario = (credenciais) => {
+    API.post("/login", credenciais)
+      .then((response) => {
+        localStorage.setItem("@relativi:token", response.data.accessToken);
+        localStorage.setItem("@relativi:userId", response.data.user.id);
+        return response.data;
+      })
+      .then((res) => {
+        if (res.user.type === "profissional") {
+          dispatch(buscaAtividadesProThunk());
+          dispatch(buscaPerfilProfissionalThunk());
+          navigate("/dashboard");
+        } else {
+          dispatch(buscaAtividadesThunk());
+          dispatch(buscaProfissionaisThunk());
+          dispatch(buscaPerfilUsuarioThunk());
+          navigate("/loja");
+        }
+      })
+      .catch((_) => {
+        notificarErro("Credenciais Inválidas");
+      });
+  };
+
   const email = useInput({
     name: "email",
     validation: "email",
@@ -27,24 +61,7 @@ export default function Login() {
     clearFields: true,
     formFields: [email, password],
     submitCallback: (formData) => {
-      API.post("/login", formData)
-        .then((response) => {
-          localStorage.setItem(
-            "@relativi:token",
-            JSON.stringify(response.data.accessToken)
-          );
-
-          return response.data;
-        })
-        .then((res) => {
-          res.user.type === "prouser"
-            ? navigate("/dashboard")
-            : navigate("/loja");
-        })
-        .catch((err) => {
-          console.log(err);
-          notificarErro("Algo deu errado! Tente novamente.");
-        });
+      logarUsuario(formData);
     },
   });
 
