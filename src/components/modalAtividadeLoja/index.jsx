@@ -1,18 +1,20 @@
-import { ModalBackgroundDescricao, ModalDescricaoContainer } from "./style";
 import Botao from "../botao";
+import { ModalBackgroundDescricao, ModalDescricaoContainer } from "./style";
 
-import { MdClose } from "react-icons/md";
-import { MdFavorite } from "react-icons/md";
-import { MdCalendarToday } from "react-icons/md";
-import { MdLibraryAdd } from "react-icons/md";
-import { MdGrade } from "react-icons/md";
-import { MdRoom } from "react-icons/md";
-import { MdOutlineAvTimer } from "react-icons/md";
-import { MdPermIdentity } from "react-icons/md";
-import { MdPeopleAlt } from "react-icons/md";
-import { MdFavoriteBorder } from "react-icons/md";
+import {
+  MdCalendarToday,
+  MdClose,
+  MdFavorite,
+  MdFavoriteBorder,
+  MdGrade,
+  MdLibraryAdd,
+  MdOutlineAvTimer,
+  MdPeopleAlt,
+  MdPermIdentity,
+  MdRoom,
+} from "react-icons/md";
 
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { alteraPerfilUsuarioThunk } from "../../store/modules/perfilUsuario/thunks";
 
 export default function ModalAtividadeLoja({

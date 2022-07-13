@@ -1,16 +1,18 @@
 import { CardLoja } from "./style";
 
-import { MdCalendarToday } from "react-icons/md";
-import { MdLibraryAdd } from "react-icons/md";
-import { MdGrade } from "react-icons/md";
-import { MdRoom } from "react-icons/md";
-import { MdOutlineAvTimer } from "react-icons/md";
-import { MdFavorite } from "react-icons/md";
-import { MdLaunch } from "react-icons/md";
-import { MdPeopleAlt } from "react-icons/md";
-import { MdFavoriteBorder } from "react-icons/md";
+import {
+  MdCalendarToday,
+  MdFavorite,
+  MdFavoriteBorder,
+  MdGrade,
+  MdLaunch,
+  MdLibraryAdd,
+  MdOutlineAvTimer,
+  MdPeopleAlt,
+  MdRoom,
+} from "react-icons/md";
 
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import { alteraPerfilUsuarioThunk } from "../../store/modules/perfilUsuario/thunks";
 

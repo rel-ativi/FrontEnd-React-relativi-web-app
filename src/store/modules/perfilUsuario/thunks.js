@@ -7,10 +7,12 @@ export const buscaPerfilUsuarioThunk = () => {
   return (dispatch) => {
     API.get(`users/${id}/profiles`, {
       headers: { Authorization: `Bearer ${token}` },
-    }).then((resp) => {
-      localStorage.setItem("@relativi:profileId", resp.data[0].id);
-      dispatch(buscaPerfilUsuario(resp.data));
-    });
+    })
+      .then((resp) => {
+        localStorage.setItem("@relativi:profileId", resp.data[0].id);
+        dispatch(buscaPerfilUsuario(resp.data[0]));
+      })
+      .catch((err) => console.log(err));
   };
 };
 
@@ -20,9 +22,11 @@ export const alteraPerfilUsuarioThunk = (data) => {
   return (dispatch) => {
     API.patch(`/profiles/${profileId}`, data, {
       headers: { Authorization: `Bearer ${token}` },
-    }).then((resp) => {
-      dispatch(alteraPerfilUsuario(resp.data));
-      console.log(resp.data);
-    });
+    })
+      .then((resp) => {
+        dispatch(alteraPerfilUsuario(resp.data));
+        console.log(resp.data);
+      })
+      .catch((err) => console.log(err));
   };
 };
