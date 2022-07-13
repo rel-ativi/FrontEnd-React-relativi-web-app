@@ -1,15 +1,17 @@
-import { useState } from "react";
 import { Div } from "./style";
+import { HeaderConteiner } from "./style";
+import { LogoIcone } from "../../components/logo";
+import Botao from "../../components/botao";
 
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 
-const SobreNos = () => { 
+const SobreNos = ({ navigation, route }) => { 
 
     const devs = [
         {
             nome: "Hugo Ernesto",
-            img: "https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg",
+            img: "https://ca.slack-edge.com/TQZR39SET-U02TWAT4E1G-f59c76dd2a13-512",
             cargo: "Product Owner",
             texto: "Pequena descrição sobre o dev e o principal papel no projeto. txttxtxtxtxtxtx",
             linkedin: "https://www.linkedin.com/in/hbler/",
@@ -25,7 +27,7 @@ const SobreNos = () => {
         },
         {
             nome: "Andre Perregil",
-            img: "https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg",
+            img: "https://media-exp2.licdn.com/dms/image/C4D03AQEMaEttwiAW7w/profile-displayphoto-shrink_200_200/0/1657728631045?e=1663200000&v=beta&t=BwlRqc7WCjHGdirG_WJ_CKlUkHkRxAimlad-RtP2nNk",
             cargo: "Tech Leader",
             texto: "Pequena descrição sobre o dev e o principal papel no projeto. txttxtxtxtxtxtx",
             linkedin: "https://www.linkedin.com/in/andre-perregil-60aa51198/",
@@ -43,7 +45,7 @@ const SobreNos = () => {
             nome: "Enrico Freitas",
             img: "https://media-exp2.licdn.com/dms/image/C5603AQFEJUzZX5mLgw/profile-displayphoto-shrink_200_200/0/1643828012922?e=1663200000&v=beta&t=5dYhecgNDf_rCasvzlHGcc7ZSI-pvJl4FH7CdqvOpxA",
             cargo: "Quality Assurance",
-            texto: "Pequena descrição sobre o dev e o principal papel no projeto. txttxtxtxtxtxtx",
+            texto: "Responsável pela garantia de qualidade do código, criação de páginas, componentes e estilização!  ",
             linkedin: "https://www.linkedin.com/in/enrico-freitas/",
             github: "https://github.com/Enr1coFreitas"
         },
@@ -57,31 +59,41 @@ const SobreNos = () => {
         }
     ]
 
-    const [ dev, setDev ] = useState([]);
-
     const arrayDevs = Array.from(
         new Set(devs.map((obj) => obj))
     );
     
-    console.log(arrayDevs)
+    const navigate = useNavigate();
+
 
     return (
-        <header>
+        <>
+        <HeaderConteiner>
+            <div className="container">
+                <LogoIcone cor={"inversa"} largura={"60px"}></LogoIcone>
+                <p>Sobre <span>nós</span></p>
+                <Botao tamanho="p" larguraFixa="120px" key={"voltar"} onClick={() => navigate(-1)}>Voltar</Botao>
+
+            </div>
+        </HeaderConteiner>
             <Div>
-                {arrayDevs.map((str) => (
-                    <div className="cards">
-                        <img key={str.img} src={str.img} alt="imgPerfil"></img>
-                        <p key={str.nome}>{str.nome}</p>
-                        <p key={str.cargo} className="paragrafoCargo">{str.cargo}</p>
-                        <p key={str.texto} className="paragrafoTexto">{str.texto}</p>
-                        <div className="links">
-                            <a href={str.github} target="_blank" rel="noopener"><FaGithub/></a>
-                            <a href={str.linkedin} target="_blank" rel="noopener"><FaLinkedin/></a>
+                <div className="container">
+                    {arrayDevs.map((str) => (
+                        <div className="cards">
+                            <img key={str.img} src={str.img} alt="imgPerfil"></img>
+                            <p className="paragrafoNome" key={str.nome}>{str.nome}</p>
+                            <p key={str.cargo} className="paragrafoCargo">{str.cargo}</p>
+                            <p key={str.texto} className="paragrafoTexto">{str.texto}</p>
+                            <div className="links">
+                                <a href={str.github} target="_blank" rel="noopener"><FaGithub/></a>
+                                <a href={str.linkedin} target="_blank" rel="noopener"><FaLinkedin/></a>
+                            </div>
                         </div>
-                    </div>
-                ))}
+                    ))}
+
+                </div>
             </Div>
-        </header>
+        </>
     )
 }
 
