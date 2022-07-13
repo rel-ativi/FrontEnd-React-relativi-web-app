@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { mq } from "../../styles/global";
 
 export const EstiloCardLoja = styled.article`
   width: 100%;
@@ -9,14 +10,11 @@ export const EstiloCardLoja = styled.article`
   flex-direction: column;
   align-items: center;
 
-  border: 1px solid red;
   position: relative;
 
   figure {
     width: 100%;
-    height: 70%;
-
-    border: 1px solid blue;
+    height: 300px;
 
     display: flex;
 
@@ -24,6 +22,7 @@ export const EstiloCardLoja = styled.article`
     border-radius: 10px;
 
     background-image: ${({ url }) => `url(${url})`};
+    background-position: center;
     background-size: cover;
 
     svg {
@@ -76,6 +75,11 @@ export const EstiloCardLoja = styled.article`
         font-family: "Source Code Pro", monospace;
         color: ${({ theme: { cores } }) => cores.suporteUm};
         font-size: 1.4rem;
+
+        max-width: 80%;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
       }
 
       svg {
@@ -117,37 +121,37 @@ export const EstiloCardLoja = styled.article`
           white-space: nowrap;
           text-overflow: ellipsis;
         }
+        span {
+          max-width: 30%;
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+        }
 
         svg {
-          transform: translateY(10%);
+          transform: translateY(15%);
+        }
+      }
+
+      div:last-of-type {
+        right: 0.5rem;
+        bottom: 0.5rem;
+        position: absolute;
+
+        svg {
+          font-size: 1.3rem;
+          color: ${({ theme: { cores } }) => cores.suporteUm};
+          cursor: pointer;
         }
       }
     }
   }
 
-  .time-limit {
-    display: flex;
-    flex-direction: row;
-    gap: 0.5rem;
-    width: 90%;
-
-    p {
-      margin-right: 10px;
-    }
+  ${mq[1]} {
+    width: 47%;
   }
 
-  h4 {
-    color: ${({ theme: { cores } }) => cores.suporteUm};
-  }
-
-  .rating {
-    svg {
-      color: ${({ theme: { cores } }) => cores.suporteUm};
-    }
-  }
-
-  .favourite {
-    color: ${({ theme: { cores } }) => cores.suporteUm};
-    cursor: pointer;
+  ${mq[2]} {
+    width: 30%;
   }
 `;

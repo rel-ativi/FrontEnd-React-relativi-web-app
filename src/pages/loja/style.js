@@ -14,19 +14,18 @@ export const ListaAtividades = styled.div`
 
     gap: 10px;
     display: flex;
-
     align-items: center;
     flex-direction: column;
-    /* margin-top: 10px;
-    width: 100vw; */
   }
 
-  ${mq[0]} {
-    flex-direction: row;
-    flex-wrap: wrap;
-    max-width: 1200px;
-    margin: auto;
-    gap: 50px;
-    justify-content: center;
+  ${mq[1]} {
+    .container {
+      margin: auto;
+
+      row-gap: 2rem;
+      flex-wrap: wrap;
+      flex-direction: row;
+      justify-content: space-around;
+    }
   }
 `;

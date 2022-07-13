@@ -28,12 +28,7 @@ export default function CardLoja({
 
   const { perfilUsuario } = useSelector((state) => state);
 
-  const trim = (string, max) => {
-    return string.substring(0, max);
-  };
-
-  const enderecoCru = `${atividade.address.line_1} - ${atividade.address.city}`;
-  const endereco = trim(enderecoCru, 29) + `...`;
+  const endereco = `${atividade.address.line_1} - ${atividade.address.city}`;
 
   const resolveDia = () => {
     if (atividade.schedule.recurrent === true) {
@@ -90,7 +85,7 @@ export default function CardLoja({
   const iconeFavorita = (id) => {
     const favoritas = perfilUsuario?.activities_favorites;
 
-    return favoritas.includes(id) ? (
+    return favoritas?.includes(id) ? (
       <MdFavorite
         onClick={() => {
           removeFavorita(id);
@@ -112,7 +107,6 @@ export default function CardLoja({
   return (
     <EstiloCardLoja url={atividade.img_url}>
       <figure>
-        {/* <img src={atividade.img_url} alt={atividade.name} /> */}
         <MdLaunch onClick={() => expandir()} />
       </figure>
       <section>
@@ -139,8 +133,7 @@ export default function CardLoja({
             <MdPeopleAlt />
             <span>{atividade.users_limit} pessoas</span>
           </div>
-
-          <div className="favourite">{iconeFavorita(atividade.id)}</div>
+          <div>{iconeFavorita(atividade.id)}</div>
         </div>
       </section>
     </EstiloCardLoja>
