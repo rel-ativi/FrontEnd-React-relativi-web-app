@@ -28,7 +28,7 @@ export const alteraPerfilUsuarioThunk = (data) => {
       .then((resp) => {
         dispatch(alteraPerfilUsuario(resp.data));
         console.log(resp.data);
-        notificarSucesso("Atividade removida");
+        notificarSucesso("Alteração realizada");
       })
       .catch((err) => console.log(err));
   };

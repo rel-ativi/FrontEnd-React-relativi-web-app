@@ -7,6 +7,7 @@ import Filtro from "../../components/filtro";
 import Footer from "../../components/footer";
 import Header from "../../components/header";
 import ModalAgenda from "../../components/modalAgenda";
+import ModalAtividadeLoja from "../../components/modalAtividadeLoja";
 import ModalConfirmarAgendamento from "../../components/modalConfirmarAgendamento";
 
 import { ListaAtividades } from "./style";
@@ -38,6 +39,13 @@ export default function Loja() {
         <ModalConfirmarAgendamento
           mostrarCalendario={mostrarCalendario}
           atividadeAtual={atividadeAtual}
+        />
+      )}
+      {modalAtividade && (
+        <ModalAtividadeLoja
+          atividade={atividadeAtual}
+          mostrarModalAtividade={mostrarModalAtividade}
+          mostrarCalendario={mostrarCalendario}
         />
       )}
       <ListaAtividades>

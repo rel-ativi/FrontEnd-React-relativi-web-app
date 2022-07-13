@@ -2,66 +2,168 @@ import styled from "styled-components";
 import { mq } from "../../styles/global";
 
 export const ModalBackgroundDescricao = styled.div`
+  inset: 0;
+  height: 100vh;
+  padding: 0.8rem;
+
   display: flex;
-  box-sizing: border-box;
-  flex-direction: column;
   align-items: center;
+  flex-direction: column;
   justify-content: center;
+
   background-color: ${({ theme: { cores } }) => cores.secundariaAlpha};
-  width: 100%;
-  height: 100%;
+  backdrop-filter: blur(2px);
   position: fixed;
-  top: 0;
-  left: 0;
+  z-index: 4;
 `;
 
-export const ModalDescricaoContainer = styled.div`
-  box-sizing: border-box;
+export const ModalAtividade = styled.div`
   height: fit-content;
-  width: 100vw;
+  width: 100%;
+  height: 90vh;
   background-color: ${({ theme: { cores } }) => cores.primaria};
   display: flex;
   flex-direction: column;
-  z-index: 1000;
-  max-width: 320px;
+  z-index: 5;
+  max-width: 390px;
 
-  .imagem {
+  overflow: hidden;
+  border-radius: 10px;
+
+  position: relative;
+
+  figure {
+    width: 100%;
+    height: 270px;
+
     display: flex;
 
-    img {
-      height: 230px;
-    }
+    overflow: hidden;
+    border-radius: 10px 10px 0 0;
+
+    background-image: ${({ url }) => `url(${url})`};
+    background-position: center;
+    background-size: cover;
+
+    position: relative;
 
     svg {
-      color: ${({ theme: { cores } }) => cores.marca};
-      position: absolute;
-      transform: translate3d(270px, 10px, 0);
-      cursor: pointer;
-    }
-  }
+      top: 0.8rem;
+      right: 0.8rem;
+      width: 40px;
+      height: 40px;
 
-  .info-container {
-    display: flex;
-    flex-direction: column;
-    padding: 10px;
-    gap: 0.7rem;
+      padding: 0.5rem;
+
+      font-size: 1rem;
+      color: ${({ theme: { cores } }) => cores.marca};
+
+      border-radius: 50%;
+      background-color: ${({ theme: { cores } }) => cores.primaria};
+      position: absolute;
+      cursor: pointer;
+
+      :hover {
+        color: ${({ theme: { cores } }) => cores.secundaria};
+      }
+    }
   }
 
   .title {
-    box-sizing: border-box;
+    top: 43%;
+    width: 100%;
+
+    padding: 0.8rem;
+
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
     align-items: center;
-    color: ${({ theme: { cores } }) => cores.suporteUm};
+    justify-content: space-between;
+
+    position: absolute;
+
+    background-color: ${({ theme: { cores } }) => cores.secundaria};
+
+    h3 {
+      font-weight: 500;
+      font-family: "Source Code Pro", monospace;
+      color: ${({ theme: { cores } }) => cores.primaria};
+      font-size: 1.4rem;
+
+      max-width: 80%;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+
+    svg {
+      font-size: 1.4rem;
+      color: ${({ theme: { cores } }) => cores.marca};
+      cursor: pointer;
+
+      :hover {
+        color: ${({ theme: { cores } }) => cores.primaria};
+      }
+    }
   }
 
   .info {
+    height: 43vh;
+    padding: 1rem;
+    overflow: scroll;
+
+    gap: 1rem;
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    align-items: center;
 
-    .info-line {
+    & > div:first-of-type {
+      color: ${({ theme: { cores } }) => cores.suporteUm};
+
+      p {
+        font-weight: 700;
+        font-size: 1.4rem;
+      }
+
+      svg {
+        transform: translateY(40%);
+      }
+    }
+
+    div {
+      width: 100%;
+      gap: 0.5rem;
+      display: flex;
+
+      svg {
+        transform: translateY(15%);
+      }
+    }
+
+    section {
+      width: 100%;
+
+      display: flex;
+      justify-content: space-between;
+
+      div {
+        width: 48%;
+
+        p {
+          span {
+            font-weight: 600;
+          }
+        }
+      }
+    }
+
+    & > div:last-of-type {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+  /* .info-line {
       display: flex;
       flex-direction: row;
       gap: 0.3rem;
@@ -152,5 +254,5 @@ export const ModalDescricaoContainer = styled.div`
         transform: translate3d(190px, -145px, 0);
       }
     }
-  }
+  } */
 `;

@@ -21,10 +21,8 @@ export default function CardLoja({
   setAtividadeAtual,
   mostrarModalAtividade,
   mostrarCalendario,
-  favoritos,
-  setFavoritos,
 }) {
-  const dispatch = useDispatch;
+  const dispatch = useDispatch();
 
   const { perfilUsuario } = useSelector((state) => state);
 
