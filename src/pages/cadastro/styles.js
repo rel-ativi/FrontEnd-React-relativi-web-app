@@ -59,6 +59,7 @@ export const EstiloCadastro = styled.div`
 
     form {
       width: 100%;
+      max-width: 300px;
       padding: 0.8rem;
       display: flex;
       flex-direction: column;

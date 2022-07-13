@@ -39,6 +39,14 @@ export const ContainerInput = styled.div`
       ::placeholder {
         color: ${({ theme: { cores } }) => cores.suporteTres};
       }
+
+      outline: none;
+
+      &:focus {
+        border: 2px solid;
+        border-radius: 10px;
+        border-color: ${({ theme: { cores } }) => cores.secundaria};
+      }
     }
 
     svg {

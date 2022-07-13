@@ -90,8 +90,6 @@ export default function Cadastro() {
         .then((response) => {
           const token = response.data.accessToken;
 
-          localStorage.setItem("@relativi:token", JSON.stringify(token));
-
           type === "profissional"
             ? perfilProfissional(response.data.user, token)
             : perfilUsuario(response.data.user, token);

@@ -116,7 +116,7 @@ export default function Header({
                   </>
                 )}
               </div>
-              {tipo === "usuario" && (
+              {tipo === "usuario" && perfilUsuario?.activities.length > 0 && (
                 <div className="lembrete">
                   <p>Lembre-se! Você tem:</p>
                   <span>{proximaAtividade().nome}</span>
@@ -136,7 +136,7 @@ export default function Header({
               )}
             </div>
           </EstiloHeader>
-          {tipo === "usuario" && (
+          {tipo === "usuario" && perfilUsuario?.activities.length > 0 && (
             <>
               {lembreteMobile ? (
                 <LembreteMobile>

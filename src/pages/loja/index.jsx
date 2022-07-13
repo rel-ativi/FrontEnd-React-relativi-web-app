@@ -1,20 +1,28 @@
+//ignorar isto, so' testando
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
+import CardLoja from "../../components/cardAtividadeLoja";
+import Filtro from "../../components/filtro";
 import Footer from "../../components/footer";
 import Header from "../../components/header";
-
-import { useState } from "react";
 import ModalAgenda from "../../components/modalAgenda";
+import ModalConfirmarAgendamento from "../../components/modalConfirmarAgendamento";
+
 import { ListaAtividades } from "./style";
-import CardLoja from "../../components/cardAtividadeLoja";
 
 export default function Loja() {
   const { atividades, perfilUsuario } = useSelector((state) => state);
 
   const [agenda, mostrarAgenda] = useState(false);
+  const [listaAtividades, setListaAtividades] = useState([]);
   const [atividadeAtual, setAtividadeAtual] = useState({});
   const [modalAtividade, mostrarModalAtividade] = useState(false);
-  const [calendario, mosrtarCalendario] = useState(false);
+  const [calendario, mostrarCalendario] = useState(false);
+
+  useEffect(() => {
+    setListaAtividades([...atividades]);
+  }, [atividades]);
 
   return (
     <>
@@ -24,16 +32,23 @@ export default function Loja() {
         mostrarAgenda={mostrarAgenda}
         naLoja
       />
+      <Filtro atividades={atividades} setListaAtividades={setListaAtividades} />
       {agenda && <ModalAgenda mostrarAgenda={mostrarAgenda} />}
+      {calendario && (
+        <ModalConfirmarAgendamento
+          mostrarCalendario={mostrarCalendario}
+          atividadeAtual={atividadeAtual}
+        />
+      )}
       <ListaAtividades>
         <div className="container">
-          {atividades?.map((atvd) => (
+          {listaAtividades?.map((atvd) => (
             <CardLoja
               key={atvd.id}
               atividade={atvd}
               setAtividadeAtual={setAtividadeAtual}
+              mostrarCalendario={mostrarCalendario}
               mostrarModalAtividade={mostrarModalAtividade}
-              mostrarCalendario={mosrtarCalendario}
             />
           ))}
         </div>

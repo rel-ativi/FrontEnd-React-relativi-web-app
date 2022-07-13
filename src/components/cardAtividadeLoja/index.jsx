@@ -100,8 +100,9 @@ export default function CardLoja({
     );
   };
 
-  const ativaCompra = () => {
-    console.log("modalCompra");
+  const agendar = (atvd) => {
+    setAtividadeAtual({ ...atvd });
+    mostrarCalendario(true);
   };
 
   return (
@@ -112,7 +113,7 @@ export default function CardLoja({
       <section>
         <div className="title">
           <h3>{atividade.name}</h3>
-          <MdLibraryAdd onClick={() => ativaCompra()} />
+          <MdLibraryAdd onClick={() => agendar(atividade)} />
         </div>
         <div className="info">
           <div>
