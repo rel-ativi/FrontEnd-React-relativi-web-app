@@ -7,6 +7,7 @@ import Background from "../../components/background";
 import Botao from "../../components/botao";
 import Input from "../../components/input";
 import API from "../../services/API";
+import buscaProfissionaisThunk from "../../store/modules/listaProfissionais/thunks";
 import buscaPerfilProfissionalThunk from "../../store/modules/perfilProUsers/thunks";
 
 import { LogoHorizontal, LogoQuadrado } from "../../components/logo";
@@ -36,6 +37,7 @@ export default function Login() {
           navigate("/dashboard");
         } else {
           dispatch(buscaAtividadesThunk());
+          dispatch(buscaProfissionaisThunk());
           dispatch(buscaPerfilUsuarioThunk());
           navigate("/loja");
         }

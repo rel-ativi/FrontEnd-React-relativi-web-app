@@ -6,6 +6,7 @@ import {
 
 import thunk from "redux-thunk";
 import atividadesReducer from "./modules/atividades/reducer";
+import listaProfissionaisReducer from "./modules/listaProfissionais/reducer";
 import perfilProfissionalReducer from "./modules/perfilProUsers/reducer";
 import perfilUsuarioReducer from "./modules/perfilUsuario/reducer";
 
@@ -15,6 +16,7 @@ const reducers = combineReducers({
   tema: reducerTema,
   atividades: atividadesReducer,
   perfilUsuario: perfilUsuarioReducer,
+  listaProfissionais: listaProfissionaisReducer,
   perfilProfissional: perfilProfissionalReducer,
 });
 
