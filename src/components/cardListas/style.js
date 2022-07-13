@@ -13,14 +13,15 @@ export const EstiloCard = styled.div`
   justify-content: space-between;
 
   font-size: 1.2rem;
-  color: ${({ theme: { cores } }) => cores.primaria};
+  /* color: ${({ theme: { cores } }) => cores.se}; */
 
   border-radius: 10px;
   background-color: ${({ theme: { cores } }) => cores.suporteDois};
-  cursor: pointer;
+  cursor: default;
 
   :hover {
     svg {
+      cursor: pointer;
       color: ${({ theme: { cores } }) => cores.suporteTres};
     }
   }
@@ -39,7 +40,7 @@ export const EstiloCard = styled.div`
     svg {
       transform: translateY(5%);
       :hover {
-        color: ${({ theme: { cores } }) => cores.secundaria};
+        color: ${({ theme: { cores } }) => cores.primaria};
       }
     }
     svg:nth-child(2) {

@@ -4,16 +4,24 @@ import { useSelector } from "react-redux";
 
 import Header from "../../components/header";
 import Footer from "../../components/footer";
-import { CardLista } from "../../components/cardListas";
+
+import { useState } from "react";
+import ModalAgenda from "../../components/modalAgenda";
 
 export default function Loja() {
   const { atividades, perfilUsuario } = useSelector((state) => state);
 
+  const [agenda, mostrarAgenda] = useState(false);
+
   return (
     <>
-      <Header atividades={atividades} perfilUsuario={perfilUsuario} naLoja />
-      <CardLista atividade={atividades[0]} />
-      <CardLista atividade={atividades[0]} favorita />
+      <Header
+        atividades={atividades}
+        perfilUsuario={perfilUsuario}
+        mostrarAgenda={mostrarAgenda}
+        naLoja
+      />
+      {agenda && <ModalAgenda mostrarAgenda={mostrarAgenda} />}
       <br></br>
       <Link to="/">Landing</Link>
       <br></br>

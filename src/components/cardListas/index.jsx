@@ -35,7 +35,7 @@ export function CardLista({
       nome: atividade?.name,
       data: `${data.getDate()}/${data.getMonth()}`,
       horario: data.getHours(),
-      pro: pro.name,
+      pro: pro?.name,
     };
   };
 
