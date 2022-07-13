@@ -4,8 +4,7 @@ export const EstiloFormEdicaoUser = styled.form`
   background-color: ${({ theme: { cores } }) => cores.secundariaAlpha};
   color: ${({ theme: { cores } }) => cores.primaria};
 
-  width: 290px;
-
+  width: 100%;
 
   border-radius: 0 0 10px 10px;
 
@@ -20,4 +19,8 @@ export const EstiloFormEdicaoUser = styled.form`
   align-items: center;
 `;
 
-export const ContainerCardsDash = styled.div``;
+export const ContainerCardsDash = styled.div`
+  width: 24%;
+  display: flex;
+  flex-direction: column;
+`;

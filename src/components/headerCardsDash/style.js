@@ -4,11 +4,11 @@ export const EstiloHeaderCardsDash = styled.div`
   background-color: ${({ theme: { cores } }) => cores.secundaria};
   color: ${({ theme: { cores } }) => cores.primaria};
 
-  width: 290px;
+  width: 100%;
   height: 100px;
 
   border-radius: 10px 10px 0 0;
-  font-size: 18px;
+  font-size: 16px;
   font-family: "Source Code Pro", sans-serif;
 
   display: flex;
@@ -17,9 +17,7 @@ export const EstiloHeaderCardsDash = styled.div`
 
   gap: 10px;
 
-  svg{
+  svg {
     font-size: 28px;
   }
 `;
-
-

@@ -102,14 +102,22 @@ export default function Header({
                           <MdToday />
                           <span>agenda</span>
                         </div>
-                        <div>
+                        <div
+                          onClick={() => {
+                            navigate("/dashboard");
+                          }}
+                        >
                           <MdDeveloperBoard />
                           <span>dashboard</span>
                         </div>
                       </>
                     )}
                     {naDash && (
-                      <div>
+                      <div
+                        onClick={() => {
+                          navigate("/");
+                        }}
+                      >
                         <MdViewModule /> <span>voltar para lista</span>
                       </div>
                     )}
