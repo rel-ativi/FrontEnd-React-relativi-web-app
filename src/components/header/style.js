@@ -30,29 +30,6 @@ export const HeaderConteiner = styled.header`
     color: aliceblue;
   }
 
-  .sectionCalendario {
-    background-color: ${({ theme: { cores } }) => cores.secundaria};
-    opacity:80% ;
-    color: white;
-    position: absolute;
-    width: 100%;
-  }
-
-  .conteiner-calendario-atividades {
-    display: flex;
-    justify-content: center;
-  }
-
-  .text-calendario {
-    width: 300px;
-    margin: 5px;
-    padding: 3px;
-    background-color: ${({ theme: { cores } }) => cores.suporteTres};
-    border-radius: 10px;
-    display: flex;
-    justify-content: space-around;
-  }
-
   .divLenbreSe {
     height: 37px;
     display: flex;
@@ -272,8 +249,20 @@ export const HeaderConteiner = styled.header`
 
   @media screen and (min-width: 2560px){
 
+    .LogoDesktop {
+      margin: 30px;
+      margin-top:20px ;
+      margin-left:500px ;
+    }
 
-
+    .parteSuperiorHeaderDesktop{
+      width:100% ;
+      display:flex ;
+      justify-content:space-around ;
+      margin-top:-70px ;
+      align-items:center ;
+      margin-right: 300px;
+    }
     
   }
 

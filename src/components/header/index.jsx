@@ -1,16 +1,20 @@
 import { useState } from "react";
+
 import { BiLogOut } from "react-icons/bi";
 import { GoCalendar, GoKebabHorizontal } from "react-icons/go";
 import { AiFillCalendar } from "react-icons/ai";
 import { IoArrowDownCircleSharp } from "react-icons/io5";
 import { HiArrowCircleDown } from "react-icons/hi";
 
+import ModalCalendario from "./modalDivAtividades";
 
-import ModalCalendario from "./modalHeaderCalendario";
+// AtividadesDivConteiner
 
 import ModalLenbreSe from "./modalHeaderLenbreSe";
 
 import { HeaderConteiner } from "./style";
+import { AtividadesDivConteiner } from "./modalDivAtividades/style";
+
 
 import { LogoTexto, LogoIcone } from "../logo/index";
 
@@ -181,12 +185,17 @@ function Header() {
           dadosUserAtividadesTest={dadosUserAtividadesTest}
         ></ModalLenbreSe>
         <div className="sectionCalendario">
+
+          <AtividadesDivConteiner>
+            
           {modalCalendario && (
             <ModalCalendario
               dadosUserAtividadesTest={dadosUserAtividadesTest}
               setCalendario={setCalendario}
             ></ModalCalendario>
           )}
+
+          </AtividadesDivConteiner>
         </div>
         {/* </div> */}
       </header>
