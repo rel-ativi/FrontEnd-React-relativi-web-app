@@ -47,7 +47,7 @@ export default function Header({
       nome: atividade?.name,
       data: `${data.getDate()}/${data.getMonth()}/${data.getFullYear()}`,
       horario: data.getHours(),
-      pro: pro.name.split(" ")[0],
+      pro: pro?.name.split(" ")[0],
       atvd: atividade,
     };
   };
