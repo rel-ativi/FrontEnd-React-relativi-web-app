@@ -189,6 +189,7 @@ export const EstiloHeader = styled.header`
 `;
 
 export const LembreteMobile = styled.div`
+  width: 100%;
   div:nth-child(1) {
     padding: 0.8rem;
     display: flex;

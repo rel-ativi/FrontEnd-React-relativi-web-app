@@ -1,12 +1,12 @@
 //ignorar isto, so' testando
-import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-import Header from "../../components/header";
 import Footer from "../../components/footer";
+import Header from "../../components/header";
 
 import { useState } from "react";
 import ModalAgenda from "../../components/modalAgenda";
+import { ListaAtividades } from "./style";
 
 export default function Loja() {
   const { atividades, perfilUsuario } = useSelector((state) => state);
@@ -22,14 +22,9 @@ export default function Loja() {
         naLoja
       />
       {agenda && <ModalAgenda mostrarAgenda={mostrarAgenda} />}
-      <br></br>
-      <Link to="/">Landing</Link>
-      <br></br>
-      <Link to="/cadastro">Cadastro</Link>
-      <br></br>
-      <Link to="/login">Login</Link>
-      <br></br>
-      <Link to="/dashboard">Dashboard</Link>
+      <ListaAtividades>
+        <div className="container"></div>
+      </ListaAtividades>
       <Footer />
     </>
   );
