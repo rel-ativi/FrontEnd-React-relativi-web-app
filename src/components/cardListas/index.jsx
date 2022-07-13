@@ -36,6 +36,7 @@ export function CardLista({
       data: `${data.getDate()}/${data.getMonth()}`,
       horario: data.getHours(),
       pro: pro?.name,
+      atvd: atividade,
     };
   };
 
@@ -47,7 +48,7 @@ export function CardLista({
       <div>
         <MdAspectRatio
           onClick={() => {
-            setAtividadeAtual(resumoAtvd().id);
+            setAtividadeAtual(resumoAtvd().atvd);
             mostrarModalAtividade(true);
             mostrarAgenda(false);
           }}

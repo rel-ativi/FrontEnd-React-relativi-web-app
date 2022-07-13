@@ -4,6 +4,7 @@ import { ModalAtividade, ModalBackgroundDescricao } from "./style";
 import {
   MdCalendarToday,
   MdClose,
+  MdDateRange,
   MdFavorite,
   MdFavoriteBorder,
   MdGrade,
@@ -30,13 +31,15 @@ export default function ModalAtividadeLoja({
     (pro) => pro.id === atividade?.prouserId
   );
 
+  const agendadas = perfilUsuario?.activities.map((atvd) => atvd.activity);
+
   const resolveDia = () => {
     if (atividade?.schedule.recurrent === true) {
-      const diaCru = atividade.schedule.days;
-      const dia = `${diaCru} - ${atividade.schedule.time_text}`;
+      const diaCru = atividade?.schedule.days;
+      const dia = `${diaCru} - ${atividade?.schedule.time_text}`;
       return dia;
     } else {
-      const diaCru = String(new Date(atividade.schedule.start_date));
+      const diaCru = String(new Date(atividade?.schedule.start_date));
       const diaNum = diaCru.slice(8, 10);
       const mesEng = diaCru.slice(4, 7);
       const mesPt = () => {
@@ -125,16 +128,16 @@ export default function ModalAtividadeLoja({
               <p>4.9</p>
             </div>
 
-            <p>{atividade.description}</p>
+            <p>{atividade?.description}</p>
 
             <section>
               <div>
                 <MdPermIdentity />
-                <p>com: {pro.name.split(" ")[0]}</p>
+                <p>com: {pro?.name.split(" ")[0]}</p>
               </div>
               <div>
                 <p>
-                  <span> R$ {atividade.price.toFixed(2)} /aula</span>
+                  <span>R$ {atividade?.price?.toFixed(2)} /aula</span>
                 </p>
               </div>
             </section>
@@ -164,14 +167,25 @@ export default function ModalAtividadeLoja({
               </div>
             </section>
             <div className="button-container">
-              <Botao
-                onClick={() => {
-                  agendar();
-                }}
-              >
-                <MdLibraryAdd />
-                Agendar
-              </Botao>
+              {agendadas?.includes(atividade?.id) ? (
+                <Botao
+                  onClick={() => {
+                    agendar();
+                  }}
+                >
+                  <MdDateRange />
+                  Editar Agendamento
+                </Botao>
+              ) : (
+                <Botao
+                  onClick={() => {
+                    agendar();
+                  }}
+                >
+                  <MdLibraryAdd />
+                  Agendar
+                </Botao>
+              )}
             </div>
           </div>
         </section>

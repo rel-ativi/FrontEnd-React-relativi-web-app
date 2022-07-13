@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { mq } from "../../styles/global";
 
 export const ModalBackgroundDescricao = styled.div`
   inset: 0;
@@ -24,6 +23,7 @@ export const ModalAtividade = styled.div`
   background-color: ${({ theme: { cores } }) => cores.primaria};
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   z-index: 5;
   max-width: 390px;
 
@@ -108,7 +108,7 @@ export const ModalAtividade = styled.div`
   }
 
   .info {
-    height: 43vh;
+    height: 300px;
     padding: 1rem;
     overflow: scroll;
 
@@ -160,99 +160,13 @@ export const ModalAtividade = styled.div`
     & > div:last-of-type {
       display: flex;
       flex-direction: column;
-    }
-  }
 
-  /* .info-line {
-      display: flex;
-      flex-direction: row;
-      gap: 0.3rem;
-      align-items: center;
-      color: ${({ theme: { cores } }) => cores.suporteTres};
-
-      p {
-        max-width: 90%;
-        font-size: smaller;
-      }
-    }
-
-    .info-summary {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-
-      p {
-        margin-right: 10px;
-      }
-    }
-
-    .info-preco {
-      display: flex;
-      flex-direction: row;
-      gap: 0.3rem;
-      align-items: center;
-      justify-content: space-between;
-      font-weight: 800;
-
-      p {
-        font-size: smaller;
-      }
-
-      span {
-        font-size: smaller;
-        font-weight: 400;
-        margin-right: 10px;
-      }
-
-      div {
-        display: flex;
-        gap: 0.3rem;
-        align-items: center;
-      }
-    }
-
-    .rating {
-      color: ${({ theme: { cores } }) => cores.suporteUm};
-    }
-
-    .button-container {
       button {
-        width: 100%;
-      }
-
-      svg {
-        position: fixed;
-        transform: translate(-100%, -20%);
-        color: ${({ theme: { cores } }) => cores.primaria};
+        gap: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
     }
   }
-
-  ${mq[2]} {
-    box-sizing: border-box;
-    height: fit-content;
-    width: 100vw;
-    background-color: ${({ theme: { cores } }) => cores.primaria};
-    display: flex;
-    flex-direction: row;
-    z-index: 1000;
-    max-width: 800px;
-
-    .imagem {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 450px;
-
-      img {
-        width: 440px;
-        height: 340px;
-      }
-
-      svg {
-        position: fixed;
-        transform: translate3d(190px, -145px, 0);
-      }
-    }
-  } */
 `;

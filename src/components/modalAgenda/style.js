@@ -6,6 +6,10 @@ export const EstiloAgenda = styled.section`
   max-width: 390px;
   padding: 2rem 0.8rem;
 
+  gap: 1rem;
+  display: flex;
+  flex-direction: column;
+
   overflow-y: scroll;
 
   border-radius: 10px;

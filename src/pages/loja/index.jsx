@@ -31,10 +31,18 @@ export default function Loja() {
         atividades={atividades}
         perfilUsuario={perfilUsuario}
         mostrarAgenda={mostrarAgenda}
+        setAtividadeAtual={setAtividadeAtual}
+        mostrarModalAtividade={mostrarModalAtividade}
         naLoja
       />
       <Filtro atividades={atividades} setListaAtividades={setListaAtividades} />
-      {agenda && <ModalAgenda mostrarAgenda={mostrarAgenda} />}
+      {agenda && (
+        <ModalAgenda
+          mostrarAgenda={mostrarAgenda}
+          setAtividadeAtual={setAtividadeAtual}
+          mostrarModalAtividade={mostrarModalAtividade}
+        />
+      )}
       {calendario && (
         <ModalConfirmarAgendamento
           mostrarCalendario={mostrarCalendario}

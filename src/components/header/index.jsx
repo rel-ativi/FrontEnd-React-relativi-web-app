@@ -48,6 +48,7 @@ export default function Header({
       data: `${data.getDate()}/${data.getMonth()}/${data.getFullYear()}`,
       horario: data.getHours(),
       pro: pro.name.split(" ")[0],
+      atvd: atividade,
     };
   };
 
@@ -128,7 +129,7 @@ export default function Header({
                   <span>{proximaAtividade().pro}</span>
                   <MdAspectRatio
                     onClick={() => {
-                      setAtividadeAtual(proximaAtividade().id);
+                      setAtividadeAtual(proximaAtividade().atvd);
                       mostrarModalAtividade(true);
                     }}
                   />
@@ -159,7 +160,7 @@ export default function Header({
                     <span>{proximaAtividade().pro}</span>
                     <MdAspectRatio
                       onClick={() => {
-                        setAtividadeAtual(proximaAtividade().id);
+                        setAtividadeAtual(proximaAtividade().atvd);
                         mostrarLembreteMobile(false);
                         mostrarModalAtividade(true);
                       }}

@@ -12,6 +12,10 @@ export const buscaPerfilUsuarioThunk = () => {
     })
       .then((resp) => {
         localStorage.setItem("@relativi:profileId", resp.data[0].id);
+        localStorage.setItem(
+          "@relativi:userProfile",
+          JSON.stringify(resp.data[0])
+        );
         dispatch(buscaPerfilUsuario(resp.data[0]));
       })
       .catch((err) => console.log(err));
@@ -27,7 +31,7 @@ export const alteraPerfilUsuarioThunk = (data) => {
     })
       .then((resp) => {
         dispatch(alteraPerfilUsuario(resp.data));
-        console.log(resp.data);
+
         notificarSucesso("Alteração realizada");
       })
       .catch((err) => console.log(err));
