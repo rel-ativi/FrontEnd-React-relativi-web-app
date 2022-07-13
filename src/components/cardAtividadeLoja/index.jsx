@@ -12,7 +12,7 @@ import {
   MdRoom,
 } from "react-icons/md";
 
-import { useDispatch } from "react-redux";
+import { useDispatch /* useSelector */ } from "react-redux";
 
 import { alteraPerfilUsuarioThunk } from "../../store/modules/perfilUsuario/thunks";
 
@@ -24,8 +24,6 @@ export default function CardAtividadeLoja({
   setFavoritos,
 }) {
   const dispatch = useDispatch;
-  /*   const { perfilUsuario } = useSelector((state) => state);
-  const { perfilProfissional } = useSelector((state) => state); */
 
   const trim = (string, max) => {
     return string.substring(0, max);
@@ -92,23 +90,17 @@ export default function CardAtividadeLoja({
   /*   a funcao abaixo esta' quebrada, nao entendo o pk, e' identica a do componente modalDescricao */
   const favoritar = () => {
     const checker = favoritos.includes(obj.id);
-    const novoPerfil = { activities_favorites: favoritos };
     if (!checker) {
       setFavoritos([...favoritos, obj.id]);
+      const novoPerfil = { activities_favorites: favoritos };
       dispatch(alteraPerfilUsuarioThunk(novoPerfil));
     } else {
       const novosFavoritos = favoritos.filter((el) => el !== obj.id);
       setFavoritos([...novosFavoritos]);
+      const novoPerfil = { activities_favorites: favoritos };
       dispatch(alteraPerfilUsuarioThunk(novoPerfil));
     }
   };
-
-  /*   const nomeDoPro = () => {
-    const encontraPro = perfilProfissional.filter(
-      (el) => el.userId === obj.userId
-    );
-    return encontraPro.nome;
-  }; */
 
   return (
     <CardLoja>

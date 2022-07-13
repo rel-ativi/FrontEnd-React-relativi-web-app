@@ -14,7 +14,7 @@ import {
   MdRoom,
 } from "react-icons/md";
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { alteraPerfilUsuarioThunk } from "../../store/modules/perfilUsuario/thunks";
 
 export default function ModalAtividadeLoja({
@@ -25,12 +25,13 @@ export default function ModalAtividadeLoja({
   setFavoritos,
 }) {
   const dispatch = useDispatch();
-
+  const { listaProfissionais } = useSelector((state) => state);
   if (obj === undefined) {
     return null;
   }
 
-  const endereco = `${obj.address.line_1} - ${obj.address.line_2} - ${obj.address.city} - ${obj.address.state}`;
+  const endereco = () =>
+    `${obj.address.line_1} - ${obj.address.line_2} - ${obj.address.city} - ${obj.address.state}`;
 
   const resolveDia = () => {
     if (obj.schedule.recurrent === true) {
@@ -88,15 +89,22 @@ export default function ModalAtividadeLoja({
     );
   };
 
+  const nomeDoPro = () => {
+    const value = obj.prouserId;
+    const encontraPro = listaProfissionais.filter((el) => el.userId === value);
+    return encontraPro[0].name;
+  };
+
   const favoritar = () => {
     const checker = favoritos.includes(obj.id);
-    const novoPerfil = { activities_favorites: favoritos };
     if (!checker) {
       setFavoritos([...favoritos, obj.id]);
+      const novoPerfil = { activities_favorites: favoritos };
       dispatch(alteraPerfilUsuarioThunk(novoPerfil));
     } else {
       const novosFavoritos = favoritos.filter((el) => el !== obj.id);
       setFavoritos([...novosFavoritos]);
+      const novoPerfil = { activities_favorites: favoritos };
       dispatch(alteraPerfilUsuarioThunk(novoPerfil));
     }
   };
@@ -127,11 +135,11 @@ export default function ModalAtividadeLoja({
             <div className="info-preco">
               <div>
                 <MdPermIdentity />
-                <p>com: Instrutor</p>
+                <p>com: {nomeDoPro()}</p>
               </div>
               <div>
                 <h3>
-                  R$ 50,00 <span>/aula</span>
+                  R$ {obj.price},00 <span>/aula</span>
                 </h3>
               </div>
             </div>
@@ -142,7 +150,7 @@ export default function ModalAtividadeLoja({
             </div>
             <div className="info-line">
               <MdRoom size={"16px"} />
-              <p>{endereco}</p>
+              <p>{endereco()}</p>
             </div>
             <div className="info-summary">
               <div className="info-line section">

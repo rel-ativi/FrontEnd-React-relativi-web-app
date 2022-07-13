@@ -7,7 +7,7 @@ import SobreNos from "../pages/sobreNos";
 import { Dashboard } from "../pages/dashboard";
 import { Landing } from "../pages/landing";
 
-import Loja from "../pages/loja";
+import { Loja } from "../pages/loja";
 import { useEffect, useState } from "react";
 import { notificarErro } from "../components/toasts";
 
