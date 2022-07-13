@@ -1,4 +1,4 @@
-import { CardLoja } from "./style";
+import { EstiloCardLoja } from "./style";
 
 import {
   MdCalendarToday,
@@ -12,35 +12,36 @@ import {
   MdRoom,
 } from "react-icons/md";
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { alteraPerfilUsuarioThunk } from "../../store/modules/perfilUsuario/thunks";
 
-export default function CardAtividadeLoja({
-  obj,
-  setAtividadeEmFoco,
-  setMostrarModalDescricao,
+export default function CardLoja({
+  atividade,
+  setAtividadeAtual,
+  mostrarModalAtividade,
+  mostrarCalendario,
   favoritos,
   setFavoritos,
 }) {
   const dispatch = useDispatch;
-  /*   const { perfilUsuario } = useSelector((state) => state);
-  const { perfilProfissional } = useSelector((state) => state); */
+
+  const { perfilUsuario } = useSelector((state) => state);
 
   const trim = (string, max) => {
     return string.substring(0, max);
   };
 
-  const enderecoCru = `${obj.address.line_1} - ${obj.address.city}`;
+  const enderecoCru = `${atividade.address.line_1} - ${atividade.address.city}`;
   const endereco = trim(enderecoCru, 29) + `...`;
 
   const resolveDia = () => {
-    if (obj.schedule.recurrent === true) {
-      const diaCru = obj.schedule.days;
-      const dia = `${diaCru} - ${obj.schedule.time_text}`;
+    if (atividade.schedule.recurrent === true) {
+      const diaCru = atividade.schedule.days;
+      const dia = `${diaCru} - ${atividade.schedule.time_text}`;
       return dia;
     } else {
-      const diaCru = String(new Date(obj.schedule.start_date));
+      const diaCru = String(new Date(atividade.schedule.start_date));
       const diaNum = diaCru.slice(8, 10);
       const mesEng = diaCru.slice(4, 7);
       const mesPt = () => {
@@ -58,93 +59,90 @@ export default function CardAtividadeLoja({
           ? "Out"
           : "Dez";
       };
-      const dia = `${diaNum} de ${mesPt()} - ${obj.schedule.time_text}`;
+      const dia = `${diaNum} de ${mesPt()} - ${atividade.schedule.time_text}`;
       return dia;
     }
   };
 
-  const ativaModalDescricao = () => {
-    setAtividadeEmFoco(obj);
-    setMostrarModalDescricao(true);
+  const expandir = () => {
+    setAtividadeAtual(atividade);
+    mostrarModalAtividade(true);
+  };
+
+  const adicionaFavorita = (id) => {
+    const favoritas = perfilUsuario?.activities_favorites;
+    const atualizada = {
+      activities_favorites: [...favoritas, id],
+    };
+
+    dispatch(alteraPerfilUsuarioThunk(atualizada));
+  };
+
+  const removeFavorita = (id) => {
+    const favoritas = perfilUsuario?.activities_favorites;
+    const atualizada = {
+      activities_favorites: favoritas.filter((atvd) => atvd !== id),
+    };
+
+    dispatch(alteraPerfilUsuarioThunk(atualizada));
+  };
+
+  const iconeFavorita = (id) => {
+    const favoritas = perfilUsuario?.activities_favorites;
+
+    return favoritas.includes(id) ? (
+      <MdFavorite
+        onClick={() => {
+          removeFavorita(id);
+        }}
+      />
+    ) : (
+      <MdFavoriteBorder
+        onClick={() => {
+          adicionaFavorita(id);
+        }}
+      />
+    );
   };
 
   const ativaCompra = () => {
     console.log("modalCompra");
   };
 
-  const gerarIconeFavorito = () => {
-    const checker = favoritos.includes(obj.id);
-    return checker ? (
-      <MdFavorite
-        onClick={() => {
-          favoritar();
-        }}
-      />
-    ) : (
-      <MdFavoriteBorder
-        onClick={() => {
-          favoritar();
-        }}
-      />
-    );
-  };
-
-  /*   a funcao abaixo esta' quebrada, nao entendo o pk, e' identica a do componente modalDescricao */
-  const favoritar = () => {
-    const checker = favoritos.includes(obj.id);
-    const novoPerfil = { activities_favorites: favoritos };
-    if (!checker) {
-      setFavoritos([...favoritos, obj.id]);
-      dispatch(alteraPerfilUsuarioThunk(novoPerfil));
-    } else {
-      const novosFavoritos = favoritos.filter((el) => el !== obj.id);
-      setFavoritos([...novosFavoritos]);
-      dispatch(alteraPerfilUsuarioThunk(novoPerfil));
-    }
-  };
-
-  /*   const nomeDoPro = () => {
-    const encontraPro = perfilProfissional.filter(
-      (el) => el.userId === obj.userId
-    );
-    return encontraPro.nome;
-  }; */
-
   return (
-    <CardLoja>
-      <div className="imagem">
-        <img src={obj.img_url} alt={obj.name} />
-        <MdLaunch size={"40px"} onClick={() => ativaModalDescricao()} />
-      </div>
-      <div className="info-container">
+    <EstiloCardLoja url={atividade.img_url}>
+      <figure>
+        {/* <img src={atividade.img_url} alt={atividade.name} /> */}
+        <MdLaunch onClick={() => expandir()} />
+      </figure>
+      <section>
         <div className="title">
-          <h3 className="nome">{obj.name}</h3>
-          <MdLibraryAdd size={"40px"} onClick={() => ativaCompra()} />
+          <h3>{atividade.name}</h3>
+          <MdLibraryAdd onClick={() => ativaCompra()} />
         </div>
         <div className="info">
-          <div className="info-line rating">
+          <div>
             <MdGrade />
-            <h4>4.9</h4>
+            <p>4.9</p>
           </div>
-          <div className="info-line">
+          <div>
             <MdCalendarToday />
             <p>{resolveDia()}</p>
           </div>
-          <div className="info-line">
+          <div>
             <MdRoom />
             <p>{endereco}</p>
           </div>
-          <div className="info-line">
-            <section className="time-limit">
-              <MdOutlineAvTimer />
-              <p>{obj.duration_text}</p>
-              <MdPeopleAlt />
-              <p>{obj.users_limit} pessoas</p>
-            </section>
-            <div className="favourite">{gerarIconeFavorito()}</div>
+          <div>
+            <MdOutlineAvTimer />
+            <span>{atividade.duration_text}</span>
+            <MdPeopleAlt />
+            <span>{atividade.users_limit} pessoas</span>
           </div>
+
+          <div className="favourite">{iconeFavorita(atividade.id)}</div>
         </div>
-      </div>
-    </CardLoja>
+      </section>
+    </EstiloCardLoja>
   );
 }

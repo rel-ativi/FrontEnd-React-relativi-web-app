@@ -5,18 +5,20 @@ import { mq } from "../../styles/global";
 export const ListaAtividades = styled.div`
   width: 100vw;
   min-height: 80vh;
-  padding: 1px;
+  padding: 30px 0 0;
 
   .container {
     height: 78vh;
 
-    display: flex;
-    box-sizing: border-box;
-    flex-direction: column;
-    align-items: center;
+    overflow: scroll;
+
     gap: 10px;
-    margin-top: 10px;
-    width: 100vw;
+    display: flex;
+
+    align-items: center;
+    flex-direction: column;
+    /* margin-top: 10px;
+    width: 100vw; */
   }
 
   ${mq[0]} {
