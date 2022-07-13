@@ -1,6 +1,5 @@
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 
-import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 import { EstiloFooter } from "./style";
@@ -70,12 +69,17 @@ export default function Footer() {
                 <p>{integrante.nome} </p>
                 <span>{integrante.cargo}</span>
                 <div>
-                  <Link to={integrante.linkedin}>
+                  <a
+                    href={integrante.linkedin}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
                     <FaLinkedin />
-                  </Link>
-                  <Link to={integrante.gitHub}>
+                  </a>
+
+                  <a href={integrante.gitHub} target="_blank" rel="noreferrer">
                     <FaGithub />
-                  </Link>
+                  </a>
                 </div>
               </li>
             ))}
@@ -84,9 +88,9 @@ export default function Footer() {
         <section>
           <h4>
             Sobre o <span onClick={redirecionaSobreProjeto}>Projeto</span>
-            <Link to={gitHubProjeto}>
+            <a href={gitHubProjeto} target="_blank" rel="noreferrer">
               <FaGithub />
-            </Link>
+            </a>
           </h4>
         </section>
       </div>

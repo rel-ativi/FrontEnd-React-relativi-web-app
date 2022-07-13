@@ -1,55 +1,31 @@
 //ignorar isto, so' testando
-/* import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
-import CardAtividadeLoja from "../../components/cardAtividadeLoja";
-import ModalAtividadeLoja from "../../components/modalAtividadeLoja";
 import Footer from "../../components/footer";
+import Header from "../../components/header";
 
-import { ContainerLoja } from "./style";
-import { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useState } from "react";
+import ModalAgenda from "../../components/modalAgenda";
+import { ListaAtividades } from "./style";
 
-import { buscaAtividadesThunk } from "../../store/modules/atividades/thunks";
-import { buscaPerfilUsuarioThunk } from "../../store/modules/perfilUsuario/thunks";
-import buscaProfissionaisThunk from "../../store/modules/listaProfissionais/thunks";
+export default function Loja() {
+  const { atividades, perfilUsuario } = useSelector((state) => state);
 
-export function Loja() {
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(buscaAtividadesThunk());
-    dispatch(buscaProfissionaisThunk());
-    dispatch(buscaPerfilUsuarioThunk());
-  }, []);
-
-  const [atividadeEmFoco, setAtividadeEmFoco] = useState({});
-  const [mostrarModalDescricao, setMostrarModalDescricao] = useState(false);
-  const [favoritos, setFavoritos] = useState([]);
-
-  const { atividades } = useSelector((state) => state);
+  const [agenda, mostrarAgenda] = useState(false);
 
   return (
     <>
-      <ContainerLoja>
-        {atividades.map((el) => (
-          <CardAtividadeLoja
-            obj={el}
-            setAtividadeEmFoco={setAtividadeEmFoco}
-            setMostrarModalDescricao={setMostrarModalDescricao}
-            favoritos={favoritos}
-            setFavoritos={setFavoritos}
-            key={el.name}
-          />
-        ))}
-        <ModalAtividadeLoja
-          obj={atividadeEmFoco}
-          mostrarModalDescricao={mostrarModalDescricao}
-          setMostrarModalDescricao={setMostrarModalDescricao}
-          favoritos={favoritos}
-          setFavoritos={setFavoritos}
-        />
-      </ContainerLoja>
+      <Header
+        atividades={atividades}
+        perfilUsuario={perfilUsuario}
+        mostrarAgenda={mostrarAgenda}
+        naLoja
+      />
+      {agenda && <ModalAgenda mostrarAgenda={mostrarAgenda} />}
+      <ListaAtividades>
+        <div className="container"></div>
+      </ListaAtividades>
       <Footer />
     </>
   );
-} */
+}

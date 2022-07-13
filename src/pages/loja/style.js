@@ -1,14 +1,23 @@
 import styled from "styled-components";
+
 import { mq } from "../../styles/global";
 
-export const ContainerLoja = styled.div`
-  display: flex;
-  box-sizing: border-box;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-  margin-top: 10px;
+export const ListaAtividades = styled.div`
   width: 100vw;
+  min-height: 80vh;
+  padding: 1px;
+
+  .container {
+    height: 78vh;
+
+    display: flex;
+    box-sizing: border-box;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+    width: 100vw;
+  }
 
   ${mq[0]} {
     flex-direction: row;
