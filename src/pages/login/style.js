@@ -70,6 +70,7 @@ export const Main = styled.main`
 
         form {
           width: 100%;
+          max-width: 300px;
           padding: 0 0.8rem;
 
           gap: 0.5rem;
