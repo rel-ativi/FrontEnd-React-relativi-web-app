@@ -1,11 +1,13 @@
 //ignorar isto, so' testando
 import { Link } from "react-router-dom";
+
 import Header from "../../components/header";
+import Footer from "../../components/footer";
 
 export function Loja() {
   return (
     <>
-    <Header></Header>
+      <Header></Header>
       <br></br>
       <Link to="/">Landing</Link>
       <br></br>
@@ -14,6 +16,7 @@ export function Loja() {
       <Link to="/login">Login</Link>
       <br></br>
       <Link to="/dashboard">Dashboard</Link>
+      <Footer />
     </>
   );
 }
