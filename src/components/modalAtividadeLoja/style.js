@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { mq } from "../../styles/global";
 
 export const ModalBackgroundDescricao = styled.div`
   inset: 0;
@@ -34,7 +35,7 @@ export const ModalAtividade = styled.div`
 
   figure {
     width: 100%;
-    height: 270px;
+    height: 250px;
 
     display: flex;
 
@@ -70,7 +71,7 @@ export const ModalAtividade = styled.div`
   }
 
   .title {
-    top: 43%;
+    top: 40%;
     width: 100%;
 
     padding: 0.8rem;
@@ -108,7 +109,7 @@ export const ModalAtividade = styled.div`
   }
 
   .info {
-    height: 300px;
+    height: 270px;
     padding: 1rem;
     overflow: scroll;
 
@@ -167,6 +168,10 @@ export const ModalAtividade = styled.div`
         align-items: center;
         justify-content: center;
       }
+    }
+
+    ${mq[3]} {
+      height: 300px;
     }
   }
 `;

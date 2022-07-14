@@ -48,7 +48,7 @@ const SobreNos = ({ navigation, route }) => {
       img: "https://media-exp2.licdn.com/dms/image/C5603AQFEJUzZX5mLgw/profile-displayphoto-shrink_200_200/0/1643828012922?e=1663200000&v=beta&t=5dYhecgNDf_rCasvzlHGcc7ZSI-pvJl4FH7CdqvOpxA",
       cargo: "Quality Assurance",
       texto:
-        "Responsável pela garantia de qualidade do código, criação de páginas, componentes e estilização!  ",
+        "Desenvolvedor Full-Stack (em desenvolvimento), responsável pela garantia de qualidade do código, criação de páginas, componentes e estilização!",
       linkedin: "https://www.linkedin.com/in/enrico-freitas/",
       github: "https://github.com/Enr1coFreitas",
     },

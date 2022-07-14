@@ -9,7 +9,7 @@ const buscaPerfilProfissionalThunk = () => {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then((resp) => {
-        localStorage.setItem("@relativi:prouserId", resp.data[0].id);
+        localStorage.setItem("@relativi:prouserId", resp?.data[0].id);
         localStorage.setItem(
           "@relative:prouserProfile",
           JSON.stringify(resp.data[0])

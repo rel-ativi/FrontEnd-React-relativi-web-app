@@ -1,7 +1,6 @@
 //ignorar isto, so' testando
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
 
 import CardLoja from "../../components/cardAtividadeLoja";
 import Filtro from "../../components/filtro";
@@ -22,12 +21,12 @@ import { ListaAtividades } from "./style";
 
 export default function Loja() {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   const { atividades, perfilUsuario, perfilProfissional } = useSelector(
     (state) => state
   );
 
+  const [contador, setContador] = useState(0);
   const [agenda, mostrarAgenda] = useState(false);
   const [listaAtividades, setListaAtividades] = useState([]);
   const [atividadeAtual, setAtividadeAtual] = useState({});
@@ -35,23 +34,21 @@ export default function Loja() {
   const [calendario, mostrarCalendario] = useState(false);
 
   useEffect(() => {
-    console.log(atividades.length);
-    if (atividades.length === 0) {
-      if (!!perfilProfissional) {
+    if (contador === 0) {
+      if (!!perfilProfissional && atividades.length === 0) {
         dispatch(buscaAtividadesProThunk());
         dispatch(buscaPerfilProfissionalThunk());
-        navigate("/dashboard", { replace: true });
       }
-      if (!!perfilUsuario) {
+      if (!!perfilUsuario && atividades.length === 0) {
         dispatch(buscaAtividadesThunk());
         dispatch(buscaProfissionaisThunk());
         dispatch(buscaPerfilUsuarioThunk());
-        navigate("/loja", { replace: true });
       }
+      setContador(1);
     }
 
     setListaAtividades([...atividades]);
-  }, [atividades, dispatch, navigate, perfilProfissional, perfilUsuario]);
+  }, [contador, atividades, dispatch, perfilProfissional, perfilUsuario]);
 
   return (
     <>

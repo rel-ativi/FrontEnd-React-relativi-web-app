@@ -8,7 +8,15 @@ import { Card } from "./styles";
 
 export default function Filtro({ setListaAtividades }) {
   const { atividades } = useSelector((state) => state);
-  const [filtros, setFiltros] = useState([]);
+  const [filtros, setFiltros] = useState([
+    "todos",
+    "artes marciais",
+    "danças",
+    "fitness",
+    "funcional",
+    "wellness",
+    "outros",
+  ]);
 
   const tiposAtividades = Array.from(
     new Set(atividades.map((obj) => obj.type))
