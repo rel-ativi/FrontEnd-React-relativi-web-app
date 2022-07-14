@@ -83,6 +83,7 @@ export const Div = styled.div`
 
   .paragrafoTexto {
     font-size: 18px;
+    width: 90%;
   }
 
   .links {
