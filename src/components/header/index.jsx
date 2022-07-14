@@ -47,12 +47,15 @@ export default function Header({
       nome: atividade?.name,
       data: `${data.getDate()}/${data.getMonth()}/${data.getFullYear()}`,
       horario: data.getHours(),
-      pro: pro.name.split(" ")[0],
+      pro: pro?.name.split(" ")[0],
+      atvd: atividade,
     };
   };
 
   const logout = () => {
-    localStorage.clear();
+    localStorage.removeItem("@relativi:token");
+    localStorage.removeItem("@relativi:userId");
+    localStorage.removeItem("@relativi:profileId");
 
     navigate("/");
   };
@@ -136,7 +139,7 @@ export default function Header({
                   <span>{proximaAtividade().pro}</span>
                   <MdAspectRatio
                     onClick={() => {
-                      setAtividadeAtual(proximaAtividade().id);
+                      setAtividadeAtual(proximaAtividade().atvd);
                       mostrarModalAtividade(true);
                     }}
                   />
@@ -167,7 +170,7 @@ export default function Header({
                     <span>{proximaAtividade().pro}</span>
                     <MdAspectRatio
                       onClick={() => {
-                        setAtividadeAtual(proximaAtividade().id);
+                        setAtividadeAtual(proximaAtividade().atvd);
                         mostrarLembreteMobile(false);
                         mostrarModalAtividade(true);
                       }}

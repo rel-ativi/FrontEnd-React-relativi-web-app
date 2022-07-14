@@ -1,17 +1,15 @@
+import { useEffect } from "react";
 import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
 
 import Cadastro from "../pages/cadastro";
 import Login from "../pages/login";
+import Loja from "../pages/loja";
 import SobreNos from "../pages/sobreNos";
-
-import { Dashboard } from "../pages/dashboard";
-import { Landing } from "../pages/landing";
-
-import { useEffect } from "react";
+import SobreProjeto from "../pages/sobreProjeto";
 
 import { notificarErro } from "../components/toasts";
-
-import Loja from "../pages/loja";
+import { Dashboard } from "../pages/dashboard";
+import { Landing } from "../pages/landing";
 
 export default function Router() {
   const token = localStorage.getItem("@relativi:token") || "";
@@ -23,7 +21,9 @@ export default function Router() {
       const decifrar = JSON.parse(atob(localToken.split(".")[1]));
 
       if (decifrar.exp * 1000 < new Date().getTime()) {
-        localStorage.clear();
+        localStorage.removeItem("@relativi:token");
+        localStorage.removeItem("@relativi:userId");
+        localStorage.removeItem("@relativi:profileId");
         navigate("/");
         notificarErro("Sua sessão expirou");
       }
@@ -54,6 +54,7 @@ export default function Router() {
         element={!!token ? <Dashboard /> : <Navigate to={"/login"} />}
       />
       <Route path={"/sobrenos"} element={<SobreNos />} />
+      <Route path={"/sobreprojeto"} element={<SobreProjeto />} />
     </Routes>
   );
 }

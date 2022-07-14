@@ -2,155 +2,177 @@ import styled from "styled-components";
 import { mq } from "../../styles/global";
 
 export const ModalBackgroundDescricao = styled.div`
+  inset: 0;
+  height: 100vh;
+  padding: 0.8rem;
+
   display: flex;
-  box-sizing: border-box;
-  flex-direction: column;
   align-items: center;
+  flex-direction: column;
   justify-content: center;
+
   background-color: ${({ theme: { cores } }) => cores.secundariaAlpha};
-  width: 100%;
-  height: 100%;
+  backdrop-filter: blur(2px);
   position: fixed;
-  top: 0;
-  left: 0;
+  z-index: 4;
 `;
 
-export const ModalDescricaoContainer = styled.div`
-  box-sizing: border-box;
+export const ModalAtividade = styled.div`
   height: fit-content;
-  width: 100vw;
+  width: 100%;
+  height: 90vh;
   background-color: ${({ theme: { cores } }) => cores.primaria};
   display: flex;
   flex-direction: column;
-  z-index: 1000;
-  max-width: 320px;
+  justify-content: space-between;
+  z-index: 5;
+  max-width: 390px;
+  max-height: 550px;
 
-  .imagem {
+  overflow: hidden;
+  border-radius: 10px;
+
+  position: relative;
+
+  figure {
+    width: 100%;
+    height: 250px;
+
     display: flex;
 
-    img {
-      height: 230px;
-    }
+    overflow: hidden;
+    border-radius: 10px 10px 0 0;
+
+    background-image: ${({ url }) => `url(${url})`};
+    background-position: center;
+    background-size: cover;
+
+    position: relative;
 
     svg {
-      color: ${({ theme: { cores } }) => cores.marca};
-      position: absolute;
-      transform: translate3d(270px, 10px, 0);
-      cursor: pointer;
-    }
-  }
+      top: 0.8rem;
+      right: 0.8rem;
+      width: 40px;
+      height: 40px;
 
-  .info-container {
-    display: flex;
-    flex-direction: column;
-    padding: 10px;
-    gap: 0.7rem;
+      padding: 0.5rem;
+
+      font-size: 1rem;
+      color: ${({ theme: { cores } }) => cores.marca};
+
+      border-radius: 50%;
+      background-color: ${({ theme: { cores } }) => cores.primaria};
+      position: absolute;
+      cursor: pointer;
+
+      :hover {
+        color: ${({ theme: { cores } }) => cores.secundaria};
+      }
+    }
   }
 
   .title {
-    box-sizing: border-box;
+    top: 40%;
+    width: 100%;
+
+    padding: 0.8rem;
+
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
     align-items: center;
-    color: ${({ theme: { cores } }) => cores.suporteUm};
-  }
+    justify-content: space-between;
 
-  .info {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
+    position: absolute;
 
-    .info-line {
-      display: flex;
-      flex-direction: row;
-      gap: 0.3rem;
-      align-items: center;
-      color: ${({ theme: { cores } }) => cores.suporteTres};
+    background-color: ${({ theme: { cores } }) => cores.secundaria};
 
-      p {
-        max-width: 90%;
-        font-size: smaller;
-      }
+    h3 {
+      font-weight: 500;
+      font-family: "Source Code Pro", monospace;
+      color: ${({ theme: { cores } }) => cores.primaria};
+      font-size: 1.4rem;
+
+      max-width: 80%;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
     }
 
-    .info-summary {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
+    svg {
+      font-size: 1.4rem;
+      color: ${({ theme: { cores } }) => cores.marca};
+      cursor: pointer;
 
-      p {
-        margin-right: 10px;
-      }
-    }
-
-    .info-preco {
-      display: flex;
-      flex-direction: row;
-      gap: 0.3rem;
-      align-items: center;
-      justify-content: space-between;
-      font-weight: 800;
-
-      p {
-        font-size: smaller;
-      }
-
-      span {
-        font-size: smaller;
-        font-weight: 400;
-        margin-right: 10px;
-      }
-
-      div {
-        display: flex;
-        gap: 0.3rem;
-        align-items: center;
-      }
-    }
-
-    .rating {
-      color: ${({ theme: { cores } }) => cores.suporteUm};
-    }
-
-    .button-container {
-      button {
-        width: 100%;
-      }
-
-      svg {
-        position: fixed;
-        transform: translate(-100%, -20%);
+      :hover {
         color: ${({ theme: { cores } }) => cores.primaria};
       }
     }
   }
 
-  ${mq[2]} {
-    box-sizing: border-box;
-    height: fit-content;
-    width: 100vw;
-    background-color: ${({ theme: { cores } }) => cores.primaria};
+  .info {
+    height: 270px;
+    padding: 1rem;
+    overflow: scroll;
+
+    gap: 1rem;
     display: flex;
-    flex-direction: row;
-    z-index: 1000;
-    max-width: 800px;
+    flex-direction: column;
+    align-items: center;
 
-    .imagem {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 450px;
+    & > div:first-of-type {
+      color: ${({ theme: { cores } }) => cores.suporteUm};
 
-      img {
-        width: 440px;
-        height: 340px;
+      p {
+        font-weight: 700;
+        font-size: 1.4rem;
       }
 
       svg {
-        position: fixed;
-        transform: translate3d(190px, -145px, 0);
+        transform: translateY(40%);
       }
+    }
+
+    div {
+      width: 100%;
+      gap: 0.5rem;
+      display: flex;
+
+      svg {
+        transform: translateY(15%);
+      }
+    }
+
+    section {
+      width: 100%;
+
+      display: flex;
+      justify-content: space-between;
+
+      div {
+        width: 48%;
+
+        p {
+          span {
+            font-weight: 600;
+          }
+        }
+      }
+    }
+
+    & > div:last-of-type {
+      display: flex;
+      flex-direction: column;
+
+      button {
+        gap: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+
+    ${mq[3]} {
+      height: 300px;
     }
   }
 `;

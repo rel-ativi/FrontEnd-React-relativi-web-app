@@ -128,6 +128,7 @@ export const EstiloHeader = styled.header`
         }
 
         p {
+          width: fit-content;
           color: ${({ theme: { cores } }) => cores.suporteUm};
         }
 

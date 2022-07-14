@@ -31,6 +31,7 @@ export default function ModalConfirmarAgendamento({
     };
 
     dispatch(alteraPerfilUsuarioThunk(atualizada));
+    mostrarCalendario(false);
   };
 
   const desagendar = () => {
@@ -41,6 +42,7 @@ export default function ModalConfirmarAgendamento({
     };
 
     dispatch(alteraPerfilUsuarioThunk(atualizada));
+    mostrarCalendario(false);
   };
 
   useEffect(() => {

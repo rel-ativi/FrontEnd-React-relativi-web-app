@@ -1,9 +1,10 @@
 import Botao from "../botao";
-import { ModalBackgroundDescricao, ModalDescricaoContainer } from "./style";
+import { ModalAtividade, ModalBackgroundDescricao } from "./style";
 
 import {
   MdCalendarToday,
   MdClose,
+  MdDateRange,
   MdFavorite,
   MdFavoriteBorder,
   MdGrade,
@@ -14,31 +15,31 @@ import {
   MdRoom,
 } from "react-icons/md";
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { alteraPerfilUsuarioThunk } from "../../store/modules/perfilUsuario/thunks";
 
 export default function ModalAtividadeLoja({
-  obj,
-  mostrarModalDescricao,
-  setMostrarModalDescricao,
-  favoritos,
-  setFavoritos,
+  atividade,
+  mostrarModalAtividade,
+  mostrarCalendario,
 }) {
   const dispatch = useDispatch();
 
-  if (obj === undefined) {
-    return null;
-  }
+  const { perfilUsuario, listaProfissionais } = useSelector((state) => state);
 
-  const endereco = `${obj.address.line_1} - ${obj.address.line_2} - ${obj.address.city} - ${obj.address.state}`;
+  const pro = listaProfissionais?.find(
+    (pro) => pro.id === atividade?.prouserId
+  );
+
+  const agendadas = perfilUsuario?.activities.map((atvd) => atvd.activity);
 
   const resolveDia = () => {
-    if (obj.schedule.recurrent === true) {
-      const diaCru = obj.schedule.days;
-      const dia = `${diaCru} - ${obj.schedule.time_text}`;
+    if (atividade?.schedule.recurrent === true) {
+      const diaCru = atividade?.schedule.days;
+      const dia = `${diaCru} - ${atividade?.schedule.time_text}`;
       return dia;
     } else {
-      const diaCru = String(new Date(obj.schedule.start_date));
+      const diaCru = String(new Date(atividade?.schedule.start_date));
       const diaNum = diaCru.slice(8, 10);
       const mesEng = diaCru.slice(4, 7);
       const mesPt = () => {
@@ -56,117 +57,139 @@ export default function ModalAtividadeLoja({
           ? "Out"
           : "Dez";
       };
-      const dia = `${diaNum} de ${mesPt()} - ${obj.schedule.time_text}`;
+      const dia = `${diaNum} de ${mesPt()} - ${atividade.schedule.time_text}`;
       return dia;
     }
   };
 
-  const abreConfirmacao = () => {
-    console.log("modal conf");
+  const adicionaFavorita = (id) => {
+    const favoritas = perfilUsuario?.activities_favorites;
+
+    const atualizada = {
+      activities_favorites: [...favoritas, id],
+    };
+
+    dispatch(alteraPerfilUsuarioThunk(atualizada));
   };
 
-  const fechaModal = () => {
-    setMostrarModalDescricao(false);
+  const removeFavorita = (id) => {
+    const favoritas = perfilUsuario?.activities_favorites;
+
+    const atualizada = {
+      activities_favorites: favoritas.filter((atvd) => atvd !== id),
+    };
+
+    dispatch(alteraPerfilUsuarioThunk(atualizada));
   };
 
-  const gerarIconeFavorito = () => {
-    const checker = favoritos.includes(obj.id);
-    return checker ? (
+  const iconeFavorita = (id) => {
+    const favoritas = perfilUsuario?.activities_favorites;
+
+    return favoritas?.includes(id) ? (
       <MdFavorite
-        size={"30px"}
         onClick={() => {
-          favoritar();
+          removeFavorita(id);
         }}
       />
     ) : (
       <MdFavoriteBorder
-        size={"30px"}
         onClick={() => {
-          favoritar();
+          adicionaFavorita(id);
         }}
       />
     );
   };
 
-  const favoritar = () => {
-    const checker = favoritos.includes(obj.id);
-    const novoPerfil = { activities_favorites: favoritos };
-    if (!checker) {
-      setFavoritos([...favoritos, obj.id]);
-      dispatch(alteraPerfilUsuarioThunk(novoPerfil));
-    } else {
-      const novosFavoritos = favoritos.filter((el) => el !== obj.id);
-      setFavoritos([...novosFavoritos]);
-      dispatch(alteraPerfilUsuarioThunk(novoPerfil));
-    }
+  const agendar = () => {
+    mostrarCalendario(true);
+    mostrarModalAtividade(false);
   };
 
-  return mostrarModalDescricao ? (
+  return (
     <ModalBackgroundDescricao>
-      <ModalDescricaoContainer>
-        <div className="imagem">
-          <img src={obj.img_url} alt={obj.name} />
+      <ModalAtividade url={atividade.img_url}>
+        <figure className="imagem">
+          {/* <img src={atividade.img_url} alt={atividade.name} /> */}
           <MdClose
             size={"40px"}
             onClick={() => {
-              fechaModal();
+              mostrarModalAtividade(false);
             }}
           />
-        </div>
-        <div className="info-container">
+        </figure>
+        <section>
           <div className="title">
-            <h3>{obj.name}</h3>
-            {gerarIconeFavorito()}
+            <h3>{atividade.name}</h3>
+            {iconeFavorita(atividade?.id)}
           </div>
           <div className="info">
-            <div className="info-line rating">
+            <div>
               <MdGrade />
-              <h4>4.9</h4>
-            </div>
-            <p>{obj.description}</p>
-            <div className="info-preco">
-              <div>
-                <MdPermIdentity />
-                <p>com: Instrutor</p>
-              </div>
-              <div>
-                <h3>
-                  R$ 50,00 <span>/aula</span>
-                </h3>
-              </div>
+              <p>4.9</p>
             </div>
 
-            <div className="info-line">
+            <p>{atividade?.description}</p>
+
+            <section>
+              <div>
+                <MdPermIdentity />
+                <p>com: {pro?.name.split(" ")[0]}</p>
+              </div>
+              <div>
+                <p>
+                  <span>R$ {atividade?.price?.toFixed(2)} /aula</span>
+                </p>
+              </div>
+            </section>
+
+            <div>
               <MdCalendarToday />
               <p>{resolveDia()}</p>
             </div>
             <div className="info-line">
               <MdRoom size={"16px"} />
-              <p>{endereco}</p>
+              <p>
+                {atividade.address.line_1}
+                <br />
+                {atividade.address.line_2} - {atividade.address.city}
+                <br />
+                {atividade.address.state}
+              </p>
             </div>
-            <div className="info-summary">
+            <section>
               <div className="info-line section">
                 <MdOutlineAvTimer />
-                <p>{obj.duration_text}</p>
+                <p>{atividade.duration_text}</p>
               </div>
               <div className="info-line section">
                 <MdPeopleAlt />
-                <p>{obj.users_limit} pessoas</p>
+                <p>{atividade.users_limit} pessoas</p>
               </div>
-            </div>
+            </section>
             <div className="button-container">
-              <Botao
-                onClick={() => {
-                  abreConfirmacao();
-                }}
-              >
-                <MdLibraryAdd size={"30px"} />
-                Agendar
-              </Botao>
+              {agendadas?.includes(atividade?.id) ? (
+                <Botao
+                  onClick={() => {
+                    agendar();
+                  }}
+                >
+                  <MdDateRange />
+                  Editar Agendamento
+                </Botao>
+              ) : (
+                <Botao
+                  onClick={() => {
+                    agendar();
+                  }}
+                >
+                  <MdLibraryAdd />
+                  Agendar
+                </Botao>
+              )}
             </div>
           </div>
-        </div>
-      </ModalDescricaoContainer>
+        </section>
+      </ModalAtividade>
     </ModalBackgroundDescricao>
-  ) : null;
+  );
 }
