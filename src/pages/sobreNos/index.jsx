@@ -21,7 +21,7 @@ const SobreNos = ({ navigation, route }) => {
       img: "https://media-exp2.licdn.com/dms/image/C4D03AQGDqzT-VTurOA/profile-displayphoto-shrink_200_200/0/1643838668664?e=1663200000&v=beta&t=7vjMfM4lFb3k3hvnr_1Z1VBfdGg1-OJwQDb0A-99QKo",
       cargo: "Scrum Master",
       texto:
-        "Pequena descrição sobre o dev e o principal papel no projeto. txttxtxtxtxtxtx",
+        "Desenvolvedora Full-Stack (em desenvolvimento), atuou como Scrum Master no projeto, e com a criação de componentes e páginas.",
       linkedin: "https://www.linkedin.com/in/kamila-mattos-09256a157/",
       github: "https://github.com/KamilaMattos",
     },
@@ -30,7 +30,7 @@ const SobreNos = ({ navigation, route }) => {
       img: "https://media-exp2.licdn.com/dms/image/C4D03AQEMaEttwiAW7w/profile-displayphoto-shrink_200_200/0/1657728631045?e=1663200000&v=beta&t=BwlRqc7WCjHGdirG_WJ_CKlUkHkRxAimlad-RtP2nNk",
       cargo: "Tech Leader",
       texto:
-        "Pequena descrição sobre o dev e o principal papel no projeto. txttxtxtxtxtxtx",
+        "Desenvolvedor Full-stack (em aprendizado), foi o Tech Lead nesse projeto, dando suporte geral tecnico a' equipe de desenvolvimento.",
       linkedin: "https://www.linkedin.com/in/andre-perregil-60aa51198/",
       github: "https://github.com/AndrePerregil",
     },
@@ -39,7 +39,7 @@ const SobreNos = ({ navigation, route }) => {
       img: "https://media-exp2.licdn.com/dms/image/C4D03AQGQrhr19j2A2w/profile-displayphoto-shrink_200_200/0/1643328660166?e=1663200000&v=beta&t=pWuSsAFLYGBiTP3iYuIsUtRB0XCSSJnv86NPS_OZcro",
       cargo: "Quality Assurance",
       texto:
-        "Pequena descrição sobre o dev e o principal papel no projeto. txttxtxtxtxtxtx",
+        "Desenvolvedor Full-Stack ,em desenvolvimento, na kenzie academy, principal participação no projeto o header e os modais nele presentes.",
       linkedin: "https://www.linkedin.com/in/bruno-prado-gomes-8756611a1/",
       github: "https://github.com/Bruno-BPG",
     },
@@ -57,7 +57,7 @@ const SobreNos = ({ navigation, route }) => {
       img: "https://media-exp2.licdn.com/dms/image/C4E03AQHpkGQS0PebHQ/profile-displayphoto-shrink_200_200/0/1655321005014?e=1663200000&v=beta&t=sEXwxUMTHscfoXjy2swHeBE-JqnPklekVpIAwThWn2k",
       cargo: "Quality Assurance",
       texto:
-        "Pequena descrição sobre o dev e o principal papel no projeto. txttxtxtxtxtxtx",
+        "Desenvolvedora Front-End, em formação no Back-End, responsável por códigos,  revisões e decisões do layout.",
       linkedin: "https://www.linkedin.com/in/raquel-de-s%C3%A1-silva/",
       github: "https://github.com/raqueldesa",
     },

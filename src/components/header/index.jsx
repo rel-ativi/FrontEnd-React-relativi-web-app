@@ -53,7 +53,9 @@ export default function Header({
   };
 
   const logout = () => {
-    localStorage.clear();
+    localStorage.removeItem("@relativi:token");
+    localStorage.removeItem("@relativi:userId");
+    localStorage.removeItem("@relativi:profileId");
 
     navigate("/");
   };

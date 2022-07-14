@@ -21,7 +21,9 @@ export default function Router() {
       const decifrar = JSON.parse(atob(localToken.split(".")[1]));
 
       if (decifrar.exp * 1000 < new Date().getTime()) {
-        localStorage.clear();
+        localStorage.removeItem("@relativi:token");
+        localStorage.removeItem("@relativi:userId");
+        localStorage.removeItem("@relativi:profileId");
         navigate("/");
         notificarErro("Sua sessão expirou");
       }

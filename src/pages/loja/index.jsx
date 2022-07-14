@@ -1,6 +1,7 @@
 //ignorar isto, so' testando
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 import CardLoja from "../../components/cardAtividadeLoja";
 import Filtro from "../../components/filtro";
@@ -9,11 +10,23 @@ import Header from "../../components/header";
 import ModalAgenda from "../../components/modalAgenda";
 import ModalAtividadeLoja from "../../components/modalAtividadeLoja";
 import ModalConfirmarAgendamento from "../../components/modalConfirmarAgendamento";
+import {
+  buscaAtividadesProThunk,
+  buscaAtividadesThunk,
+} from "../../store/modules/atividades/thunks";
+import buscaProfissionaisThunk from "../../store/modules/listaProfissionais/thunks";
+import buscaPerfilProfissionalThunk from "../../store/modules/perfilProUsers/thunks";
+import { buscaPerfilUsuarioThunk } from "../../store/modules/perfilUsuario/thunks";
 
 import { ListaAtividades } from "./style";
 
 export default function Loja() {
-  const { atividades, perfilUsuario } = useSelector((state) => state);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const { atividades, perfilUsuario, perfilProfissional } = useSelector(
+    (state) => state
+  );
 
   const [agenda, mostrarAgenda] = useState(false);
   const [listaAtividades, setListaAtividades] = useState([]);
@@ -22,8 +35,23 @@ export default function Loja() {
   const [calendario, mostrarCalendario] = useState(false);
 
   useEffect(() => {
+    console.log(atividades.length);
+    if (atividades.length === 0) {
+      if (!!perfilProfissional) {
+        dispatch(buscaAtividadesProThunk());
+        dispatch(buscaPerfilProfissionalThunk());
+        navigate("/dashboard", { replace: true });
+      }
+      if (!!perfilUsuario) {
+        dispatch(buscaAtividadesThunk());
+        dispatch(buscaProfissionaisThunk());
+        dispatch(buscaPerfilUsuarioThunk());
+        navigate("/loja", { replace: true });
+      }
+    }
+
     setListaAtividades([...atividades]);
-  }, [atividades]);
+  }, [atividades, dispatch, navigate, perfilProfissional, perfilUsuario]);
 
   return (
     <>
@@ -35,7 +63,7 @@ export default function Loja() {
         mostrarModalAtividade={mostrarModalAtividade}
         naLoja
       />
-      <Filtro atividades={atividades} setListaAtividades={setListaAtividades} />
+      <Filtro setListaAtividades={setListaAtividades} />
       {agenda && (
         <ModalAgenda
           mostrarAgenda={mostrarAgenda}
