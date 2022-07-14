@@ -27,6 +27,7 @@ export const ModalAtividade = styled.div`
   justify-content: space-between;
   z-index: 5;
   max-width: 390px;
+  max-height: 550px;
 
   overflow: hidden;
   border-radius: 10px;
