@@ -6,10 +6,10 @@ import Login from "../pages/login";
 import Loja from "../pages/loja";
 import SobreNos from "../pages/sobreNos";
 import SobreProjeto from "../pages/sobreProjeto";
+import Dashboard from "../pages/dashboard";
+import Landing from "../pages/landing";
 
 import { notificarErro } from "../components/toasts";
-import { Dashboard } from "../pages/dashboard";
-import { Landing } from "../pages/landing";
 
 export default function Router() {
   const token = localStorage.getItem("@relativi:token") || "";

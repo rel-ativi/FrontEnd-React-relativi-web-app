@@ -28,12 +28,21 @@ export function CardLista({
     const pro = listaProfissionais?.find(
       (pro) => pro.id === atividade?.prouserId
     );
-    const data = new Date(atividade?.schedule.start_date);
+
+    const agendamento =
+      perfilUsuario?.activities.find(
+        (atvd) => atvd.activity === atividade?.id
+      ) ||
+      perfilUsuario?.activities_history.find(
+        (atvd) => atvd.activity === atividade?.id
+      );
+
+    const data = new Date(agendamento?.when);
 
     return {
       id: atividade?.id,
       nome: atividade?.name,
-      data: `${data.getDate()}/${data.getMonth()}`,
+      data: `${data.getDate()}/${data.getMonth() + 1}`,
       horario: data.getHours(),
       pro: pro?.name,
       atvd: atividade,
@@ -43,14 +52,18 @@ export function CardLista({
   return (
     <EstiloCard>
       <p>{resumoAtvd().nome}</p>
-      <p>{resumoAtvd().data}</p>
-      <p>{resumoAtvd().horario}h</p>
+      {!favorita && (
+        <>
+          <p>{resumoAtvd().data}</p>
+          <p>{resumoAtvd().horario}h</p>
+        </>
+      )}
       <div>
         <MdAspectRatio
           onClick={() => {
             setAtividadeAtual(resumoAtvd().atvd);
             mostrarModalAtividade(true);
-            mostrarAgenda(false);
+            mostrarAgenda && mostrarAgenda(false);
           }}
         />
         {favorita && (

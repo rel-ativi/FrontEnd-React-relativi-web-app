@@ -1,13 +1,12 @@
 import styled from "styled-components";
 
-export const EstiloHeaderCardsDash = styled.div`
+export const EstiloHeaderListaDash = styled.div`
   background-color: ${({ theme: { cores } }) => cores.secundaria};
   color: ${({ theme: { cores } }) => cores.primaria};
 
   width: 100%;
-  height: 100px;
+  height: 5rem;
 
-  border-radius: 10px 10px 0 0;
   font-size: 16px;
   font-family: "Source Code Pro", sans-serif;
 

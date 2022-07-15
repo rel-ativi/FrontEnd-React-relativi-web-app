@@ -1,6 +1,3 @@
-import Botao from "../botao";
-import { ModalAtividade, ModalBackgroundDescricao } from "./style";
-
 import {
   MdCalendarToday,
   MdClose,
@@ -15,10 +12,13 @@ import {
   MdRoom,
 } from "react-icons/md";
 
+import Botao from "../botao";
+
 import { useDispatch, useSelector } from "react-redux";
 import { alteraPerfilUsuarioThunk } from "../../store/modules/perfilUsuario/thunks";
+import { EstiloModalAtividade, ModalAtividadeBackground } from "./style";
 
-export default function ModalAtividadeLoja({
+export default function ModalAtividade({
   atividade,
   mostrarModalAtividade,
   mostrarCalendario,
@@ -106,8 +106,8 @@ export default function ModalAtividadeLoja({
   };
 
   return (
-    <ModalBackgroundDescricao>
-      <ModalAtividade url={atividade.img_url}>
+    <ModalAtividadeBackground>
+      <EstiloModalAtividade url={atividade.img_url}>
         <figure className="imagem">
           {/* <img src={atividade.img_url} alt={atividade.name} /> */}
           <MdClose
@@ -189,7 +189,7 @@ export default function ModalAtividadeLoja({
             </div>
           </div>
         </section>
-      </ModalAtividade>
-    </ModalBackgroundDescricao>
+      </EstiloModalAtividade>
+    </ModalAtividadeBackground>
   );
 }

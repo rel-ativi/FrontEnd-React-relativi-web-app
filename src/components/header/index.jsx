@@ -147,48 +147,50 @@ export default function Header({
               )}
             </div>
           </EstiloHeader>
-          {tipo === "usuario" && perfilUsuario?.activities.length > 0 && (
-            <>
-              {lembreteMobile ? (
-                <LembreteMobile>
-                  <div>
+          {tipo === "usuario" &&
+            perfilUsuario?.activities.length > 0 &&
+            !naDash && (
+              <>
+                {lembreteMobile ? (
+                  <LembreteMobile>
+                    <div>
+                      <MdToday /> <p>Lembre-se!</p>{" "}
+                      <MdExpandLess
+                        onClick={() => {
+                          mostrarLembreteMobile(false);
+                        }}
+                      />
+                    </div>
+                    <div>
+                      <p>Você tem:</p>
+                      <span>{proximaAtividade().nome}</span>
+                      <p>em:</p>
+                      <span>{proximaAtividade().data}</span>
+                      <p>às:</p>
+                      <span>{proximaAtividade().horario}h</span>
+                      <p>com:</p>
+                      <span>{proximaAtividade().pro}</span>
+                      <MdAspectRatio
+                        onClick={() => {
+                          setAtividadeAtual(proximaAtividade().atvd);
+                          mostrarLembreteMobile(false);
+                          mostrarModalAtividade(true);
+                        }}
+                      />
+                    </div>
+                  </LembreteMobile>
+                ) : (
+                  <LembreteMobileFechado>
                     <MdToday /> <p>Lembre-se!</p>{" "}
-                    <MdExpandLess
+                    <MdExpandMore
                       onClick={() => {
-                        mostrarLembreteMobile(false);
+                        mostrarLembreteMobile(true);
                       }}
                     />
-                  </div>
-                  <div>
-                    <p>Você tem:</p>
-                    <span>{proximaAtividade().nome}</span>
-                    <p>em:</p>
-                    <span>{proximaAtividade().data}</span>
-                    <p>às:</p>
-                    <span>{proximaAtividade().horario}h</span>
-                    <p>com:</p>
-                    <span>{proximaAtividade().pro}</span>
-                    <MdAspectRatio
-                      onClick={() => {
-                        setAtividadeAtual(proximaAtividade().atvd);
-                        mostrarLembreteMobile(false);
-                        mostrarModalAtividade(true);
-                      }}
-                    />
-                  </div>
-                </LembreteMobile>
-              ) : (
-                <LembreteMobileFechado>
-                  <MdToday /> <p>Lembre-se!</p>{" "}
-                  <MdExpandMore
-                    onClick={() => {
-                      mostrarLembreteMobile(true);
-                    }}
-                  />
-                </LembreteMobileFechado>
-              )}
-            </>
-          )}
+                  </LembreteMobileFechado>
+                )}
+              </>
+            )}
         </>
       ) : (
         <h1>Carregando...</h1>

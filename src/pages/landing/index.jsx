@@ -6,7 +6,7 @@ import Background from "../../components/background";
 import { LogoHorizontal, LogoQuadrado } from "../../components/logo";
 import { EstiloLanding } from "./style";
 
-export function Landing() {
+export default function Landing() {
   const navigate = useNavigate();
 
   const redirecionaLogin = () => {

@@ -8,7 +8,7 @@ import Botao from "../botao";
 import { useDispatch, useSelector } from "react-redux";
 import { alteraPerfilUsuarioThunk } from "../../store/modules/perfilUsuario/thunks";
 
-export default function ModalConfirmarAgendamento({
+export default function ModalAgendamento({
   mostrarCalendario,
   atividadeAtual,
   ...rest
@@ -25,8 +25,10 @@ export default function ModalConfirmarAgendamento({
   const agendar = () => {
     const atualizada = {
       activities: [
-        ...perfilUsuario?.activities,
-        { activity: atividadeAtual?.id, when: value },
+        ...perfilUsuario?.activities.filter(
+          (atvd) => atvd.activity !== atividadeAtual?.id
+        ),
+        { activity: atividadeAtual?.id, when: Date.parse(value) },
       ],
     };
 

@@ -40,11 +40,10 @@ export const EstiloBotao = styled.button`
           background-color: ${({ theme: { cores } }) => cores.suporteTres};
 
           :hover {
-            background-color: ${({ theme: { cores } }) =>
-              cores.suporteTresAlpha};
+            color: ${({ theme: { cores } }) => cores.secundaria};
+            background-color: ${({ theme: { cores } }) => cores.suporteDois};
           }
         `;
-
       case "branca":
         return css`
           color: ${({ theme: { cores } }) => cores.secundaria};

@@ -9,6 +9,7 @@ export const EstiloAgenda = styled.section`
   gap: 1rem;
   display: flex;
   flex-direction: column;
+  align-items: center;
 
   overflow-y: scroll;
 

@@ -13,7 +13,6 @@ export const EstiloCard = styled.div`
   justify-content: space-between;
 
   font-size: 1.2rem;
-  /* color: ${({ theme: { cores } }) => cores.se}; */
 
   border-radius: 10px;
   background-color: ${({ theme: { cores } }) => cores.suporteDois};

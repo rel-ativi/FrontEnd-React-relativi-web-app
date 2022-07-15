@@ -1,9 +1,10 @@
 import styled from "styled-components";
 import { mq } from "../../styles/global";
 
-export const ModalBackgroundDescricao = styled.div`
+export const ModalAtividadeBackground = styled.div`
   inset: 0;
   height: 100vh;
+  width: 100vw;
   padding: 0.8rem;
 
   display: flex;
@@ -17,7 +18,7 @@ export const ModalBackgroundDescricao = styled.div`
   z-index: 4;
 `;
 
-export const ModalAtividade = styled.div`
+export const EstiloModalAtividade = styled.div`
   height: fit-content;
   width: 100%;
   height: 90vh;

@@ -7,16 +7,16 @@ import Filtro from "../../components/filtro";
 import Footer from "../../components/footer";
 import Header from "../../components/header";
 import ModalAgenda from "../../components/modalAgenda";
-import ModalAtividadeLoja from "../../components/modalAtividadeLoja";
-import ModalConfirmarAgendamento from "../../components/modalConfirmarAgendamento";
+import ModalAgendamento from "../../components/modalAgendamento";
+import ModalAtividade from "../../components/modalAtividade";
+import buscaProfissionaisThunk from "../../store/modules/listaProfissionais/thunks";
+import buscaPerfilProfissionalThunk from "../../store/modules/perfilProUsers/thunks";
+
 import {
   buscaAtividadesProThunk,
   buscaAtividadesThunk,
 } from "../../store/modules/atividades/thunks";
-import buscaProfissionaisThunk from "../../store/modules/listaProfissionais/thunks";
-import buscaPerfilProfissionalThunk from "../../store/modules/perfilProUsers/thunks";
 import { buscaPerfilUsuarioThunk } from "../../store/modules/perfilUsuario/thunks";
-
 import { ListaAtividades } from "./style";
 
 export default function Loja() {
@@ -69,13 +69,13 @@ export default function Loja() {
         />
       )}
       {calendario && (
-        <ModalConfirmarAgendamento
+        <ModalAgendamento
           mostrarCalendario={mostrarCalendario}
           atividadeAtual={atividadeAtual}
         />
       )}
       {modalAtividade && (
-        <ModalAtividadeLoja
+        <ModalAtividade
           atividade={atividadeAtual}
           mostrarModalAtividade={mostrarModalAtividade}
           mostrarCalendario={mostrarCalendario}

@@ -13,7 +13,7 @@ import buscaProfissionaisThunk from "../../store/modules/listaProfissionais/thun
 import buscaPerfilProfissionalThunk from "../../store/modules/perfilProUsers/thunks";
 
 import { LogoHorizontal, LogoQuadrado } from "../../components/logo";
-import { notificarErro } from "../../components/toasts";
+import { notificarErro, notificarSucesso } from "../../components/toasts";
 import {
   buscaAtividadesProThunk,
   buscaAtividadesThunk,
@@ -43,6 +43,7 @@ export default function Login() {
           dispatch(buscaPerfilUsuarioThunk());
           navigate("/loja");
         }
+        notificarSucesso("Login realizado! Redirecionando...");
       })
       .catch((_) => {
         notificarErro("Credenciais Inválidas");

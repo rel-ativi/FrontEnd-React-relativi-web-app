@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 import { mq } from "../../styles/global";
 
-export const ContainerDash = styled.div`
+export const Main = styled.main`
   min-height: 80vh;
   width: 100vw;
 
@@ -12,6 +12,7 @@ export const ContainerDash = styled.div`
     gap: 15px;
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
   }
 
   ${mq[1]} {
