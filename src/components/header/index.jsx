@@ -32,7 +32,7 @@ export default function Header({
 
   const agendaAtividades = () => {
     const listaIds = perfilUsuario?.activities?.map((atv) => atv.activity);
-    return atividades.filter((atv) => listaIds.includes(atv.id));
+    return atividades.filter((atv) => listaIds.includes(atv.id)).sort();
   };
 
   const proximaAtividade = () => {

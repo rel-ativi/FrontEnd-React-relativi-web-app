@@ -135,6 +135,8 @@ export const EstiloModalAtividade = styled.div`
 
     div {
       width: 100%;
+      height: fit-content;
+
       gap: 0.5rem;
       display: flex;
 
@@ -145,6 +147,7 @@ export const EstiloModalAtividade = styled.div`
 
     section {
       width: 100%;
+      height: fit-content;
 
       display: flex;
       justify-content: space-between;
@@ -174,6 +177,46 @@ export const EstiloModalAtividade = styled.div`
 
     ${mq[3]} {
       height: 300px;
+    }
+  }
+
+  ${mq[1]} {
+    width: 90vw;
+    height: 70vh;
+    max-width: 700px;
+    max-height: 410px;
+
+    flex-direction: row;
+    justify-content: space-between;
+
+    figure {
+      width: 50%;
+      height: 100%;
+
+      border-radius: 0;
+    }
+
+    section {
+      height: 100%;
+      width: 50%;
+
+      .info {
+        height: 100%;
+
+        & > p {
+          height: 300px;
+
+          overflow: scroll;
+        }
+      }
+
+      .title {
+        top: unset;
+        bottom: 0;
+        left: 0;
+
+        width: 50%;
+      }
     }
   }
 `;

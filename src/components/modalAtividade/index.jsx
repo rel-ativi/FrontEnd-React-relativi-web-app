@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import {
   MdCalendarToday,
   MdClose,
@@ -23,6 +24,7 @@ export default function ModalAtividade({
   mostrarModalAtividade,
   mostrarCalendario,
 }) {
+  const modal = useRef();
   const dispatch = useDispatch();
 
   const { perfilUsuario, listaProfissionais } = useSelector((state) => state);
@@ -105,9 +107,23 @@ export default function ModalAtividade({
     mostrarModalAtividade(false);
   };
 
+  useEffect(() => {
+    const clicouFora = (event) => {
+      const target = event.target;
+      if (!modal.current?.contains(target)) {
+        mostrarModalAtividade(false);
+      }
+    };
+    document.addEventListener("mousedown", clicouFora);
+
+    return () => {
+      document.removeEventListener("mousedown", clicouFora);
+    };
+  }, [mostrarModalAtividade]);
+
   return (
     <ModalAtividadeBackground>
-      <EstiloModalAtividade url={atividade.img_url}>
+      <EstiloModalAtividade url={atividade.img_url} ref={modal}>
         <figure className="imagem">
           {/* <img src={atividade.img_url} alt={atividade.name} /> */}
           <MdClose
