@@ -112,7 +112,7 @@ export default function FormPerfil({ mostrarPerfil, mostrarForm }) {
           type="number"
           label="Código de Segurança:"
           textoAuxiliar={codigo.error}
-          placeholder="escolha uma data"
+          placeholder="digit os 3 dígitos"
           icone={MdLock}
           {...codigo.inputProps}
         />
