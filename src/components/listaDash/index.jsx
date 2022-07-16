@@ -27,7 +27,7 @@ export default function ListaDash({
       >
         {titulo}
       </HeaderListaDash>
-      <div className="container">
+      <div className="containerLista">
         {!!arrayAtividades && (
           <>
             {arrayAtividades.length > 0 ? (

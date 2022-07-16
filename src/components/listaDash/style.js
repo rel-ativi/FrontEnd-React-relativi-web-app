@@ -7,10 +7,14 @@ export const EstiloListaDash = styled.section`
   border-radius: 10px;
   overflow: hidden;
 
-  .container {
+  .containerLista {
     width: 100%;
     max-height: 300px;
     padding: 0.8rem;
+
+    gap: 1rem;
+    display: flex;
+    flex-direction: column;
 
     overflow: scroll;
 

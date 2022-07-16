@@ -13,7 +13,7 @@ import buscaProfissionaisThunk from "../../store/modules/listaProfissionais/thun
 import buscaPerfilProfissionalThunk from "../../store/modules/perfilProUsers/thunks";
 
 import { LogoHorizontal, LogoQuadrado } from "../../components/logo";
-import { notificarErro, notificarSucesso } from "../../components/toasts";
+import { notificarErro, notificarInfo } from "../../components/toasts";
 import {
   buscaAtividadesProThunk,
   buscaAtividadesThunk,
@@ -26,6 +26,7 @@ export default function Login() {
   const dispatch = useDispatch();
 
   const logarUsuario = (credenciais) => {
+    notificarInfo("Verificando Credenciais...");
     API.post("/login", credenciais)
       .then((response) => {
         localStorage.setItem("@relativi:token", response.data.accessToken);
@@ -43,7 +44,6 @@ export default function Login() {
           dispatch(buscaPerfilUsuarioThunk());
           navigate("/loja");
         }
-        notificarSucesso("Login realizado! Redirecionando...");
       })
       .catch((_) => {
         notificarErro("Credenciais Inválidas");
