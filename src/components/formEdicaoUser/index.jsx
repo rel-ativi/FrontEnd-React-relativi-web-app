@@ -95,7 +95,7 @@ export default function FormPerfil({ mostrarPerfil, mostrarForm }) {
         type="text"
         label="Pagamento:"
         textoAuxiliar={cartao.error}
-        placeholder="digite seu telefone"
+        placeholder="digite o número do cartão"
         icone={MdOutlineCreditCard}
         {...cartao.inputProps}
       />
