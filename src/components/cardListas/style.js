@@ -5,6 +5,7 @@ export const EstiloCard = styled.div`
   width: 100%;
   height: 45px;
   max-width: 390px;
+  margin: 0 auto;
   padding: 0 0.8rem;
 
   gap: 0.5rem;
